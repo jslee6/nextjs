@@ -15,4 +15,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 export { connectDB }
 
+// 변수 커넥트DB를 내보내서 씀
+
 // next js 만든사람이 몽고db쓸떄 이렇게 쓰래. 걍붙여넣기로하세요
