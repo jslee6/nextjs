@@ -1,5 +1,9 @@
+// 서버컴포턴트 라서 DB입출력 넣어도됨
+
 import { connectDB } from "/util/database.js"
 import { MongoClient } from "mongodb"
+
+
 
 
 export default async function Home() {
