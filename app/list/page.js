@@ -1,27 +1,33 @@
 // 서버컴포턴트 라서 DB입출력 넣어도됨
 
 import { connectDB } from "@/util/database.js"
+import Link from "next/link";
 
 export default async function List() {
   let db = (await connectDB).db('forum');
   let result = await db.collection('post').find().toArray();
+  console.log(result)
+
+// let db, result 가져가면 DB 출력가능
+
   console.log(result[0])
 
   return (
     <div className="list-bg">
-      <div className="list-item">
-        <h4>{result[0].title}</h4>
-        {/* --> 리절트 변수에 어레이자료중 첫버재 자료ㅕ의 .title가져옴 */}
-        <p>1월 1일</p>
-      </div>
-      <div className="list-item">
-        <h4>글제목</h4>
-        <p>1월 1일</p>
-      </div>
-      <div className="list-item">
-        <h4>글제목</h4>
-        <p>1월 1일</p>
-      </div>
+        {
+            result.map((a,i)=>{
+                return(
+                    <div className="list-item" key={i}>
+                    
+                    <Link href={'/detail/' + result[i]._id}><h4>{a.title}</h4></Link>
+                    {/* D 라우팅 링크 세부주소+ 결과값의 아이디값+ <H4<'배열의 타이틀값 가지고옴' </H4> */}
+                    
+                    <p>1월 1일</p>
+                  </div>
+                )                       
+            })
+        }
+
     </div>
   )
 }
