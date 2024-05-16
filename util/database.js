@@ -2,7 +2,8 @@ import { MongoClient } from 'mongodb'
 const url = 'mongodb+srv://jslee2:wlstjr1208@cluster0.wqytvou.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 // 접속 URL 만 잘가져옴
 
-const options = { useNewUrlParser: true }
+const options = {  }
+
 let connectDB
 
 if (process.env.NODE_ENV === 'development') {
