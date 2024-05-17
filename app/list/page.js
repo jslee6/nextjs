@@ -5,6 +5,8 @@
 
 import { connectDB } from "@/util/database.js"
 import Link from "next/link";
+import DetailLink from "./DetailLink";
+
 
 export default async function List() {
   let db = (await connectDB).db('forum');
@@ -21,12 +23,13 @@ export default async function List() {
             result.map((a,i)=>{
                 return(
                     <div className="list-item" key={i}>
-                        <h4>{result[i].title}</h4>
+                        {/* <h4>{result[i].title}</h4> */}
                     
                     <Link href={'/detail/'+ result[i]._id}>
                       <h4>{a.title}</h4>
                       </Link>
                     {/* D 라우팅 링크 세부주소+ 결과값의 아이디값+ <H4<'배열의 타이틀값 가지고옴' </H4> */}
+                    <DetailLink></DetailLink>
                     
                     <p>1월 1일</p>
                   </div>
