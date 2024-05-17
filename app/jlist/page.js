@@ -28,7 +28,7 @@ export default async function List() {
                     <Link href={'/jdetail/'+ result[i]._id}>
                       <h4>{a.title}</h4>
                       </Link>
-                      <h4>{a.content}</h4>
+                      <p>{a.content}</p>
                     {/* D 라우팅 링크 세부주소+ 결과값의 아이디값+ <H4<'배열의 타이틀값 가지고옴' </H4> */}
                     <DetailLink></DetailLink>
                     

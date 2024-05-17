@@ -23,14 +23,15 @@ export default async function List() {
             result.map((a,i)=>{
                 return(
                     <div className="list-item" key={i}>
-                        {/* <h4>{result[i].title}</h4> */}
-                    
-                    <Link href={'/detail/'+ result[i]._id}>
-                      <h4>{a.title}</h4>
-                      </Link>
-                      <h4>{a.content}</h4>
-                    {/* D 라우팅 링크 세부주소+ 결과값의 아이디값+ <H4<'배열의 타이틀값 가지고옴' </H4> */}
-                    <DetailLink></DetailLink>
+                        <h4>{result[i].title}</h4>
+                  
+                        <Link href={'/detail/' + result[i]._id}>{result[i].title}</Link>
+                        <Link href={'/edit/' + result[i]._id} className="list-btn">✏️</Link>
+                        
+                        
+                        <p>{a.content}</p>
+
+                    {/* <DetailLink></DetailLink> */}
                     
                     {/* <p>1월 1일</p> */}
                   </div>
