@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,7 +12,23 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+       <head />
+      <body>
+        <div className="navbar">
+          <Link href="/">Home</Link>
+          <Link href="/list">List</Link>
+          <Link href="/write">write</Link>  
+          <Link href="/jlist">user</Link>  
+          
+          <Link href="/join">sign up</Link> 
+          <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer">Naver</a>
+          <a href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer">bookstack</a>
+
+        </div>
+        {/* 칠드런 위에표시 공용용페이지로 나옴, 링크는 a태그대신씀 부드러움 */}
+        {children}
+      </body>
     </html>
   );
 }
+

@@ -25,6 +25,12 @@ console.log(result)
 
 
   return (
-   <div>안녕</div>
+   <div>
+      <h1 className="title">Programming log</h1>
+      <h2 className="minititle">TEST PAGE</h2>
+      <p className="title-sub">by dev JSLEE </p>
+    
+     </div>
+   
   )
 }
