@@ -10,7 +10,7 @@ import DetailLink from "./DetailLink";
 
 export default async function List() {
   let db = (await connectDB).db('forum');
-  let result = await db.collection('post').find().toArray();
+  let result = await db.collection('join').find().toArray();
   console.log(result)
 
 // let db, result 가져가면 DB 출력가능
@@ -25,7 +25,7 @@ export default async function List() {
                     <div className="list-item" key={i}>
                         {/* <h4>{result[i].title}</h4> */}
                     
-                    <Link href={'/detail/'+ result[i]._id}>
+                    <Link href={'/jdetail/'+ result[i]._id}>
                       <h4>{a.title}</h4>
                       </Link>
                       <h4>{a.content}</h4>

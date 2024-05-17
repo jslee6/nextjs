@@ -1,0 +1,17 @@
+{/* 폼테그 쓰는게 겟,포스트 제일쓰기 쉬움**** */}
+// 풋과 딜리트는 안됨
+
+
+
+export default async function Write() {
+    return (
+      <div className="p-20">
+        <form action="/api/post/join" method="POST">
+          <input name="title" placeholder="가입아이디"/>
+          <input name="content" placeholder="비밀번호"/>
+          <button type="submit">전송</button>
+        </form>
+  
+      </div>
+    )
+  } 
