@@ -82,3 +82,8 @@ body {
     text-decoration: none;
     color : black;
   }  */
+
+  .list-item {
+    opacity: 1;
+    transition: all 1s;
+  } 
