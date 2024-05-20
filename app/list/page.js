@@ -1,4 +1,3 @@
-
 // 서버컴포턴트 라서 DB입출력 넣어도됨
 
 
@@ -6,6 +5,7 @@
 import { connectDB } from "@/util/database.js"
 import Link from "next/link";
 import DetailLink from "./DetailLink";
+import ListItem from "./listitem";
 
 
 export default async function List() {
@@ -19,25 +19,11 @@ export default async function List() {
 
   return (
     <div className="list-bg">
-        {
-            result.map((a,i)=>{
-                return(
-                    <div className="list-item" key={i}>
-                        <h4>{result[i].title}</h4>
-                  
-                        <Link href={'/detail/' + result[i]._id}>{result[i].title}</Link>
-                        <Link href={'/edit/' + result[i]._id} className="list-btn">✏️</Link>
-                        
-                        
-                        <p>{a.content}</p>
-
-                    {/* <DetailLink></DetailLink> */}
-                    
-                    {/* <p>1월 1일</p> */}
-                  </div>
-                )                       
-            })
-        }
+      <ListItem result={result}></ListItem>
+      {/* 프롭스 , 작명 ={전송할 데이터} */}
+      {/* props 가져옴 */}
+      {/* 리스트 item 컴포넌트 가져옴 */}
+        
 
     </div>
   )
