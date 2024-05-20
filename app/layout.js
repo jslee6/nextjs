@@ -1,6 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import LoginBtn from "./loginBtn";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,12 +18,19 @@ export default function RootLayout({ children }) {
        <head />
       <body>
         <div className="navbar">
+
+        <LoginBtn></LoginBtn>
+        
+         
           <Link href="/">Home</Link>
           <Link href="/list">List</Link>
           <Link href="/write">write</Link>  
           <Link href="/jlist">user</Link>  
+
           
           <Link href="/join">sign up</Link> 
+          
+          
           <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer">Naver</a>
           <a href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer">bookstack</a>
 

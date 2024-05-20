@@ -8,6 +8,11 @@ import DetailLink from "./DetailLink";
 import ListItem from "./listitem";
 
 
+export const dynamic = 'force-dynamic'
+
+// export const dynamic = 'force-static'
+// 랜더링 전략.  다이나믹이 아니면 데이터 변경안됨
+
 export default async function List() {
   let db = (await connectDB).db('forum');
   let result = await db.collection('post').find().toArray();
