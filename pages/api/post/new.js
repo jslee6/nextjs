@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "../auth/[...nextauth]"
 
 export default async function handler(요청, 응답) {
-  let session = await getServerSession(요청, 응답, authOptions,authOptions)
+  let session = await getServerSession(요청, 응답, authOptions)
   // console.log(session.user.name)
   if(session){
     요청.body.author = session.user.email
