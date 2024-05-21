@@ -30,11 +30,11 @@ export default async function RootLayout({ children }) {
         {session 
       ? <span>{session.user.name} <LogOutBtn></LogOutBtn> </span> 
       : <LoginBtn></LoginBtn>
+      // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
 
         }
        
-        
-      
+
          
           <Link href="/">Home</Link>
           <Link href="/list">List</Link>
