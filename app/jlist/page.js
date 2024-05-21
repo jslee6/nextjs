@@ -5,7 +5,6 @@
 import { connectDB } from "@/util/database.js"
 import Link from "next/link";
 import DetailLink from "./DetailLink";
-
 export const dynamic = 'force-dynamic'
 
 
