@@ -24,6 +24,8 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.0",
     "prisma": "^5.14.0"
   }
 }
