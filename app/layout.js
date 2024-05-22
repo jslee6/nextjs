@@ -56,7 +56,7 @@ export default async function RootLayout({ children }) {
           <Button component={Link} href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
              bookstack </Button>
           <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
-             redmine </Button>
+             Redmine </Button>
 
 
           {/* <Link href="/list">List</Link>
