@@ -50,7 +50,7 @@ body {
   } 
 
   .navbar {
-    background: rgb(172, 220, 226);
+    background: rgb(188, 233, 241);
     padding: 20px;
   }
 
@@ -73,10 +73,10 @@ body {
 
   body {
     margin : 0;
-    background-color: #303030;
-    color : white
+    background-color: #ffffff;
+    color : rgb(10, 0, 0)
   }
-  /* 배경색상 */
+  /* 배경 및 기본 글자색상 */
   
   /* a {
     text-decoration: none;

@@ -7,6 +7,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import {LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
+import { Link as MuiLink } from "@mui/material";
+import Button from '@mui/material/Button';
+
 
 
 
@@ -26,27 +29,44 @@ export default async function RootLayout({ children }) {
       <body>
         <div className="navbar">
 
-     
+        <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px',marginBottom: '-5px' }} /> {/* 이미지 추가 */}
+
+        {/* 이미지 추가 */}
+
+
+        {'　　'} {/* 공백 추가 */}
+
+
         {session 
-      ? <span>{session.user.name} <LogOutBtn></LogOutBtn> </span> 
+      ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span> 
       : <LoginBtn></LoginBtn>
+      
       // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
 
         }
+         {'　　　　'} {/* 공백 추가 */}
        
+          <Button component={Link} href="/" variant="contained" >HOME</Button>
+          <Button component={Link} href="/list" variant="contained" >list</Button>
+          <Button component={Link} href="/write" variant="contained" >write</Button>
 
-         
-          <Link href="/">Home</Link>
-          <Link href="/list">List</Link>
+          <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
+             Group Ware </Button>
+          <Button component={Link} href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
+             bookstack </Button>
+          <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
+             redmine </Button>
+
+
+          {/* <Link href="/list">List</Link>
           <Link href="/write">write</Link>  
           <Link href="/jlist">user</Link>  
-
+          <Link href="/join">sign up</Link> */}
+          {/* 원본이고 위에가 mui  */}
           
-          <Link href="/join">sign up</Link> 
-          
-          
+{/*           
           <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer">Naver</a>
-          <a href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer">bookstack</a>
+          <a href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer">bookstack</a> */}
 
         </div>
         {/* 칠드런 위에표시 공용용페이지로 나옴, 링크는 a태그대신씀 부드러움 */}
