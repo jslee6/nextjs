@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import Link from "next/link";
 
 
 import { getServerSession } from "next-auth";
@@ -9,7 +9,6 @@ import {LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
 import { Link as MuiLink } from "@mui/material";
 import Button from '@mui/material/Button';
-import Link from "next/link";
 
 
 
