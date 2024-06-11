@@ -11,7 +11,6 @@ export default async function get({}) {
     });
 
 
-
     //ID 가 특정한것만 출력
 
     return (

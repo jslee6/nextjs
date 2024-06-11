@@ -1,8 +1,4 @@
-// export default function handler(){
-//   if (req.method == 'POST') {
-//     console.log(req.body)
-//   }
-// }
+// /pages/api/post/user.js
 
 import { PrismaClient } from '@prisma/client';
 
@@ -10,8 +6,13 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { email, firstName, lastName, address, age } = req.body;
+    // Log the incoming request body
+    console.log('Request body:', req.body);
 
+    const { email, firstName, lastName, address, age } = req.body;
+    //-> 이게 파싱이구나......
+
+  
     try {
       // Create a new user in the database
       const newUser = await prisma.user.create({
@@ -20,13 +21,13 @@ export default async function handler(req, res) {
           firstName,
           lastName,
           address,
-          age: age ? parseInt(age, 10) : null, // age가 제공된 경우에만 정수로 변환
+          age: age ? parseInt(age, 10) : null, // Convert age to integer if provided
         },
       });
       res.status(200).json(newUser);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to create user' });
+      console.error('Error creating user:', error);
+      res.status(500).json({ error: 'Failed to create user', details: error.message });
     }
   } else {
     res.status(405).json({ message: 'Method not allowed' });
@@ -34,3 +35,4 @@ export default async function handler(req, res) {
 }
 
 
+//일단넣긴햇는데 이메일은왜?~

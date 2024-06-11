@@ -34,11 +34,11 @@ model product {
 model user {
   age       Int?
   id        String   @id @default(uuid())
-  address   String
+  address   String?
   createdAt DateTime @default(now())
-  email     String   @unique
-  firstName String
-  lastName  String
+  email     String?   @unique
+  firstName String?
+  lastName  String?
   updatedAt DateTime @updatedAt
 }
 
