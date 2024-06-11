@@ -5,7 +5,7 @@ export default async function get({ }) {
     try {
         const users = await prisma.user.findMany();
         console.log(users.map(user => user.id)); // 사용자의 id만 콘솔에 출력
-        // console.log(users.map(user)); // 전체 출력
+        // console.log(users.map(user=>user)); // 전체 출력
 
         return (
             <div>

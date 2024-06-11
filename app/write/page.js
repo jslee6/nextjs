@@ -13,7 +13,6 @@ export default async function Write() {
         <input name="test2" placeholder="test필드2"/>
         <button type="submit">전송</button>
       </form>
-
     </div>
   )
 } 

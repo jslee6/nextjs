@@ -7,6 +7,19 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model usertest {
+  name   String? @db.VarChar(100)
+  age    Int?
+  number String? @db.VarChar(100)
+  id     Int     @id @default(autoincrement())
+}
+
+model sw {
+  swName  String? @db.VarChar(100)
+  swPrice String? @db.VarChar(100)
+  swId    Int     @id
+}
+
 model product {
   id          String           @id
   name        String
@@ -18,28 +31,15 @@ model product {
   updatedAt   DateTime
 }
 
-model sw {
-  swName  String? @db.VarChar(100)
-  swPrice String? @db.VarChar(100)
-  swId    Int     @id
-}
-
 model user {
   age       Int?
-  id        String   @id
+  id        String   @id @default(uuid())
   address   String
   createdAt DateTime @default(now())
   email     String   @unique
   firstName String
   lastName  String
-  updatedAt DateTime
-}
-
-model usertest {
-  name   String? @db.VarChar(100)
-  age    Int?
-  number String? @db.VarChar(100)
-  id     Int     @id @default(autoincrement())
+  updatedAt DateTime @updatedAt
 }
 
 enum product_category {

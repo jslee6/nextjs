@@ -20,7 +20,7 @@ const db = client.db('forum');
 
 
 let result = await db.collection('post').find().toArray();
-console.log(result)
+// console.log(result)
 // 컬렉션의 모든 document를 가져오세요 .그걸 result 변수에 담음
 
 
@@ -29,7 +29,7 @@ console.log(result)
       <h1 className="title">Programming log</h1>
       <h2 className="minititle">TEST PAGE</h2>
       <p className="title-sub">by dev JSLEE </p>
-    
+
      </div>
    
   )
