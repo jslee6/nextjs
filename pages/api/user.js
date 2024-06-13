@@ -1,4 +1,4 @@
-// pages/api/users.js
+// pages/api/user.js
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -9,7 +9,14 @@ export default async function select(req, res) {
       const users = await prisma.user.findMany({
         select: {
           id: true,
-          email: true
+          address: true,
+          age: true,
+          email: true,
+          firstName: true,
+          lastName: true,
+          updatedAt: true,
+          createdAt: true,
+         
         }
       });
       res.status(200).json(users);
@@ -20,8 +27,6 @@ export default async function select(req, res) {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
-
-
 
 
 // import { PrismaClient } from '@prisma/client';
