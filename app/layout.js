@@ -45,10 +45,18 @@ export default async function RootLayout({ children }) {
 
         }
          {'　　　　'} {/* 공백 추가 */}
+
+         <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button>
+          {/* post 테스트 */}
+          <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button> 
+          {/* mui 테이블 get 기준정보  */}
+          <Button component={Link} href="/ptest" variant="contained" color="secondary">get, ptest</Button> 
+          {/* get 테스트 */}
        
           <Button component={Link} href="/" variant="contained" >HOME</Button>
           <Button component={Link} href="/list" variant="contained" >list</Button>
           <Button component={Link} href="/write" variant="contained" >write</Button>
+     
 
           <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
              Group Ware </Button>
