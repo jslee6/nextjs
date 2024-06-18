@@ -5,7 +5,7 @@
 export default function Write() {
   return (
     <div className="p-20">
-      <form action="/api/post/user" method="POST">
+      <form action="/api/user/post" method="POST">
         <input type="text" name="email" placeholder="이메일" required />
         <input type="text" name="firstName" placeholder="이름" required />
         <input type="text" name="lastName" placeholder="성"  />

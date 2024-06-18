@@ -9,7 +9,7 @@ export default function PTablePage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('/api/user2')  // API 라우트 경로 수정
+    fetch('/api/user')  // API 라우트 경로 수정
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -52,6 +52,8 @@ export default function PTablePage() {
                 <TableCell>{user.address}</TableCell>
                 <TableCell>{user.createdAt}</TableCell>
                 <TableCell>{user.updatedAt}</TableCell>
+                {/* <TableCell><button onClick={() => handleUpdate(user.id)}>Update</button>
+</TableCell> */}
               </TableRow>
             ))}
           </TableBody>

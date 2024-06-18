@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     const { email, firstName, lastName, address, age } = req.body;
     //-> 이게 파싱이구나......
 
-  
+
     try {
       // Create a new user in the database
       const newUser = await prisma.user.create({
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
           lastName,
           address,
           age: age ? parseInt(age, 10) : null, // Convert age to integer if provided
-        },
+        },  // id는 uuid 자동생성
       });
       res.status(200).json(newUser);
     } catch (error) {
@@ -33,6 +33,6 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Method not allowed' });
   }
 }
-
+ 
 
 //일단넣긴햇는데 이메일은왜?~

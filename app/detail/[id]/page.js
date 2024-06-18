@@ -15,8 +15,6 @@ export default async function Detail(props) {
       <h4>테스트: {result.test}</h4>
       <h4>테스트2: {result.test2}</h4>
 
-      
-
     </div>
     
   )

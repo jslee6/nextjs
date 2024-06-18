@@ -16,7 +16,7 @@ export default async function get({ }) {
                     <div key={user.id}>
                         <h4>아이디: {user.id}, </h4>
                         <h4>이메일: {user.email}</h4>
-                        <h4>주소: {user.address}</h4>
+                        <h4>이메일: {user.address}</h4>
                     </div>
                 ))
                 }
