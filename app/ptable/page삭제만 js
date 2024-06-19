@@ -3,13 +3,13 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 
 export default function PTablePage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('/api/user')  // API 라우트 경로 수정
+    fetch('/api/user/get')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -17,16 +17,38 @@ export default function PTablePage() {
         return response.json();
       })
       .then(data => {
-        console.log('Fetched data:', data); // 콘솔 로그 추가
+        console.log('Fetched data:', data);
         setUsers(data);
       })
       .catch(error => console.error('Fetch error:', error));
   }, []);
 
+  const handleDelete = async (userId) => {
+    try {
+      const response = await fetch('/api/user/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: userId }),
+      }); 
+      // userID 파라미터로 삭제
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const { message } = await response.json();
+      console.log(message);
+      setUsers(users.filter(user => user.id !== userId));
+    } catch (error) {
+      console.error('Delete error:', error);
+    }
+  };
+
   return (
     <Container>
-      {/* <TableContainer component={Paper} sx={{ maxWidth: '80%', margin: 'auto' }}> 최대 너비를 80%로 설정 */}
-      <TableContainer component={Paper} > 
+      <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
@@ -38,7 +60,7 @@ export default function PTablePage() {
               <TableCell>Address</TableCell>
               <TableCell>Create</TableCell>
               <TableCell>update</TableCell>
-              
+              <TableCell>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -52,8 +74,11 @@ export default function PTablePage() {
                 <TableCell>{user.address}</TableCell>
                 <TableCell>{user.createdAt}</TableCell>
                 <TableCell>{user.updatedAt}</TableCell>
-                {/* <TableCell><button onClick={() => handleUpdate(user.id)}>Update</button>
-</TableCell> */}
+                <TableCell>
+                  <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>
+                    삭제
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

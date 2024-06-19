@@ -1,4 +1,4 @@
-//pages/api/user/update.js
+//pages/api/user/put.js
 
 import { PrismaClient } from '@prisma/client';
 

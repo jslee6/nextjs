@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
+import Cart from '../components/comptest';
+
 
 export default async function get({ }) {
     try {
@@ -11,6 +13,7 @@ export default async function get({ }) {
         return (
             <div>
                 <h4>상세페이지임</h4>
+                <Cart/>
                 {
                 users.map((user) => (
                     <div key={user.id}>

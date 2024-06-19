@@ -9,7 +9,7 @@ export default function PTablePage() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch('/api/user')  // API 라우트 경로 수정
+    fetch('/api/user/get')  // API 라우트 경로 수정
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
