@@ -1,10 +1,13 @@
 // app/ptable/page.js
-// 업데이트, 딜리트 추가했는데 따로 뺄예정
+// 업데이트 컴포넌트 뺼예정
+//삭제 컴포넌트 분리+ 업데이트 코드
+
 
 'use client'
 
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import DeleteButton from '../components/DeleteButton';
 
 export default function PTablePage() {
   const [users, setUsers] = useState([]);
@@ -26,27 +29,11 @@ export default function PTablePage() {
       .catch(error => console.error('Fetch error:', error));
   }, []);
 
-  const handleDelete = async (userId) => {
-    try {
-      const response = await fetch('/api/user/delete', {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id: userId }),
-      });
+  
+    const handleDelete = async(userId) => {
+    setUsers(users.filter(user => user.id !== userId));
+    };
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const { message } = await response.json();
-      console.log(message);
-      setUsers(users.filter(user => user.id !== userId));
-    } catch (error) {
-      console.error('Delete error:', error);
-    }
-  };
 
   const handleUpdate = (user) => {
     setSelectedUser(user);
@@ -66,7 +53,7 @@ export default function PTablePage() {
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-  
+
       const updatedUser = await response.json();
       setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
       setOpen(false);
@@ -92,8 +79,8 @@ export default function PTablePage() {
               <TableCell>Age</TableCell>
               <TableCell>Address</TableCell>
               <TableCell>Create</TableCell>
-              <TableCell>Update<br/>Delete</TableCell>
-              {/* <TableCell>Delete</TableCell> */}  
+              <TableCell>Update<br />Delete</TableCell>
+              {/* <TableCell>Delete</TableCell> */}
               {/* 수정,삭제 한줄로 바꿈 */}
             </TableRow>
           </TableHead>
@@ -108,14 +95,17 @@ export default function PTablePage() {
                 <TableCell>{user.address}</TableCell>
                 <TableCell>{user.createdAt}</TableCell>
                 <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
+                  <Button variant="contained" color="primary" onDelete={() => handleUpdate(user)}>
                     수정
                   </Button>
-                  <br/>
-                {/* </TableCell> */}
-                {/* <TableCell> */}
-                  <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제
-                 </Button>
+                  <br />
+                  {/* </TableCell> */}
+                  {/* <TableCell> */}
+                  <DeleteButton userId={user.id} onDelete={handleDelete} />  
+                  {/* 삭제 컴포넌트를 가져옴 온클릭대신 onClick  쓰면 삭제시 새로고침 해야 보임*/}
+
+                  {/* <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button> */}
+                  {/* 컨포넌트 가져오기전 코드 */}
                 </TableCell>
               </TableRow>
             ))}
