@@ -23,7 +23,6 @@ function Cart() {
             <p>props 테스트{props.작명}</p>
             <p>텍스트</p>
             
-
         </div>
 
     )
