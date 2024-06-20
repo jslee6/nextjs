@@ -1,6 +1,8 @@
 // app/components/DeleteButton.js
 // user에서 쓰는 딜리트 컴포넌트
 
+///안쓰게 수정 컴포넌트쓰는게 더 어렵네
+
 import React from 'react';
 import { Button } from '@mui/material';
 
@@ -55,3 +57,53 @@ const DeleteButton = ({ userId, onDelete }) => {
 };
 
 export default DeleteButton;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//공부용
+// 이 코드에는 다음과 같은 주요 구성 요소가 있습니다:
+
+// DeleteButton 컴포넌트:
+
+// 이 컴포넌트는 사용자 삭제 기능을 제공합니다.
+// 사용자 ID(userId)와 삭제 이벤트 핸들러(onDelete) 함수를 props로 받습니다.
+// handleDelete 함수:
+
+// 버튼 클릭 시 실행되는 비동기 함수입니다.
+// /api/user/delete 엔드포인트로 DELETE 요청을 보내서 사용자를 삭제합니다.
+// 요청 본문에 사용자 ID(userId)를 JSON 형식으로 포함시킵니다.
+// 서버 응답의 message 속성을 콘솔에 출력합니다.
+// onDelete 함수를 호출하여 삭제 이벤트를 부모 컴포넌트에 전달합니다.
+// Button 컴포넌트:
+
+// Material-UI의 Button 컴포넌트를 사용하여 삭제 버튼을 렌더링합니다.
+// variant, color, onClick props를 통해 버튼의 스타일과 동작을 설정합니다.
+// JSON.stringify() 함수:
+
+// JavaScript 객체를 JSON 형식의 문자열로 변환합니다.
+// 이를 통해 요청 본문에 사용자 ID 데이터를 포함시킬 수 있습니다.
+// fetch API:
+
+// 서버와의 HTTP 요청/응답 처리를 위해 사용됩니다.
+// DELETE 메서드를 사용하여 사용자 삭제 요청을 보냅니다.
+// 요청 본문에 사용자 ID를 포함시킵니다.
+// 구조 분해 할당:
+
+// 서버 응답에서 message 속성의 값을 추출하여 변수에 할당합니다.
+// onerror 이벤트 핸들링:
+
+// 삭제 작업 중 발생한 오류를 catch 블록에서 처리합니다.
+// 오류 메시지를 콘솔에 출력합니다.
+// 이와 같이 DeleteButton 컴포넌트는 사용자 삭제 기능을 제공하며, 부모 컴포넌트로부터 사용자 ID와 삭제 이벤트 핸들러를 받아 서버와의 통신을 수행합니다.

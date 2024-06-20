@@ -1,6 +1,7 @@
 // app/ptable/page.js
-// 업데이트 컴포넌트 뺼예정
-//삭제 컴포넌트 분리+ 업데이트 코드
+// 업데이트, 딜리트 추가했는데 따로 뺄예정
+//삭제+ 업데이트 코드
+
 
 'use client'
 
@@ -28,11 +29,27 @@ export default function PTablePage() {
       .catch(error => console.error('Fetch error:', error));
   }, []);
 
-  
-    const handleDelete = async(userId) => {
-    setUsers(users.filter(user => user.id !== userId));
-    };
+  const handleDelete = async (userId) => {
+    // try {
+    //   const response = await fetch('/api/user/delete', {
+    //     method: 'DELETE',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({ id: userId }),
+    //   });
 
+    //   if (!response.ok) {
+    //     throw new Error('Network response was not ok');
+    //   }
+
+    //   const { message } = await response.json();
+    //   console.log(message);
+      setUsers(users.filter(user => user.id !== userId));
+  //   } catch (error) {
+  //     console.error('Delete error:', error);
+  //   }
+  };
 
   const handleUpdate = (user) => {
     setSelectedUser(user);
@@ -94,17 +111,11 @@ export default function PTablePage() {
                 <TableCell>{user.address}</TableCell>
                 <TableCell>{user.createdAt}</TableCell>
                 <TableCell>
-                  <Button variant="contained" color="primary" onDelete={() => handleUpdate(user)}>
+                  <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                     수정
                   </Button>
                   <br />
-                  {/* </TableCell> */}
-                  {/* <TableCell> */}
-                  <DeleteButton userId={user.id} onDelete={handleDelete} />  
-                  {/* 삭제 컴포넌트를 가져옴 온클릭대신 onClick  쓰면 삭제시 새로고침 해야 보임*/}
-
-                  {/* <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button> */}
-                  {/* 컨포넌트 가져오기전 코드 */}
+                   <DeleteButton userId={user.id} onDelete={handleDelete} />
                 </TableCell>
               </TableRow>
             ))}
@@ -161,3 +172,4 @@ export default function PTablePage() {
     </Container>
   );
 }
+
