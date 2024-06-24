@@ -15,7 +15,6 @@ const DataGridPage = () => {
   const [open, setOpen] = useState(false);   // 업데이트 관련
 
 
-
   // get , 데이터 가져옴
   useEffect(() => {
     const fetchData = async () => {
@@ -137,12 +136,14 @@ const DataGridPage = () => {
     
       <div style={{ width: '100%' }}>
         <DataGrid
+         rowsPerPage={10}
           rows={rows}
           columns={cuserColumns}
-          pageSize={5}
-          rowsPerPageOptions={[5]} // 페이지당 로우수 옵션
+          pageSize={5} // 안됨
+          rowsPerPageOptions={[5]} // 페이지당 로우수 옵션 ,안됨
           pagination
-          autoHeight
+          autoHeight   
+        //   rowHeight={100}
         />
       </div>
       <UserDialog

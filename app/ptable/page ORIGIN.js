@@ -5,15 +5,12 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Pagination, Stack } from '@mui/material';
-import UserDialog from '../components/UserDialog';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [open, setOpen] = useState(false);
-
-
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -31,7 +28,6 @@ export default function PTablePage() {
     }, []);
     /////// get
 
- 
     /// 삭제 컴포넌트 시작~
     const handleDelete = async (userId) => {
         try {
@@ -99,7 +95,6 @@ export default function PTablePage() {
     //   수정 모달을 닫습니다.
     //   handleInputChange 함수:
     //   사용자가 입력한 값을 selectedUser 상태에 반영합니다.
-
     return (
         <Container>
             <TableContainer component={Paper}>
@@ -140,14 +135,49 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        
-            <UserDialog
-                open={open}
-                onClose={() => setOpen(false)}
-                user={selectedUser}
-                onChange={handleInputChange}
-                onSave={handleSaveUpdate}
-            />
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogTitle>사용자 정보 수정</DialogTitle>
+                <DialogContent>
+                    {/* 필드시작 */}
+                    <TextField
+                        name="firstName"
+                        label="First Name"
+                        value={selectedUser?.firstName || ''}
+                        onChange={handleInputChange}
+                        margin="normal"
+                    />
+                    <TextField
+                        name="lastName"
+                        label="Last Name"
+                        value={selectedUser?.lastName || ''}
+                        onChange={handleInputChange}
+                        margin="normal"
+                    />
+                    <TextField
+                        name="email"
+                        label="Email"
+                        value={selectedUser?.email || ''}
+                        onChange={handleInputChange}
+                        margin="normal"
+                    />
+                    <TextField
+                        name="age"
+                        label="Age"
+                        value={selectedUser?.age || ''}
+                        onChange={handleInputChange}
+                        margin="normal"
+                    />
+                    {/* 필드끝 */}
+                </DialogContent>
+                {/* // 저장 삭제 버튼 */}
+                <DialogActions>
+                    <Button onClick={() => setOpen(false)}>Cancel</Button>
+                    <Button onClick={handleSaveUpdate} color="primary">
+                        Save
+                    </Button>
+                </DialogActions>
+                {/* // 저장 삭제 버튼 */}
+            </Dialog>
         </Container>
     );
 }
