@@ -24,7 +24,12 @@ export default async function handler(req, res) {
           age: age ? parseInt(age, 10) : null, // Convert age to integer if provided
         },  // id는 uuid 자동생성
       });
+
+      res.redirect('/ptable');  // 리다이렉트
+
       res.status(200).json(newUser);
+
+
     } catch (error) {
       console.error('Error creating user:', error);
       res.status(500).json({ error: 'Failed to create user', details: error.message });

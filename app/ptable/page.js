@@ -129,7 +129,7 @@ export default function PTablePage() {
                             <TableCell>Age</TableCell>
                             <TableCell>Address</TableCell>
                             <TableCell>Create</TableCell>
-                            <TableCell>Update</TableCell>
+                            <TableCell >Update</TableCell>
                             <TableCell>Delete</TableCell>
                         </TableRow>
                     </TableHead>
