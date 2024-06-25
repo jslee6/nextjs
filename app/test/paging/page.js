@@ -1,37 +1,14 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination, TablePagination } from '@mui/material';
-
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
-
     const [currentPage, setCurrentPage] = useState(1);
-
-    // const handlePageChange = (event, value) => {
-    //   setCurrentPage(value);
-    //   // 페이지 변경 시 필요한 데이터 로드 로직 추가
-    // };
-
-    const [page, setPage] = React.useState(2);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  
-    const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-    };
-  
-    const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
-    };
-
-     // 여기에서 Rows per page 옵션을 정의합니다.
-        
-    const rowsPerPageOptions = [5, 10, 15];
-
-
-////////////////////
+    const usersPerPage = 10;
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -48,6 +25,15 @@ export default function PTablePage() {
             .catch(error => console.error('Fetch error:', error));
     }, []);
 
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };
+
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const totalPages = Math.ceil(users.length / usersPerPage);
+
     return (
         <Container>
             <TableContainer component={Paper}>
@@ -56,7 +42,7 @@ export default function PTablePage() {
                         <TableRow>
                             <TableCell>ID(숨김처리예정)</TableCell>
                             <TableCell>Name</TableCell>
-                            <TableCell>LastNAme</TableCell>
+                            <TableCell>LastName</TableCell>
                             <TableCell>Email</TableCell>
                             <TableCell>Age</TableCell>
                             <TableCell>Address</TableCell>
@@ -64,7 +50,7 @@ export default function PTablePage() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {users.map((user) => (
+                        {currentUsers.map((user) => (
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
                                 <TableCell>{user.firstName}</TableCell>
@@ -77,25 +63,15 @@ export default function PTablePage() {
                         ))}
                     </TableBody>
                 </Table>
-
-                 <TablePagination
-      component="div"
-      count={20}
-      page={page}
-      onPageChange={handleChangePage}
-      rowsPerPage={rowsPerPage}
-      onRowsPerPageChange={handleChangeRowsPerPage}
-      rowsPerPageOptions={rowsPerPageOptions}                            
-
-    />
-                {/* <Pagination  //페이지네이션
-  count={5} // 총 페이지 수
-  page={currentPage} // 현재 페이지
-  onChange={handlePageChange} // 페이지 변경 시 실행될 함수
-  color="primary" // 페이지네이션 컴포넌트의 색상 설정
-/> */}
-
             </TableContainer>
+            <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
+                <Pagination
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                />
+            </Stack>
         </Container>
     );
 }
