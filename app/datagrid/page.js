@@ -148,7 +148,7 @@ const DataGridPage = () => {
           columns={cuserColumns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 7 },  //0 배열 부터 9 로우씩 **
+              paginationModel: { page: 0, pageSize: 7 },  //0 배열 부터 9 로우씩
             },
           }}
           pageSizeOptions={[7,10,15,20]}
