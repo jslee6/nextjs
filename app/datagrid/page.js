@@ -57,8 +57,8 @@ const DataGridPage = () => {
     { field: 'email', headerName: 'Email', width: 100 },
     { field: 'age', headerName: 'Age', width: 90 },
     { field: 'address', headerName: 'Address', width: 150 },
-    { field: 'createdAt', headerName: 'Created At', width: 160 },
-    { field: 'updatedAt', headerName: 'Updated At', width: 100 },
+    { field: 'createdAt', headerName: 'Created At', width: 200 },
+    { field: 'updatedAt', headerName: 'Updated At', width: 200 },
     {
       field: 'actions', headerName: 'Actions', width: 180,
       renderCell: (params) => (
@@ -136,13 +136,24 @@ const DataGridPage = () => {
     
       <div style={{ width: '100%' }}>
         <DataGrid
-         rowsPerPage={10}
+        //  rowsPerPage={10}
+        //   rows={rows}
+        //   columns={cuserColumns}
+        //   pageSize={5} // 안됨
+        //   rowsPerPageOptions={[5]} // 페이지당 로우수 옵션 ,안됨
+        //   pagination
+        //   autoHeight   
+
           rows={rows}
           columns={cuserColumns}
-          pageSize={5} // 안됨
-          rowsPerPageOptions={[5]} // 페이지당 로우수 옵션 ,안됨
-          pagination
-          autoHeight   
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 7 },  //0 배열 부터 9 로우씩 **
+            },
+          }}
+          pageSizeOptions={[7,10,15,20]}
+        //   checkboxSelection
+
         //   rowHeight={100}
         />
       </div>

@@ -46,7 +46,7 @@ export default function DataTable() {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: 0, pageSize: 3 },  //0 배열 부터 3 로우씩
           },
         }}
         pageSizeOptions={[3,4,5,6]}
