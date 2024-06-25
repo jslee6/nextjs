@@ -6,10 +6,13 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
 export default function PTablePage() {
-    const [users, setUsers] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const usersPerPage = 10;
+    const [users, setUsers] = useState([]); //get
 
+    const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
+    const usersPerPage = 7;   //페이징  ok
+
+
+    //get
     useEffect(() => {
         fetch('/api/user/get')
             .then(response => {
@@ -25,14 +28,18 @@ export default function PTablePage() {
             .catch(error => console.error('Fetch error:', error));
     }, []);
 
+    //get 
+
+    //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
-    };
+    };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);
+    //paging
 
     return (
         <Container>
@@ -64,6 +71,7 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            {/* mui 페이지 가이드 */}
             <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                 <Pagination
                     count={totalPages}
@@ -72,6 +80,7 @@ export default function PTablePage() {
                     color="primary"
                 />
             </Stack>
+            {/* mui 페이지 가이드 */}
         </Container>
     );
 }

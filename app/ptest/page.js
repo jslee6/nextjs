@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import Cart from '../components/comptest';
+import statetest from '../statetest/page';
 
 
 export default async function get({ }) {
@@ -13,6 +14,7 @@ export default async function get({ }) {
         return (
             <div>
                 <h4>상세페이지임</h4>
+                {/* <Statetest/> */}
                 <Cart/>
                 {
                 users.map((user) => (
