@@ -1,12 +1,13 @@
 'use client';
-
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Pagination, Stack } from '@mui/material';
+
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]); //get
+
+    const [selectedUser, setSelectedUser] = useState(null);
+    const [open, setOpen] = useState(false);
 
     const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
     const usersPerPage = 7;   //페이징  ok
@@ -38,8 +39,8 @@ export default function PTablePage() {
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-    const totalPages = Math.ceil(users.length / usersPerPage);
-    //paging
+    const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
+    //paging , 배열러 페이지정리
 
     return (
         <Container>
@@ -83,4 +84,5 @@ export default function PTablePage() {
             {/* mui 페이지 가이드 */}
         </Container>
     );
+
 }

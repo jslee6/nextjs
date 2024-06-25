@@ -1,31 +1,20 @@
-// import * as React from 'react';
-// import Pagination from '@mui/material/Pagination';
-// import Stack from '@mui/material/Stack';
-
-// export default function BasicPagination() {
-//   return (
-//     <Stack spacing={4}>
-//       {/* <Pagination count={10} /> */}
-//       <Pagination count={10} color="primary" />
-//       {/* <Pagination count={10} color="secondary" /> */}
-//       {/* <Pagination count={10} disabled /> */}
-//     </Stack>
-//   );
-// }
-
-
-
-
 //components/paging.js
 
-import React from 'react';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+// import React from 'react';
+// import { Pagination, Stack } from '@mui/material';
 
-export default function BasicPagination({ count, page, onPageChange }) {
-  return (
-    <Stack spacing={2}>
-      <Pagination count={count} page={page} onChange={onPageChange} />
-    </Stack>
-  );
-}
+// const PaginationComponent = ({ currentPage, totalPages, onPageChange }) => {
+//     return (
+//         <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
+//             <Pagination
+//                 count={totalPages}
+//                 page={currentPage}
+//                 onChange={onPageChange}
+//                 color="primary"
+//             />
+//         </Stack>
+//     );
+// };
+
+// export default PaginationComponent;
+

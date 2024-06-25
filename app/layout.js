@@ -56,8 +56,8 @@ export default async function RootLayout({ children }) {
           {/* get 테스트 */}
        
           <Button component={Link} href="/" variant="contained" >HOME</Button>
-          <Button component={Link} href="/list" variant="contained" >list</Button>
-          <Button component={Link} href="/write" variant="contained" >write</Button>
+          {/* <Button component={Link} href="/list" variant="contained" >list</Button>
+          <Button component={Link} href="/write" variant="contained" >write</Button> */}
      
 
           <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >

@@ -8,10 +8,14 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Pagination, Stack } from '@mui/material';
 import UserDialog from '../components/UserDialog';
 
+
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
     const [selectedUser, setSelectedUser] = useState(null);
     const [open, setOpen] = useState(false);
+
+    const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
+    const usersPerPage = 8;   //페이징  로우수 ok
 
 
 
@@ -31,7 +35,18 @@ export default function PTablePage() {
     }, []);
     /////// get
 
- 
+    //paging
+    const handlePageChange = (event, value) => {
+        setCurrentPage(value);
+    };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
+
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
+    //paging , 배열러 페이지정리
+
+
     /// 삭제 컴포넌트 시작~
     const handleDelete = async (userId) => {
         try {
@@ -73,6 +88,7 @@ export default function PTablePage() {
                 body: JSON.stringify({ ...selectedUser, age: parseInt(selectedUser.age, 10) }),
             });  // age를 숫자형으로 바꿈. 안바꿀시 문자형으로 오류발생함
 
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -102,7 +118,7 @@ export default function PTablePage() {
 
     return (
         <Container>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} style={{ marginTop: '50px' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -113,11 +129,12 @@ export default function PTablePage() {
                             <TableCell>Age</TableCell>
                             <TableCell>Address</TableCell>
                             <TableCell>Create</TableCell>
-                            <TableCell>Update<br />Delete</TableCell>
+                            <TableCell>Update</TableCell>
+                            <TableCell>Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {users.map((user) => (
+                        {currentUsers.map((user) => (
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
                                 <TableCell>{user.firstName}</TableCell>
@@ -130,7 +147,9 @@ export default function PTablePage() {
                                     <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                                         수정
                                     </Button>
-                                    <br />
+                                </TableCell>
+                                <TableCell>
+                                    {/* <br /> */}
                                     {/* <DeleteButton userId={user.id} onDelete={handleDelete} /> */}
                                     {/* 컴포넌트로뺴면 위에꺼 */}
                                     <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
@@ -139,11 +158,21 @@ export default function PTablePage() {
                         ))}
                     </TableBody>
                 </Table>
-                
+
 
 
             </TableContainer>
-        
+            {/* mui 페이지 가이드 */}
+            <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
+                <Pagination
+                    count={totalPages}
+                    page={currentPage}
+                    onChange={handlePageChange}
+                    color="primary"
+                />
+            </Stack>
+            {/* mui 페이지 가이드 */}
+
             <UserDialog
                 open={open}
                 onClose={() => setOpen(false)}
