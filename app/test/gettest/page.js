@@ -3,8 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
+
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
+
+
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -22,7 +25,9 @@ export default function PTablePage() {
     }, []);
 
     return (
+
         <Container>
+            {/* <SortingSelectingToolbar /> */}
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
