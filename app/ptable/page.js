@@ -148,7 +148,7 @@ export default function PTablePage() {
                                     direction={sortColumn === 'firstName' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('firstName')}
                                 >
-                                    Name
+                                    FirstName
                                 </TableSortLabel>
                             </TableCell>
                             <TableCell>
