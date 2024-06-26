@@ -178,7 +178,15 @@ export default function PTablePage() {
                                     Age
                                 </TableSortLabel>
                             </TableCell>
-                            <TableCell>Address</TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'address'}
+                                    direction={sortColumn === 'address' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('address')}
+                                >
+                                Address
+                                </TableSortLabel>
+                                </TableCell>
                             <TableCell>
                                 <TableSortLabel
                                     active={sortColumn === 'createdAt'}
