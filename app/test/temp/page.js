@@ -1,9 +1,10 @@
-//map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
-
+// app/ptable/page.js
+// GET+ SOrt +페이지네이션 , map 때문에 안됨
+// 순서를 바꿈 , 현재 코드에서 페이지네이션과 정렬이 별도로 작동하고 있습니다. 정렬된 데이터를 페이지네이션에 반영하도록 수정해야 합니다. 이를 위해, 정렬된 데이터를 페이지네이션에 맞게 잘라내는 순서를 변경합니다.
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions, Pagination, Stack } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 
@@ -18,8 +19,32 @@ export default function PTablePage() {
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
+    
+    // 테이블소팅
+    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
+    const handleSort = (column) => {
+        if (sortColumn === column) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortDirection('asc');
+        }
+    }; 
 
-   
+    //테이블소팅
+
+     //정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
+     let sortedUsers = [...users];
+     if (sortColumn) {
+         sortedUsers.sort((a, b) => {
+             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
+             if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
+             return 0;
+         });
+     }
+     //정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
+
+     
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -35,42 +60,22 @@ export default function PTablePage() {
             })
             .catch(error => console.error('Fetch error:', error));
     }, []);
-        /////// get
+    /////// get
 
-         // 테이블소팅
-    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
-    const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortDirection('asc');
-        }
-    };
-
-    // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...users];
-    if (sortColumn) {
-        sortedUsers.sort((a, b) => {
-            if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
-            if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
-            return 0;
-        });
-    } 
-//     데이터를 정렬합니다.
-// 정렬된 데이터를 페이지네이션에 적용합니다. 그렇지않으면 오류발생
-
-       //paging
+    
+    //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
 
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
     //paging , 배열러 페이지정리
-    // 삭제 기능
+
+
+    /// 삭제 컴포넌트 시작~
     const handleDelete = async (userId) => {
         try {
             const response = await fetch('/api/user/delete', {
@@ -80,7 +85,7 @@ export default function PTablePage() {
                 },
                 body: JSON.stringify({ id: userId }),
             });
-                   //   if (!response.ok) {
+            //   if (!response.ok) {
             //     throw new Error('Network response was not ok');
             //   }
 
@@ -91,9 +96,10 @@ export default function PTablePage() {
         } catch (error) {
             console.error('Delete error:', error);
         }
-    };
+    }; ///삭제 기능 끝
 
-    // 수정 기능
+    //수정시작
+
     const handleUpdate = (user) => {
         setSelectedUser(user);
         setOpen(true);
@@ -120,10 +126,21 @@ export default function PTablePage() {
             console.error('Update error:', error);
         }
     };
-
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     };
+    //수정끝
+
+    //   handleUpdate 함수:
+    //   선택된 사용자 정보를 setSelectedUser를 통해 상태에 저장합니다.
+    //   setOpen을 통해 수정 모달을 열어줍니다.
+    //   handleSaveUpdate 함수:
+    //   /api/user/put 엔드포인트로 PUT 요청을 보내 사용자 정보를 업데이트합니다.
+    //   요청 시 age 값을 문자열에서 숫자로 변환합니다.
+    //   업데이트된 사용자 정보를 받아와 setUsers를 통해 상태를 업데이트합니다.
+    //   수정 모달을 닫습니다.
+    //   handleInputChange 함수:
+    //   사용자가 입력한 값을 selectedUser 상태에 반영합니다.
 
     return (
         <Container>
@@ -131,7 +148,7 @@ export default function PTablePage() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>
+                        <TableCell>
                                 {/* 테이블 소팅순서 예시 */}
                                 <TableSortLabel 
                                     active={sortColumn === 'id'}
@@ -140,7 +157,7 @@ export default function PTablePage() {
                                 >
                                     ID(숨김처리예정)
                                 </TableSortLabel>
-                                {/* 테이블 소팅순서 예시 */}
+                                {/* 테이블소팅 순서예시 */}
                             </TableCell>
                             <TableCell>
                                 <TableSortLabel
@@ -193,9 +210,9 @@ export default function PTablePage() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        
-                        {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
-                        {currentUsers.map((user) => (
+                    
+                        {/* {sortedUsers.map((user) => ( */}
+                            {currentUsers.map((user) => (
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
                                 <TableCell>{user.firstName}</TableCell>
@@ -210,6 +227,9 @@ export default function PTablePage() {
                                     </Button>
                                 </TableCell>
                                 <TableCell>
+                                    {/* <br /> */}
+                                    {/* <DeleteButton userId={user.id} onDelete={handleDelete} /> */}
+                                    {/* 컴포넌트로뺴면 위에꺼 */}
                                     <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
                                 </TableCell>
                             </TableRow>
@@ -217,7 +237,7 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-{/* mui 페이지 가이드 */}
+            {/* mui 페이지 가이드 */}
             <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                 <Pagination
                     count={totalPages}

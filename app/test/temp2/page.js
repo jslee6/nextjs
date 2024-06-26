@@ -1,4 +1,4 @@
-//map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
+//map 부분 수정
 
 'use client'
 
@@ -19,7 +19,16 @@ export default function PTablePage() {
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
 
-   
+    // 테이블소팅
+    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
+    const handleSort = (column) => {
+        if (sortColumn === column) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortDirection('asc');
+        }
+    };
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -36,17 +45,6 @@ export default function PTablePage() {
             .catch(error => console.error('Fetch error:', error));
     }, []);
         /////// get
-
-         // 테이블소팅
-    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
-    const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortDirection('asc');
-        }
-    };
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
     let sortedUsers = [...users];

@@ -27,7 +27,7 @@ export default function PTablePage() {
     return (
 
         <Container>
-            {/* <SortingSelectingToolbar /> */}
+            
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
