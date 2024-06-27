@@ -1,4 +1,4 @@
-//map 부분 수정
+//map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
 
 'use client'
 
@@ -6,6 +6,29 @@ import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
+
+// 포스트 , writetest 페이지 가져옴//
+import Write from '@/app/writetest/page';
+
+function PostBt() {
+  const [post, setpost] = useState(false);
+
+  const postButtonClick = () => {
+    setpost(true);
+  };
+
+  return (
+    <div>
+      <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
+      {/* MUI 적용 */}
+      {post && <Write />}
+    </div>
+  );
+}
+// 포스트 , writetest 페이지 가져옴//
+
+
+
 
 
 export default function PTablePage() {
@@ -19,16 +42,7 @@ export default function PTablePage() {
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
 
-    // 테이블소팅
-    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
-    const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortDirection('asc');
-        }
-    };
+   
 
     useEffect(() => {
         fetch('/api/user/get')
@@ -45,6 +59,17 @@ export default function PTablePage() {
             .catch(error => console.error('Fetch error:', error));
     }, []);
         /////// get
+
+         // 테이블소팅
+    // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
+    const handleSort = (column) => {
+        if (sortColumn === column) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortDirection('asc');
+        }
+    };
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
     let sortedUsers = [...users];
@@ -125,7 +150,9 @@ export default function PTablePage() {
 
     return (
         <Container>
+            
             <TableContainer component={Paper} style={{ marginTop: '50px' }}>
+            <PostBt></PostBt>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -146,7 +173,7 @@ export default function PTablePage() {
                                     direction={sortColumn === 'firstName' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('firstName')}
                                 >
-                                    Name
+                                    FirstName
                                 </TableSortLabel>
                             </TableCell>
                             <TableCell>
@@ -176,7 +203,15 @@ export default function PTablePage() {
                                     Age
                                 </TableSortLabel>
                             </TableCell>
-                            <TableCell>Address</TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'address'}
+                                    direction={sortColumn === 'address' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('address')}
+                                >
+                                Address
+                                </TableSortLabel>
+                                </TableCell>
                             <TableCell>
                                 <TableSortLabel
                                     active={sortColumn === 'createdAt'}
