@@ -1,6 +1,8 @@
+'use client'
 //map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
 
-'use client'
+//P TABLE에  PORT 버튼 추가 , 
+
 
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
