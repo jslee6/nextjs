@@ -46,16 +46,16 @@ export default async function RootLayout({ children }) {
         }
          {'　　　　'} {/* 공백 추가 */}
 
-         <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button>
+         {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
           {/* post 테스트 */}
           <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button> 
           {/* mui 테이블 get 기준정보  */}
-          <Button component={Link} href="/datagrid" variant="contained" color="secondary">datagrid</Button>
-          <Button component={Link} href="/test/paging" variant="contained" color="secondary">paging</Button>
+          {/* <Button component={Link} href="/datagrid" variant="contained" color="secondary">datagrid</Button> */}
+          {/* <Button component={Link} href="/test/paging" variant="contained" color="secondary">paging</Button> */}
           <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> 
           {/* get 테스트 */}
-          <Button component={Link} href="/ptest" variant="contained" color="secondary">get, ptest</Button> 
-          <Button component={Link} href="/minimal/table" variant="contained" color="secondary">미니멀 ui,table</Button> 
+          {/* <Button component={Link} href="/ptest" variant="contained" color="secondary">get, ptest</Button>  */}
+          {/* <Button component={Link} href="/minimal/table" variant="contained" color="secondary">미니멀 ui,table</Button>  */}
        
           <Button component={Link} href="/" variant="contained" >HOME</Button>
           {/* <Button component={Link} href="/list" variant="contained" >list</Button>

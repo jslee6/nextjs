@@ -34,9 +34,9 @@ function PostBt() {
 
 
 export default function PTablePage() {
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [open, setOpen] = useState(false);
+    const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
+    const [selectedUser, setSelectedUser] = useState(null);  //수정관련
+    const [open, setOpen] = useState(false);  // 수정관련
 
     const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
     const usersPerPage = 8;   //페이징  로우수 ok

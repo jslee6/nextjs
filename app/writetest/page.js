@@ -1,20 +1,34 @@
 'use client'
 
-{/* 폼테그 쓰는게 겟,포스트 제일쓰기 쉬움**** */}
+{/* 폼테그 쓰는게 겟,포스트 제일쓰기 쉬움**** */ }
 // 풋과 딜리트는 안됨
 import { Button, Input, Stack } from "@mui/material";
 
+
+
 export default function Write() {
+
+
   return (
     <div className="p-20">
       <form action="/api/user/post" method="POST">
         <Stack direction="row" spacing={2}>
-          <Input type="text" name="email" placeholder="이메일" required />
-          <Input type="text" name="firstName" placeholder="이름" required />
-          <Input type="text" name="lastName" placeholder="성" />
-          <Input type="text" name="address" placeholder="주소" />
-          <Input type="number" name="age" placeholder="나이" />
-          <Button type="submit">전송</Button>
+          <div>
+            <Input type="text" name="firstName" placeholder="이름" required />
+            <br></br>
+            <Input type="text" name="lastName" placeholder="성" />
+          </div>
+          <div>
+            <Input type="text" name="email" placeholder="이메일" required />
+            <br></br>
+            <Input type="text" name="age" placeholder="나이" required />
+          </div>
+          <div>
+            <Input type="number" name="age" placeholder="나이" />
+            <br></br>
+            <Input type="text" name="address" placeholder="주소" />
+          </div>
+          <Button variant="contained" color="success" type="submit">전송<br></br>하기</Button>
         </Stack>
       </form>
     </div>

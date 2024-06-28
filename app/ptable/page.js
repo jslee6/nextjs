@@ -7,20 +7,41 @@ import { Container, Table, TableBody, TableCell, TableContainer, TableHead, Tabl
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 
+// 포스트 , writetest 페이지 가져옴//
+import Write from '@/app/writetest/page';
+
+function PostBt() {
+  const [post, setpost] = useState(false);
+
+  const postButtonClick = () => {
+    setpost(true);
+  };
+
+  return (
+    <div>
+      <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
+      {/* MUI 적용 */}
+      {post && <Write />}
+    </div>
+  );
+}
+// //  포스트 , writetest,  페이지 가져옴//
+
 
 export default function PTablePage() {
-    const [users, setUsers] = useState([]);
-    const [selectedUser, setSelectedUser] = useState(null);
-    const [open, setOpen] = useState(false);
+    const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
+    const [selectedUser, setSelectedUser] = useState(null);  //수정관련
+    const [open, setOpen] = useState(false);  // 수정관련
 
     const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
-    const usersPerPage = 8;   //페이징  로우수 ok
+    const usersPerPage = 7;   //페이징  로우수 ok
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
 
-   
 
+
+    // get
     useEffect(() => {
         fetch('/api/user/get')
             .then(response => {
@@ -35,9 +56,9 @@ export default function PTablePage() {
             })
             .catch(error => console.error('Fetch error:', error));
     }, []);
-        /////// get
+    /////// get
 
-         // 테이블소팅
+    // 테이블소팅
     // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
     const handleSort = (column) => {
         if (sortColumn === column) {
@@ -56,11 +77,11 @@ export default function PTablePage() {
             if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
             return 0;
         });
-    } 
-//     데이터를 정렬합니다.
-// 정렬된 데이터를 페이지네이션에 적용합니다. 그렇지않으면 오류발생
+    }
+    //     데이터를 정렬합니다.
+    // 정렬된 데이터를 페이지네이션에 적용합니다. 그렇지않으면 오류발생
 
-       //paging
+    //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
@@ -80,7 +101,7 @@ export default function PTablePage() {
                 },
                 body: JSON.stringify({ id: userId }),
             });
-                   //   if (!response.ok) {
+            //   if (!response.ok) {
             //     throw new Error('Network response was not ok');
             //   }
 
@@ -127,13 +148,14 @@ export default function PTablePage() {
 
     return (
         <Container>
-            <TableContainer component={Paper} style={{ marginTop: '50px' }}>
+            <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+            <PostBt></PostBt>
                 <Table>
                     <TableHead>
                         <TableRow>
                             <TableCell>
                                 {/* 테이블 소팅순서 예시 */}
-                                <TableSortLabel 
+                                <TableSortLabel
                                     active={sortColumn === 'id'}
                                     direction={sortColumn === 'id' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('id')}
@@ -184,9 +206,9 @@ export default function PTablePage() {
                                     direction={sortColumn === 'address' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('address')}
                                 >
-                                Address
+                                    Address
                                 </TableSortLabel>
-                                </TableCell>
+                            </TableCell>
                             <TableCell>
                                 <TableSortLabel
                                     active={sortColumn === 'createdAt'}
@@ -201,7 +223,7 @@ export default function PTablePage() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        
+
                         {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
                         {currentUsers.map((user) => (
                             <TableRow key={user.id}>
@@ -225,7 +247,7 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-{/* mui 페이지 가이드 */}
+            {/* mui 페이지 가이드 */}
             <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                 <Pagination
                     count={totalPages}
