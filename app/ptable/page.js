@@ -8,24 +8,59 @@ import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 
 // 포스트 , writetest 페이지 가져옴//
+// import Write from '@/app/writetest/page';
+
+// function PostBt() {
+//   const [post, setpost] = useState(false);
+
+//   const postButtonClick = () => {
+//     setpost(true);
+//   };
+
+//   return (
+//     <div>
+//       <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
+//       {/* MUI 적용 */}
+//       {post && <Write />}
+//     </div>
+//   );
+// }
+// //  포스트 , writetest,  페이지 가져옴//
+
+
+
+// 포스트 , writetest,  페이지 가져옴 + 닫기 버튼 추가
+
 import Write from '@/app/writetest/page';
 
 function PostBt() {
-  const [post, setpost] = useState(false);
+    const [post, setpost] = useState(false);
+     
+    //작성 닫기버튼으로 인해 [추가 !=preState]
+    const handlePostButtonClick = () => {
+      setpost((prevState) => !prevState);
+    }; //닫기버튼으로 인해 추가
 
-  const postButtonClick = () => {
-    setpost(true);
-  };
+  
+    return (
+      <div>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handlePostButtonClick}
+        >
+          {post ? '닫기' : '작성하기'}  
+           {/* 삼항연산자로 처리 */}
+        </Button>
+        {post && <Write />}
+        {/* 이게 잘이해안됨 */}
+      </div>
+    );
+  }
 
-  return (
-    <div>
-      <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
-      {/* MUI 적용 */}
-      {post && <Write />}
-    </div>
-  );
-}
-// //  포스트 , writetest,  페이지 가져옴//
+///
+
+
 
 
 export default function PTablePage() {

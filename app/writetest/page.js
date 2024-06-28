@@ -1,6 +1,7 @@
 'use client'
 
 {/* 폼테그 쓰는게 겟,포스트 제일쓰기 쉬움**** */ }
+import Link from "@/minimalOrigin/src/theme/overrides/Link";
 // 풋과 딜리트는 안됨
 import { Button, Input, Stack } from "@mui/material";
 
@@ -29,6 +30,7 @@ export default function Write() {
             <Input type="text" name="address" placeholder="주소" />
           </div>
           <Button variant="contained" color="success" type="submit">전송<br></br>하기</Button>
+          
         </Stack>
       </form>
     </div>
