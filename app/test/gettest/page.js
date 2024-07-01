@@ -2,26 +2,39 @@
 
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import axios from 'axios';
 
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
 
 
+    // useEffect(() => {
+    //     fetch('/api/user/get')
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('Network response was not ok');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log('Fetched data:', data);
+    //             setUsers(data);
+    //         })
+    //         .catch(error => console.error('Fetch error:', error));
+    // }, []);
 
     useEffect(() => {
-        fetch('/api/user/get')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Fetched data:', data);
-                setUsers(data);
-            })
-            .catch(error => console.error('Fetch error:', error));
+        const getUser = async () => {
+            try {
+                const response = await axios.get('/api/user/get');
+                console.log('get data:', response.data);
+                setUsers(response.data);
+            } catch (error) {
+                console.error('get error:', error);
+            }
+        };
+        getUser();
     }, []);
 
     return (

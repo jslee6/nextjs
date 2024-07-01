@@ -8,27 +8,6 @@ import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 
-// 포스트 , writetest 페이지 가져옴//
-// import Write from '@/app/writetest/page';
-
-// function PostBt() {
-//   const [post, setpost] = useState(false);
-
-//   const postButtonClick = () => {
-//     setpost(true);
-//   };
-
-//   return (
-//     <div>
-//       <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
-//       {/* MUI 적용 */}
-//       {post && <Write />}
-//     </div>
-//   );
-// }
-// //  포스트 , writetest,  페이지 가져옴//
-
-
 
 // 포스트 , writetest,  페이지 가져옴 + 닫기 버튼 추가
 
@@ -42,7 +21,6 @@ function PostBt() {
       setpost((prevState) => !prevState);
     }; //닫기버튼으로 인해 추가
 
-  
     return (
       <div>
         <Button
@@ -72,24 +50,6 @@ export default function PTablePage() {
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
-
-
-
-    // get 엑시오스로 바꿈
-    // useEffect(() => {
-    //     fetch('/api/user/get')
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             console.log('Fetched data:', data);
-    //             setUsers(data);
-    //         })
-    //         .catch(error => console.error('Fetch error:', error));
-    // }, []);
 
 
     useEffect(() => {
@@ -139,32 +99,6 @@ export default function PTablePage() {
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
-    //paging , 배열러 페이지정리
-    // 삭제 기능
-    // const handleDelete = async (userId) => {
-    //     try {
-    //         const response = await fetch('/api/user/delete', {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ id: userId }),
-    //         });
-    //         //   if (!response.ok) {
-    //         //     throw new Error('Network response was not ok');
-    //         //   }
-
-    //         const { message } = await response.json();
-    //         console.log(message);
-
-    //         setUsers(users.filter(user => user.id !== userId));
-    //     } catch (error) {
-    //         console.error('Delete error:', error);
-    //     }
-    // };
-
-    // fetch 기존삭제
-
 
     //axious 삭제로 바꿈
     const handleDelete = async (userId) => {
@@ -182,37 +116,6 @@ export default function PTablePage() {
     };
     //axious 삭제로 바꿈
     
-
-    // 수정 기능
-    // const handleUpdate = (user) => {
-    //     setSelectedUser(user);
-    //     setOpen(true);
-    // };
-
-    // const handleSaveUpdate = async () => {
-    //     try {
-    //         const response = await fetch('/api/user/put', {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ ...selectedUser, age: parseInt(selectedUser.age, 10) }),
-    //         });  // age를 숫자형으로 바꿈. 안바꿀시 문자형으로 오류발생함
-
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-
-    //         const updatedUser = await response.json();
-    //         setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-    //         setOpen(false);
-    //     } catch (error) {
-    //         console.error('Update error:', error);
-    //     }
-    // };
-
-    // fetch 수정
-
      // axious 수정
     const handleUpdate = (user) => {
         setSelectedUser(user);
