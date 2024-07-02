@@ -35,6 +35,7 @@ export default async function RootLayout({ children }) {
 
 
         {'　　'} {/* 공백 추가 */}
+     
 
 
         {session 
@@ -44,7 +45,9 @@ export default async function RootLayout({ children }) {
       // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
 
         }
+          <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button> 
          {'　　　　'} {/* 공백 추가 */}
+
 
          {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
           {/* post 테스트 */}
