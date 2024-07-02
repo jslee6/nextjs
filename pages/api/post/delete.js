@@ -1,3 +1,5 @@
+//코딩애플 로그인 안됫으면 삭제불가하게
+
 import { connectDB } from "@/util/database"
 import { ObjectId } from "mongodb";
 import { authOptions } from "../auth/[...nextauth]"
