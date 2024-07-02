@@ -25,7 +25,7 @@
 
 //app/pjoin/page.js
 
-'useclient'
+// 'useclient'
 
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 

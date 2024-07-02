@@ -1,5 +1,3 @@
-
-
 import { connectDB } from "/util/database.js"
 import { MongoClient } from "mongodb"
 
