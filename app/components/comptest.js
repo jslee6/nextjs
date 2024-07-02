@@ -4,8 +4,11 @@ function Cart() {
       <div>
         <p>컴포넌트 테스트</p>
         <p>{text}</p>
+        <br></br>
         <CartItem 작명문자="20"/>
+        <br></br>
         <CartItem 작명={text}/>
+        <br></br>
         {/* <컴포넌트 작명 = "문자"/> or */}
         {/* <컴포넌트 작명 = "문자"/> or */}
       </div>
@@ -20,8 +23,9 @@ function Cart() {
   function CartItem(props){
     return(
         <div>
+            <p>props 테스트{props.작명문자}</p>
             <p>props 테스트{props.작명}</p>
-            <p>텍스트</p>
+            <p>고정텍스트</p>
             
         </div>
 

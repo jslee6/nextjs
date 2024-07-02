@@ -1,3 +1,5 @@
+// next auth 공식 가이드
+
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";

@@ -1,5 +1,39 @@
+// import React, { useState } from 'react';
+// import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+
+// const UpdateUserDialog = ({ open, onClose, selectedUser, onSaveUpdate }) => {
+//   const [updatedUser, setUpdatedUser] = useState(selectedUser);
+
+//   const handleInputChange = (e) => {
+//     setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
+//   };
+
+//   const handleSaveUpdate = async () => {
+//     try {
+//       const response = await fetch('/api/user/put', {
+//         method: 'PUT',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ ...updatedUser, age: parseInt(updatedUser.age, 10) }),
+//       });
+
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok');
+//       }
+
+//       const updatedUserData = await response.json();
+//       onSaveUpdate(updatedUserData);
+//     } catch (error) {
+//       console.error('Update error:', error);
+//     }
+//   };
+
+//fetch -> axious
+
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
+import axios from 'axios';
 
 const UpdateUserDialog = ({ open, onClose, selectedUser, onSaveUpdate }) => {
   const [updatedUser, setUpdatedUser] = useState(selectedUser);
@@ -10,20 +44,8 @@ const UpdateUserDialog = ({ open, onClose, selectedUser, onSaveUpdate }) => {
 
   const handleSaveUpdate = async () => {
     try {
-      const response = await fetch('/api/user/put', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...updatedUser, age: parseInt(updatedUser.age, 10) }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const updatedUserData = await response.json();
-      onSaveUpdate(updatedUserData);
+      const response = await axios.put('/api/user/put', { ...updatedUser, age: parseInt(updatedUser.age, 10) });
+      onSaveUpdate(response.data);
     } catch (error) {
       console.error('Update error:', error);
     }
