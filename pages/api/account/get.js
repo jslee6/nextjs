@@ -12,6 +12,7 @@ export default async function select2(req, res) {
           id: true,
           userId: true,
           password: true,
+          email: true,
           role: true,
 
         }

@@ -4,35 +4,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
-import UserDialog from '@/app/components/UserDialog';
+// import AccountDialog from '@/app/components/AccountDialog';
+import AccountDialog from './components/AccountDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 
-// 포스트 , writetest 페이지 가져옴//
-// import Write from '@/app/writetest/page';
 
-// function PostBt() {
-//   const [post, setpost] = useState(false);
-
-//   const postButtonClick = () => {
-//     setpost(true);
-//   };
-
-//   return (
-//     <div>
-//       <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
-//       {/* MUI 적용 */}
-//       {post && <Write />}
-//     </div>
-//   );
-// }
-// //  포스트 , writetest,  페이지 가져옴//
-
-
-
-// 포스트 , writetest,  페이지 가져옴 + 닫기 버튼 추가
-
-import Write from '@/app/writetest/page';
+// 포스트  페이지 가져옴 + 닫기 버튼 추가
+import Enroll from './enroll/page';
 
 function PostBt() {
     const [post, setpost] = useState(false);
@@ -53,7 +32,7 @@ function PostBt() {
           {post ? '닫기' : '작성하기'}  
            {/* 삼항연산자로 처리 */}
         </Button>
-        {post && <Write />}
+        {post && <Enroll />}
         {/* 이게 잘이해안됨 */}
       </div>
     );
@@ -73,29 +52,10 @@ export default function PTablePage() {
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
 
-
-
-    // get 엑시오스로 바꿈
-    // useEffect(() => {
-    //     fetch('/api/user/get')
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error('Network response was not ok');
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             console.log('Fetched data:', data);
-    //             setUsers(data);
-    //         })
-    //         .catch(error => console.error('Fetch error:', error));
-    // }, []);
-
-
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get('/api/user/get');
+                const response = await axios.get('/api/account/get');
                 console.log('get data:', response.data);
                 setUsers(response.data);
             } catch (error) {
@@ -139,37 +99,11 @@ export default function PTablePage() {
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
-    //paging , 배열러 페이지정리
-    // 삭제 기능
-    // const handleDelete = async (userId) => {
-    //     try {
-    //         const response = await fetch('/api/user/delete', {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ id: userId }),
-    //         });
-    //         //   if (!response.ok) {
-    //         //     throw new Error('Network response was not ok');
-    //         //   }
-
-    //         const { message } = await response.json();
-    //         console.log(message);
-
-    //         setUsers(users.filter(user => user.id !== userId));
-    //     } catch (error) {
-    //         console.error('Delete error:', error);
-    //     }
-    // };
-
-    // fetch 기존삭제
-
 
     //axious 삭제로 바꿈
     const handleDelete = async (userId) => {
         try {
-            const response = await axios.delete('/api/user/delete', {
+            const response = await axios.delete('/api/account/delete', {
                 data: { id: userId },
             });
             const { message } = response.data;
@@ -183,36 +117,6 @@ export default function PTablePage() {
     //axious 삭제로 바꿈
     
 
-    // 수정 기능
-    // const handleUpdate = (user) => {
-    //     setSelectedUser(user);
-    //     setOpen(true);
-    // };
-
-    // const handleSaveUpdate = async () => {
-    //     try {
-    //         const response = await fetch('/api/user/put', {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ ...selectedUser, age: parseInt(selectedUser.age, 10) }),
-    //         });  // age를 숫자형으로 바꿈. 안바꿀시 문자형으로 오류발생함
-
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-
-    //         const updatedUser = await response.json();
-    //         setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-    //         setOpen(false);
-    //     } catch (error) {
-    //         console.error('Update error:', error);
-    //     }
-    // };
-
-    // fetch 수정
-
      // axious 수정
     const handleUpdate = (user) => {
         setSelectedUser(user);
@@ -221,7 +125,7 @@ export default function PTablePage() {
     
     const handleSaveUpdate = async () => {
         try {
-            const response = await axios.put('/api/user/put', { ...selectedUser, age: parseInt(selectedUser.age, 10) });
+            const response = await axios.put('/api/account/put', { ...selectedUser, age: parseInt(selectedUser.age, 10) });
             //.selectedUser: 이 부분은 spread 연산자를 사용하여 selectedUser 객체의 모든 속성을 복사하는 것입니다.
             // 이렇게 하면 selectedUser 객체의 모든 속성이 새로운 객체에 포함
 
@@ -259,20 +163,20 @@ export default function PTablePage() {
                             </TableCell>
                             <TableCell>
                                 <TableSortLabel
-                                    active={sortColumn === 'firstName'}
-                                    direction={sortColumn === 'firstName' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('firstName')}
+                                    active={sortColumn === 'userId'}
+                                    direction={sortColumn === 'userId' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('userId')}
                                 >
-                                    FirstName
+                                    userId
                                 </TableSortLabel>
                             </TableCell>
                             <TableCell>
                                 <TableSortLabel
-                                    active={sortColumn === 'lastName'}
-                                    direction={sortColumn === 'lastName' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('lastName')}
+                                    active={sortColumn === 'password'}
+                                    direction={sortColumn === 'password' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('password')}
                                 >
-                                    LastName
+                                    password
                                 </TableSortLabel>
                             </TableCell>
                             <TableCell>
@@ -293,24 +197,7 @@ export default function PTablePage() {
                                     Age
                                 </TableSortLabel>
                             </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'address'}
-                                    direction={sortColumn === 'address' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('address')}
-                                >
-                                    Address
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'createdAt'}
-                                    direction={sortColumn === 'createdAt' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('createdAt')}
-                                >
-                                    Create
-                                </TableSortLabel>
-                            </TableCell>
+                    
                             <TableCell >Update</TableCell>
                             <TableCell>Delete</TableCell>
                         </TableRow>
@@ -321,12 +208,10 @@ export default function PTablePage() {
                         {currentUsers.map((user) => (
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
-                                <TableCell>{user.firstName}</TableCell>
-                                <TableCell>{user.lastName}</TableCell>
+                                <TableCell>{user.userId}</TableCell>
+                                <TableCell>{user.password}</TableCell>
                                 <TableCell>{user.email}</TableCell>
-                                <TableCell>{user.age}</TableCell>
-                                <TableCell>{user.address}</TableCell>
-                                <TableCell>{user.createdAt}</TableCell>
+                                <TableCell>{user.role}</TableCell>
                                 <TableCell>
                                     <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                                         수정
@@ -350,13 +235,13 @@ export default function PTablePage() {
                 />
             </Stack>
             {/* mui 페이지 가이드 */}
-            <UserDialog
+            <AccountDialog
                 open={open}
                 onClose={() => setOpen(false)}
-                user={selectedUser}
+                account={selectedUser}
                 onChange={handleInputChange}
                 onSave={handleSaveUpdate}
-                // props 로 UserDialog 로 전달
+                // 다이얼로그에 전달할 프롭스
             />
         </Container>
     );

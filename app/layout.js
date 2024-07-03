@@ -54,6 +54,7 @@ export default async function RootLayout({ children }) {
          {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
           {/* post 테스트 */}
           <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button> 
+          <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button> 
           {/* mui 테이블 get 기준정보  */}
           {/* <Button component={Link} href="/datagrid" variant="contained" color="secondary">datagrid</Button> */}
           {/* <Button component={Link} href="/test/paging" variant="contained" color="secondary">paging</Button> */}

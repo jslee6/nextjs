@@ -5,8 +5,8 @@ export default function Login() {
   return (
 
     // **********************왼쪽 그리드****************************
-    <Grid container>
-      <Grid item xs={8}>
+    <Grid container >
+      <Grid item xs={8} >
 
         <Box
           sx={{
@@ -15,7 +15,10 @@ export default function Login() {
             justifyContent: "center", // 수평을 가운데 정렬
             // alignItems: "center",  //수직을 가운데 정렬
             height: "100vh",
-             bgcolor: "#f7f8f8"
+            bgcolor: "#f7f8f8",
+            boxShadow: 3,
+            //박스 테두리 그림자
+
             // 요소의 높이를 브라우저 창의 높이와 동일하게 설정합니다. vh는 viewport height의 약자로, 1vh는 현재 브라우저 창의 1% 높이입니다.
           }}
         >
@@ -25,14 +28,14 @@ export default function Login() {
             환영 합니다.
           </Typography> */}
           {/* 멘트 추가 하고싶으면 */}
-          <img src="/idisDJ.png" alt="Logo" style={{ width: '90%', height: '80%', padding: '40px' }} />
-
+          <img src="/idisDJ.png" alt="Logo" style={{ width: '90%', height: '70%', padding: '40px' }} />
         </Box>
       </Grid>
       {/* 왼쪽 그리드 */}
 
 
       {/* **********************오른쪽 그리드**************************** */}
+
       <Grid item xs={4}>
         <Box
           action="/api/account/post"
@@ -58,9 +61,8 @@ export default function Login() {
           >
             <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
               회원가입
-            </Typography>  
+            </Typography>
             {/* gutterBottom 스타일 */}
-            
             <Stack spacing={3}>
               <TextField name="userId" type="text" label="아이디" variant="outlined" />
               <TextField name="email" type="email" label="이메일" variant="outlined" />

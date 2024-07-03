@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     // Log the incoming request body
     console.log('Request body:', req.body);
 
-    const { userId, password, role, email } = req.body;
+    const { userId, password, email, role } = req.body;
     //-> 이게 파싱이구나......
 
 
@@ -25,7 +25,8 @@ export default async function handler(req, res) {
         },  // id는 uuid 자동생성
       });
 
-      // res.redirect('/ptable');  // 리다이렉트
+      res.redirect('/account');  // 리다이렉트
+      
 
       res.status(200).json(newUser);
 

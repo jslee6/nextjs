@@ -45,7 +45,7 @@ model user {
 model account {
   id       String  @id @default(uuid())
   userId   String  @unique
-  password String  @unique
+  password String
   role     String?
   email    String?
 }
