@@ -55,7 +55,7 @@ export default function Login() {
           회원가입
         </Typography>
         <Stack spacing={3}>
-          <TextField name="name" type="text" label="이름" variant="outlined" />
+          <TextField name="userId" type="text" label="아이디" variant="outlined" />
           <TextField name="email" type="email" label="이메일" variant="outlined" />
           <TextField name="password" type="password" label="비밀번호" variant="outlined"/>
           <Button type="submit" variant="contained" sx={{ fontSize: '30px' }}  >

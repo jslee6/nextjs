@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     // Log the incoming request body
     console.log('Request body:', req.body);
 
-    const { email, firstName, lastName, address, age } = req.body;
+    const { userId, password, role } = req.body;
     //-> 이게 파싱이구나......
 
 
@@ -17,15 +17,14 @@ export default async function handler(req, res) {
       // Create a new user in the database
       const newUser = await prisma.account.create({
         data: {
-          email,
-          firstName,
-          lastName,
-          address,
-          age: age ? parseInt(age, 10) : null, // Convert age to integer if provided
+          //id id는 uuid로 자동생성
+          userId,
+          password,
+          role,
         },  // id는 uuid 자동생성
       });
 
-      res.redirect('/ptable');  // 리다이렉트
+      // res.redirect('/ptable');  // 리다이렉트
 
       res.status(200).json(newUser);
 
@@ -40,4 +39,3 @@ export default async function handler(req, res) {
 }
  
 
-//일단넣긴햇는데 이메일은왜?~

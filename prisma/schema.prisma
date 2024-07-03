@@ -47,6 +47,7 @@ model account {
   userId   String  @unique
   password String  @unique
   role     String?
+  email    String
 }
 
 enum product_category {
