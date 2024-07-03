@@ -13,9 +13,8 @@ export default function Login() {
             display: "flex",
             // flexDirection: "column", 수직으로 바꿔줌 
             justifyContent: "center", // 수평을 가운데 정렬
-            // alignItems: "center",  //수직을 가운데 정렬
+            alignItems: "center",  //수직을 가운데 정렬
             height: "100vh",
-             bgcolor: "#f7f8f8"
             // 요소의 높이를 브라우저 창의 높이와 동일하게 설정합니다. vh는 viewport height의 약자로, 1vh는 현재 브라우저 창의 1% 높이입니다.
           }}
         >
@@ -25,7 +24,7 @@ export default function Login() {
             환영 합니다.
           </Typography> */}
           {/* 멘트 추가 하고싶으면 */}
-          <img src="/idisDJ.png" alt="Logo" style={{ width: '90%', height: '80%', padding: '40px' }} />
+          <img src="/idisDJ.png" alt="Logo" style={{ width: '90%', height: '60%', padding: '10px' }} />
 
         </Box>
       </Grid>
