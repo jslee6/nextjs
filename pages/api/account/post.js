@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     // Log the incoming request body
     console.log('Request body:', req.body);
 
-    const { userId, password, role } = req.body;
+    const { userId, password, role, email } = req.body;
     //-> 이게 파싱이구나......
 
 
@@ -20,6 +20,7 @@ export default async function handler(req, res) {
           //id id는 uuid로 자동생성
           userId,
           password,
+          email,
           role,
         },  // id는 uuid 자동생성
       });

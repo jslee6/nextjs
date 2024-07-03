@@ -31,7 +31,11 @@ import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 
 export default function Login() {
   return (
-    <Box
+    // <form action="/api/account/post" method="POST">
+    // <Box
+
+    <Box action="/api/account/post" method="POST"  // box에도 액션쓸수잇네?
+
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -58,11 +62,18 @@ export default function Login() {
           <TextField name="userId" type="text" label="아이디" variant="outlined" />
           <TextField name="email" type="email" label="이메일" variant="outlined" />
           <TextField name="password" type="password" label="비밀번호" variant="outlined"/>
-          <Button type="submit" variant="contained" sx={{ fontSize: '30px' }}  >
+          <Button  type="submit" variant="contained" sx={{ fontSize: '30px' }}  >
+          
             가입하기
           </Button>
         </Stack>
       </Box>
     </Box>
+    // </form>
   );
 }
+
+
+
+
+// ///클라이언트 ,  리다이렉트는  api/user/post  에서 추가함
