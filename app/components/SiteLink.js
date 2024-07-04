@@ -14,7 +14,8 @@ import { Button, Link, Box } from '@mui/material';
 export default function AccordionSitelink() {
   return (
     <div>
-      <Accordion>
+      <Accordion sx={{ background:"transparent"  }}>
+      {/* sx={{ background:"transparent, width: '170px'"}} 배경을 투명하게 해줌,  */}
         <AccordionSummary
           expandIcon={<ArrowDownwardIcon />}
           aria-controls="panel1-content"

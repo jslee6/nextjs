@@ -77,7 +77,7 @@ export default async function RootLayout({ children }) {
             bookstack </Button>
           <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
             redmine </Button> */}
-          <Button><AccordionSitelink/></Button>
+          <Button><AccordionSitelink /></Button>
 
   
 
