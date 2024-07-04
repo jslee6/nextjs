@@ -5,10 +5,12 @@ import Link from "next/link";
 
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import {LogOutBtn } from "./LogOutBtn";
+import { LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
 import { Link as MuiLink } from "@mui/material";
 import Button from '@mui/material/Button';
+import { Accordion, AccordionDetails } from "@mui/material";
+import AccordionSitelink from "./components/SiteLink";
 
 
 
@@ -21,69 +23,71 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-   let session = await getServerSession(authOptions)
+  let session = await getServerSession(authOptions)
   console.log(session)
   return (
     <html lang="en">
-       <head />
+      <head />
       <body>
         <div className="navbar">
 
-        <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px',marginBottom: '-5px' }} /> {/* 이미지 추가 */}
+          <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
 
-        {/* 이미지 추가 */}
-
-
-        {'　　'} {/* 공백 추가 */}
-     
+          {/* 이미지 추가 */}
 
 
-        {session 
-      ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span> 
-      : <LoginBtn></LoginBtn>
-      
-      // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
+          {'　　'} {/* 공백 추가 */}
 
 
-        }
+
+          {session
+            ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
+            : <LoginBtn></LoginBtn>
+
+            // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
+
+
+          }
           {'　'} {/* 공백 추가 */}
-          <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button> 
-         {'　　　　'} {/* 공백 추가 */}
+          <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button>
+          {'　　　　'} {/* 공백 추가 */}
 
 
-         {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
+          {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
           {/* post 테스트 */}
-          <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button> 
-          <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button> 
-          <Button component={Link} href="/accodion" variant="contained" color="secondary">테스트 버튼</Button> 
+          <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button>
+          <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button>
+          <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
           {/* mui 테이블 get 기준정보  */}
           {/* <Button component={Link} href="/datagrid" variant="contained" color="secondary">datagrid</Button> */}
           {/* <Button component={Link} href="/test/paging" variant="contained" color="secondary">paging</Button> */}
-          <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> 
+          <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button>
           {/* get 테스트 */}
           {/* <Button component={Link} href="/ptest" variant="contained" color="secondary">get, ptest</Button>  */}
           {/* <Button component={Link} href="/minimal/table" variant="contained" color="secondary">미니멀 ui,table</Button>  */}
-       
+
           <Button component={Link} href="/" variant="contained" >HOME</Button>
           {/* <Button component={Link} href="/list" variant="contained" >list</Button>
           <Button component={Link} href="/write" variant="contained" >write</Button> */}
-     
 
-          <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
-             Group Ware </Button>
+
+          {/* <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
+            Group Ware </Button>
           <Button component={Link} href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
-             bookstack </Button>
+            bookstack </Button>
           <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
-             redmine </Button>
+            redmine </Button> */}
+          <Button><AccordionSitelink/></Button>
 
+  
 
           {/* <Link href="/list">List</Link>
           <Link href="/write">write</Link>  
           <Link href="/jlist">user</Link>  
           <Link href="/join">sign up</Link> */}
           {/* 원본이고 위에가 mui  */}
-          
-{/*           
+
+          {/*           
           <a href="https://www.naver.com" target="_blank" rel="noopener noreferrer">Naver</a>
           <a href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer">bookstack</a> */}
 
@@ -94,4 +98,28 @@ export default async function RootLayout({ children }) {
     </html>
   );
 }
+
+
+
+// <Accordion>
+// <AccordionSummary
+//   expandIcon={<ArrowDownwardIcon />}
+//   aria-controls="panel1-content"
+//   id="panel1-header"
+// >
+//   <Typography>아이디스 업무 사이트 </Typography>
+
+// </AccordionSummary>
+// <AccordionDetails>
+//   <Typography>
+//   </Typography>
+//   <Box sx={{ display: 'flex', gap: 2 }}>
+//     {/* 버튼을 box로 묶고 사이간격 추가 */}
+//   <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >redmine </Button>
+//   <Button component={Link} href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >Group Ware </Button>
+//   <Button component={Link} href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >bookstack </Button>
+//   <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >redmine </Button>
+//   </Box>
+// </AccordionDetails>
+// </Accordion>
 
