@@ -1,7 +1,7 @@
 
 'use client'
 
-import AccordionSitelink from "@/app/testSitelink/page";
+import AccordionSitelink from "@/app/components/SiteLink";
 
 export default function MyPage() {
   return (
