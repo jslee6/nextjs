@@ -3,7 +3,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import { Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
@@ -44,7 +44,8 @@ function PostBt() {
 
   
     return (
-      <div>
+      
+        <Box>
         <Button
           variant="contained"
           color="primary"
@@ -55,7 +56,8 @@ function PostBt() {
         </Button>
         {post && <Write />}
         {/* 이게 잘이해안됨 */}
-      </div>
+        </Box>
+      
     );
   }
 

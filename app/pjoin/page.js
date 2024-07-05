@@ -28,7 +28,7 @@ export default function Login() {
             환영 합니다.
           </Typography> */}
           {/* 멘트 추가 하고싶으면 */}
-          <img src="/idisDJ.png" alt="Logo" style={{ width: '90%', height: '70%', padding: '40px' }} />
+          <img src="/main.jpg" alt="Logo" style={{ width: '80%', height: '65%', padding: '80px' }} />
         </Box>
       </Grid>
       {/* 왼쪽 그리드 */}

@@ -35,7 +35,6 @@ export default function AccordionSitelink() {
           </Box>
         </AccordionDetails>
       </Accordion>
-
     </div>
   );
 }

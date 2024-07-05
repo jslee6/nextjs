@@ -31,7 +31,7 @@ export default async function RootLayout({ children }) {
       <body>
         <div className="navbar">
 
-          <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
+          <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
 
           {/* 이미지 추가 */}
 
@@ -77,9 +77,13 @@ export default async function RootLayout({ children }) {
             bookstack </Button>
           <Button component={Link} href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >
             redmine </Button> */}
-          <Button><AccordionSitelink /></Button>
+          {/* <Button>
+            
+              <AccordionSitelink />
+            
+          </Button> */}
 
-  
+
 
           {/* <Link href="/list">List</Link>
           <Link href="/write">write</Link>  

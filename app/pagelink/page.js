@@ -10,9 +10,9 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Button from '@mui/material/Button';
 
-export default function MyLayout() {
+export default function LeftLayout() {
     return (
-        <Container maxWidth="xs">
+        <Container maxWidth="sm">
             <Stack direction="row" spacing={2} >
                 <Box flex={1}>
                     {/* 왼쪽 레이아웃 */}
@@ -22,17 +22,17 @@ export default function MyLayout() {
                             aria-controls="panel1-content"
                             id="panel1-header"
                         >
-                            <Button><Typography>업무용 사이트</Typography></Button>
+                            <Button variant="contained"><Typography>업무용 사이트</Typography></Button>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Stack direction="column" spacing={2}>
-                                <Button href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
+                                <Button href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="outlined">
                                     Group Ware
                                 </Button>
-                                <Button href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
+                                <Button href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="outlined">
                                     bookstack
                                 </Button>
-                                <Button href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
+                                <Button href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="outlined">
                                     redmine
                                 </Button>
                             </Stack>
