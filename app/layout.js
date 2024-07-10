@@ -30,6 +30,7 @@ export default async function RootLayout({ children }) {
       <head />
       <body>
         <div className="navbar">
+        {/* <div className="navbar"> */}
 
           <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
 
