@@ -15,7 +15,7 @@ export default async function Edit(props) {
 
   return (
 
-      <div className="p-20">
+      <div>
         <h4>수정페이지</h4>
 
         <form action="/api/post/edit" method="POST">

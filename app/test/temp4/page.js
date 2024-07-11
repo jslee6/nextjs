@@ -8,7 +8,6 @@ const HomePage = () => {
         <Grid container >
           <Grid item xs={12}>
             <Box bgcolor="darkgrey" height="150px" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-              <Button>r가나다라마바사</Button>
               <Typography variant="h5" color="white">
                 C 구역
               </Typography>

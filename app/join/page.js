@@ -5,7 +5,7 @@
 
 export default async function Write() {
     return (
-      <div className="p-20">
+<div>
         <form action="/api/post/join" method="POST">
           <input name="title" placeholder="가입아이디"/>
           <input name="content" placeholder="비밀번호"/>

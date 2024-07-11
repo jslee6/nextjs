@@ -6,7 +6,7 @@ import { Button, Input, Stack } from "@mui/material";
 export default function Enroll() {
   
   return (
-    <div className="p-20">
+<div>
       <form action="/api/account/post" method="POST">
         <Stack direction="row" spacing={2}>
           <div>

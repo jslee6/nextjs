@@ -1,7 +1,7 @@
 body {
   margin: 0;
 }
-
+/* 
 .list-bg {
     background: rgb(249, 250, 255);
     padding: 10px;
@@ -21,13 +21,15 @@ body {
   .list-item p {
     color: grey;
     margin : 5px 0px;
-  } 
+  }  */
 
-  .p-20 {
+  /* p-20 {
     padding: 20px;
-    margin: 0 auto; /* 수평 가운데 정렬 */
-  }
-  input {
+    margin: 0 auto; 
+  } */
+  /* 수평 가운데 정렬 */
+
+  .input {
     box-sizing: border-box;
     padding: 10px;
     display: block;  
@@ -39,11 +41,6 @@ body {
     border-radius: 5px;
     
   } 
-
-  .navbar {
-    background: white;
-    padding: 20px;
-  }
   .navbar a {
     margin-right: 10px;
     text-decoration: none;
@@ -53,6 +50,7 @@ body {
     background: rgb(188, 233, 241);
     padding: 20px;
   }
+
 
   .title {
     text-align: center;
@@ -87,3 +85,4 @@ body {
     opacity: 1;
     transition: all 1s;
   } 
+

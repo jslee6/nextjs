@@ -144,7 +144,7 @@ export default function PTablePage() {
     //axious 수정
 
     return (
-        <Container>
+        <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
             <PostBt></PostBt>
                 <Table>

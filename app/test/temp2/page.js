@@ -1,62 +1,51 @@
-'use client'
+import React from 'react';
+import { Box, Grid, Typography,Button } from '@mui/material';
 
-import * as React from 'react';
-import { Container, Stack, Box } from '@mui/material';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import Button from '@mui/material/Button';
 
-export default function MyLayout() {
-    return (
-        <Container maxWidth="xs">
-            <Stack direction="row" spacing={2} >
-                <Box flex={1}>
-                    {/* 왼쪽 레이아웃 */}
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ArrowDropDownIcon />}
-                            aria-controls="panel1-content"
-                            id="panel1-header"
-                        >
-                            <Button><Typography>업무용 사이트</Typography></Button>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Stack direction="column" spacing={2}>
-                                <Button href="https://gw.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
-                                    Group Ware
-                                </Button>
-                                <Button href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
-                                    bookstack
-                                </Button>
-                                <Button href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained">
-                                    redmine
-                                </Button>
-                            </Stack>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ArrowDropDownIcon />}
-                            aria-controls="panel2-content"
-                            id="panel2-header"
-                        >
-                            <Typography>Accordion 2</Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography>
-                               아코디언2 
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                </Box>
-                <Box flex={1}>
-                    {/* 오른쪽 레이아웃 */}
-                </Box>
-            </Stack>
-        </Container>
-    );
-}
+
+const HomePage = () => {
+  return (
+    <Box>
+      <Grid container spacing={1}>
+        <Grid container >
+          <Grid item xs={12}>
+            <Box bgcolor="darkgrey" height="150px" display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+              <Typography variant="h5" color="white">
+                C 구역
+              </Typography>
+              <Typography variant="body1" color="white">
+                - 상단 네브바
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+
+
+        <Grid item xs={3}>
+          <Box bgcolor="primary.main" display="flex" height="700px" flexDirection="column" alignItems="center" justifyContent="center">
+            <Typography variant="h5" color="white">
+              A 구역
+            </Typography>
+            <Typography variant="body1" color="white">
+                좌측 설명구역
+            </Typography>
+          </Box>
+        </Grid>
+
+
+        <Grid item xs={9}>
+          <Box bgcolor="primary.main" display="flex" height="700px" flexDirection="column" alignItems="center" justifyContent="center">
+            <Typography variant="h5" color="white">
+              B 구역
+            </Typography>
+            <Typography variant="body1" color="white">
+                우측 구역
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
+  );
+};
+
+export default HomePage;

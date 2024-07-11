@@ -6,7 +6,7 @@ import { Button, Input, Stack } from "@mui/material";
 export default function Write() {
   
   return (
-    <div className="p-20">
+<div>
       <form action="/api/user/post" method="POST">
         <Stack direction="row" spacing={2}>
           <div>
