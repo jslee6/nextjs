@@ -104,29 +104,7 @@ export default function PTablePage() {
     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
     //paging , 배열러 페이지정리
-    // 삭제 기능
-    // const handleDelete = async (userId) => {
-    //     try {
-    //         const response = await fetch('/api/user/delete', {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ id: userId }),
-    //         });
-    //         //   if (!response.ok) {
-    //         //     throw new Error('Network response was not ok');
-    //         //   }
-
-    //         const { message } = await response.json();
-    //         console.log(message);
-
-    //         setUsers(users.filter(user => user.id !== userId));
-    //     } catch (error) {
-    //         console.error('Delete error:', error);
-    //     }
-    // };
-
+    
     // fetch 기존삭제
 
 
@@ -145,37 +123,7 @@ export default function PTablePage() {
         }
     };
     //axious 삭제로 바꿈
-    
 
-    // 수정 기능
-    // const handleUpdate = (user) => {
-    //     setSelectedUser(user);
-    //     setOpen(true);
-    // };
-
-    // const handleSaveUpdate = async () => {
-    //     try {
-    //         const response = await fetch('/api/user/put', {
-    //             method: 'PUT',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({ ...selectedUser, age: parseInt(selectedUser.age, 10) }),
-    //         });  // age를 숫자형으로 바꿈. 안바꿀시 문자형으로 오류발생함
-
-    //         if (!response.ok) {
-    //             throw new Error('Network response was not ok');
-    //         }
-
-    //         const updatedUser = await response.json();
-    //         setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-    //         setOpen(false);
-    //     } catch (error) {
-    //         console.error('Update error:', error);
-    //     }
-    // };
-
-    // fetch 수정
 
      // axious 수정
     const handleUpdate = (user) => {
@@ -204,6 +152,7 @@ export default function PTablePage() {
     //axious 수정
 
     return (
+
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
             <PostBt></PostBt>
@@ -304,6 +253,7 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
+            
             {/* mui 페이지 가이드 */}
             <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                 <Pagination
@@ -313,6 +263,7 @@ export default function PTablePage() {
                     color="primary"
                 />
             </Stack>
+
             {/* mui 페이지 가이드 */}
             <UserDialog
                 open={open}
