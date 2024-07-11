@@ -1,4 +1,5 @@
 //map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
+// 삭제말아요. 이력저장 공부용 24.07.11
 
 'use client'
 
@@ -8,20 +9,41 @@ import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 
+// 포스트 , writetest 페이지 가져옴//
+// import Write from '@/app/writetest/page';
+
+// function PostBt() {
+//   const [post, setpost] = useState(false);
+
+//   const postButtonClick = () => {
+//     setpost(true);
+//   };
+
+//   return (
+//     <div>
+//       <Button t variant="contained" color="primary" onClick={postButtonClick}>작성하기</Button>  
+//       {/* MUI 적용 */}
+//       {post && <Write />}
+//     </div>
+//   );
+// }
+// //  포스트 , writetest,  페이지 가져옴//
 
 // 포스트 , writetest,  페이지 가져옴 + 닫기 버튼 추가
-import TableWrite from './componets/TableWrite';
+
+import Write from '@/app/writetest/page';
 
 function PostBt() {
     const [post, setpost] = useState(false);
-
+     
     //작성 닫기버튼으로 인해 [추가 !=preState]
     const handlePostButtonClick = () => {
       setpost((prevState) => !prevState);
     }; //닫기버튼으로 인해 추가
 
+  
     return (
-
+      
         <Box>
         <Button
           variant="contained"
@@ -31,7 +53,7 @@ function PostBt() {
           {post ? '닫기' : '작성하기'}  
            {/* 삼항연산자로 처리 */}
         </Button>
-        {post && <TableWrite />}
+        {post && <Write />}
         {/* 이게 잘이해안됨 */}
         </Box>
       
@@ -55,6 +77,21 @@ export default function PTablePage() {
 
 
     // get 엑시오스로 바꿈
+    // useEffect(() => {
+    //     fetch('/api/user/get')
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error('Network response was not ok');
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             console.log('Fetched data:', data);
+    //             setUsers(data);
+    //         })
+    //         .catch(error => console.error('Fetch error:', error));
+    // }, []);
+
 
     useEffect(() => {
         const getUser = async () => {
