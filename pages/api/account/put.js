@@ -9,12 +9,12 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { id, age, address, email, firstName, lastName } = req.body;
+  const { id, userId, password, email, role } = req.body;
 
   try {
     const updatedUser = await prisma.account.update({
       where: { id },
-      data: { age, address, email, firstName, lastName },
+      data: { userId, password, email, role},
     });
 
     res.status(200).json(updatedUser);
@@ -23,4 +23,5 @@ export default async function handler(req, res) {
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 

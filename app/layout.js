@@ -12,7 +12,6 @@ import { Drawer, List, ListItem, ListItemText, Divider,  Accordion, AccordionSum
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
-
 import Sidebar from "./Sidebar/page";
 
 
@@ -28,7 +27,6 @@ export default async function RootLayout({ children }) {
   console.log(session)
   return (
    
-
     <html lang="en">
       <head />
       <body>
@@ -43,36 +41,30 @@ export default async function RootLayout({ children }) {
         {session
           ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
           : <LoginBtn></LoginBtn>
-
           // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
         }
          {'　'} {/* 공백 추가 */}
         <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button>
         {'　　　　'} {/* 공백 추가 */}
         {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
-        {/* post 테스트 */}
         <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button>
         <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button>
         <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
-
         <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button>
-
         <Button component={Link} href="/" variant="contained" >HOME</Button>
-              {/* <Typography variant="h5" color="white">
-                C 구역
-              </Typography>
-              <Typography variant="body1" color="white">
-                - 상단 네브바
+              {/* {/* <Typography variant="h5" color="white">
+                C 구역 상단 Nav bar
               </Typography> */}
+         
             </Box>
           </Grid>
         </Grid>
 
-
         <Grid item xs={1}>
-        <Box>
+        <Box sx={{ borderRight: '1px solid lightgrey', height: '100vh' }}>
+        
+          {/* A섹션에 우측에 선그려서 섹션구분 */}
             <Sidebar/>
-
             <Typography variant="h5" color="white">
               A 구역
             </Typography>
@@ -81,7 +73,6 @@ export default async function RootLayout({ children }) {
             </Typography>
           </Box>
         </Grid>
-
         <Grid item xs={11}>
           <Box >
           {children}
@@ -96,12 +87,6 @@ export default async function RootLayout({ children }) {
         </Grid>
       </Grid>
     </Box>
-
-
-        
-    
-     
-        
         
       </body>
     </html>
@@ -109,44 +94,3 @@ export default async function RootLayout({ children }) {
 }
 
 
-
-
-
-    
-      // {/* <Container maxWidth="xl"> */}
-      // <Stack direction="column" spacing={2}>
-
-      // <div className="navbar">
-      // {/* <div className="navbar"> */}
-
-      //   <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
-      //   {/* 이미지 추가 */}
-      //   {'　　'} {/* 공백 추가 */}
-      //   {session
-      //     ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
-      //     : <LoginBtn></LoginBtn>
-
-      //     // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
-      //   }
-      //   {'　'} {/* 공백 추가 */}
-      //   <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button>
-      //   {'　　　　'} {/* 공백 추가 */}
-      //   {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
-      //   {/* post 테스트 */}
-      //   <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button>
-      //   <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button>
-      //   <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
-
-      //   <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button>
-
-      //   <Button component={Link} href="/" variant="contained" >HOME</Button>
-
-      // </div>
-      
-      // <Sidebar />  
-      // </Stack>
-      // {/* </Container> */}
-      
-
-      // {/* <Sidebar /> */}
-      // {/* 칠드런 위에표시 공용용페이지로 나옴, 링크는 a태그대신씀 부드러움 */}
