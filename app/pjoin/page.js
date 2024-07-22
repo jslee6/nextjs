@@ -28,7 +28,7 @@ export default function Login() {
             환영 합니다.
           </Typography> */}
           {/* 멘트 추가 하고싶으면 */}
-          <img src="/main.jpg" alt="Logo" style={{ width: '80%', height: '65%', padding: '80px' }} />
+          <img src="/main.jpg" alt="Logo" style={{ width: '90%', height: '80%', padding: '40px' }} />
         </Box>
       </Grid>
       {/* 왼쪽 그리드 */}
@@ -47,10 +47,11 @@ export default function Login() {
             height: "100vh",
           }}
         >
+
           <Box
             component="form"
             method="POST"
-            action="/api/auth/signup"
+            action="/api/account/post"
             sx={{
               width: 400,
               p: 4,
@@ -59,6 +60,9 @@ export default function Login() {
               boxShadow: 3,
             }}
           >
+
+
+
             <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
               회원가입
             </Typography>
@@ -77,4 +81,5 @@ export default function Login() {
     </Grid>
   );
 }
+
 {/* 오른쪽 그리드 */ }

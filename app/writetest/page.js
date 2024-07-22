@@ -2,11 +2,13 @@
 
 // 풋과 딜리트는 안됨
 import { Button, Input, Stack } from "@mui/material";
+import Home from "../test/temp4/page";
 
 export default function Write() {
   
   return (
 <div>
+  <Home></Home>
       <form action="/api/user/post" method="POST">
         <Stack direction="row" spacing={2}>
           <div>

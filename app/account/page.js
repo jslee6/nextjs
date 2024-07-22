@@ -194,7 +194,7 @@ export default function PTablePage() {
                                     direction={sortColumn === 'age' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('age')}
                                 >
-                                    Age
+                                    role
                                 </TableSortLabel>
                             </TableCell>
                     

@@ -9,19 +9,17 @@ export default async function handler(req, res) {
     // Log the incoming request body
     console.log('Request body:', req.body);
 
-    const { email, firstName, lastName, address, age } = req.body;
-    //-> 이게 파싱이구나......
+    const { } = req.body;
+    // const { email,age, UserID } = req.body;  이런식으로 필요한것들만 가져올수도 있음
 
+    // email,firstName,lastName,address, age
 
     try {
       // Create a new user in the database
       const newUser = await prisma.user.create({
         data: {
-          email,
-          firstName,
-          lastName,
-          address,
-          age: age ? parseInt(age, 10) : null, // Convert age to integer if provided
+          ...req.body, //전체 객체를 spread 연산자로 가져옴
+          age: age ? parseInt(age, 10) : null, // 10 진수
         },  // id는 uuid 자동생성
       });
 
@@ -38,6 +36,6 @@ export default async function handler(req, res) {
     res.status(405).json({ message: 'Method not allowed' });
   }
 }
- 
+
 
 //일단넣긴햇는데 이메일은왜?~

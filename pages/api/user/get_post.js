@@ -27,7 +27,7 @@
 //   }
 // }
 
-///GET ,과 post 한번에 구현
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -39,11 +39,18 @@ export default async function handler(req, res) {
     //get
 
   } else if (req.method === 'POST') {
-    const { name } = req.body;
+    const {  } = req.body;
     const newuser = await prisma.user.create({
-      data: { name }
+      data: {
+        ...req.body, //전체 객체를 spread 연산자로 가져옴
+        age: age ? parseInt(age, 10) : null, // 10 진수
+      },  // id는 uuid 자동생성
     });
+
     res.status(201).json(newuser);
+  }
+  else {
+        res.status(405).json({ error: '에러' });
   }
 }
 

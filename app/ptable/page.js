@@ -229,6 +229,7 @@ export default function PTablePage() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {/* 필터 ,텍스트필드, 키프레스, 이벤트핸들러 */}
 
                         {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
                         {currentUsers.map((user) => (
@@ -253,7 +254,7 @@ export default function PTablePage() {
                     </TableBody>
                 </Table>
             </TableContainer>
-            
+
             {/* mui 페이지 가이드 */}
             <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
                 <Pagination

@@ -34,6 +34,10 @@ export default function Testpage(){
             <ListItemText primary="temp5" />
             </ListItem>
             <Divider />
+            <ListItem component={Link} href="/test/gettest">
+            <ListItemText primary="gettest" />
+            </ListItem>
+            <Divider />
          
           </List>
         </AccordionDetails>
