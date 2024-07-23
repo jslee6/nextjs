@@ -25,12 +25,15 @@ export default function PTablePage() {
         getUser();
     }, []);
 
+// searchTerm 을 컬럼에 포함한걸 검색
     const handleSearch = () => {
         const filtered = users.filter(user => 
-            user.userId.includes(searchTerm) && user.role === role
+            (user.userId.includes(searchTerm) || user.password.includes(searchTerm)) && user.role === role
+            // searchTerm 을 포함함
         );
         setFilteredUsers(filtered);
     };
+// searchTerm 을 컬럼에 포함한걸 검색
 
     return (
         <Container>
