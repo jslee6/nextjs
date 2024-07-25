@@ -42,7 +42,10 @@ export default function PTablePage() {
             const matchesSearchId =
             user.userId.includes(searchId) || user.password.includes(searchId);
             // ID 컬럼 검색
-            return matchesSearchTerm && matchesSearchId && user.role === role;
+
+            const matchesRole = role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
+
+            return matchesSearchTerm && matchesSearchId && matchesRole;
         });
         setFilteredUsers(filtered);
     };

@@ -33,7 +33,7 @@ function PostBt() {
            {/* 삼항연산자로 처리 */}
         </Button>
         {post && <Enroll />}
-        {/* 이게 잘이해안됨 */}
+        {/* 이게 잘이해안됨 -> post, state 상태값 T/F 로 삼항연산자 표기*/}
 
         
       </div>
@@ -103,10 +103,15 @@ export default function PTablePage() {
                 value.toString().includes(searchTerm)
             ); //전체검색 및 문자 변환
 
+            const matchesRole = 
+            role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
+
             const matchesSearchId =
             user.userId.includes(searchId) || user.password.includes(searchId);
             // ID 컬럼 검색
-            return matchesSearchTerm && matchesSearchId && user.role === role;
+ 
+            return matchesSearchTerm && matchesSearchId && matchesRole;
+        
         });
         setFilteredUsers(filtered);
     };
@@ -232,7 +237,6 @@ export default function PTablePage() {
                                     direction={sortColumn === 'email' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('email')}
                                 >
-                                
                                     Email
                                 </TableSortLabel>
                             </TableCell>
@@ -246,8 +250,10 @@ export default function PTablePage() {
                                 </TableSortLabel>
                             </TableCell>
                     
-                            <TableCell >Update</TableCell>
-                            <TableCell>Delete</TableCell>
+                            <TableCell
+                            sx={{ width: '10px', }}
+                            >Update</TableCell>
+                            <TableCell >Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

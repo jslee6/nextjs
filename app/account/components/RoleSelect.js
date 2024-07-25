@@ -10,6 +10,7 @@ const RoleSelect = ({ role, setRole }) => {
                 onChange={(e) => setRole(e.target.value)}
                 label="Role"
             >
+                <MenuItem value="all">All</MenuItem>
                 <MenuItem value="admin">Admin</MenuItem>
                 <MenuItem value="user">User</MenuItem>
             </Select>
