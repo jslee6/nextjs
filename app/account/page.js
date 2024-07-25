@@ -3,15 +3,18 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
 // import AccountDialog from '@/app/components/AccountDialog';
 import AccountDialog from './components/AccountDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import Enroll from './enroll/page'; // 포스트  페이지 가져옴 + 닫기 버튼 추가
+import RoleSelect from './components/RoleSelect';  //role 관련
+
 
 function PostBt() {
-    const [post, setpost] = useState(false);
+    const [post, setpost] = useState(false); // 상태값 Ture/False state
+
      
     //작성 닫기버튼으로 인해 [추가 !=preState]
     const handlePostButtonClick = () => {
@@ -31,11 +34,13 @@ function PostBt() {
         </Button>
         {post && <Enroll />}
         {/* 이게 잘이해안됨 */}
+
+        
       </div>
     );
-  }
+}
 
-///
+///x테이블관련
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
@@ -48,12 +53,19 @@ export default function PTablePage() {
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
 
+    const [searchTerm, setSearchTerm] = useState(''); // 모든 검색어 상태 추가
+    const [searchId, setSearchId] = useState(''); // ID 검색어 상태 추가
+    const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 상태
+
+    const [role, setRole] = useState('user'); // 기본값은 'user' 롤 관련선택 
+
     useEffect(() => {
         const getUser = async () => {
             try {
                 const response = await axios.get('/api/account/get');
                 console.log('get data:', response.data);
                 setUsers(response.data);
+                setFilteredUsers(response.data); // 초기 상태로 전체 사용자 설정
             } catch (error) {
                 console.error('get error:', error);
             }
@@ -83,15 +95,31 @@ export default function PTablePage() {
     }
     //     데이터를 정렬합니다. 정렬된 데이터를 페이지네이션에 적용합니다. 그렇지않으면 오류발생
 
+    // 통합된 검색 핸들러
+    const handleSearchBoth = () => {
+        const filtered = users.filter(user => {
+            const matchesSearchTerm = 
+            Object.values(user).some(value =>
+                value.toString().includes(searchTerm)
+            ); //전체검색 및 문자 변환
+
+            const matchesSearchId =
+            user.userId.includes(searchId) || user.password.includes(searchId);
+            // ID 컬럼 검색
+            return matchesSearchTerm && matchesSearchId && user.role === role;
+        });
+        setFilteredUsers(filtered);
+    };
+
     //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
 
-    const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
-    const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
+    const indexOfLastUser = currentPage * usersPerPage;   // 현재페이지의 마지막 사용자 인덱스 계산
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;  //현재 페이지에서 첫번째 사용인덱스 계산  마지믹인덱스 -페이지 유저수
+    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser); //slice 메서드를 사용해 indexOfFirstUser부터 indexOfLastUser까지의 사용자들을 가져옵니다.
+    const totalPages = Math.ceil(filteredUsers.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
 
     //axious 삭제
     const handleDelete = async (userId) => {
@@ -103,6 +131,7 @@ export default function PTablePage() {
             console.log(message);
     
             setUsers(users.filter(user => user.id !== userId));
+            setFilteredUsers(filteredUsers.filter(user => user.id !== userId));
         } catch (error) {
             console.error('Delete error:', error);
         }
@@ -123,6 +152,7 @@ export default function PTablePage() {
             //parseInt를 통해 10진수 정수로 변환
             const updatedUser = response.data;
             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
+            setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
             setOpen(false);
         } catch (error) {
             console.error('Update error:', error);
@@ -136,6 +166,32 @@ export default function PTablePage() {
 
     return (
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
+            <Stack
+                direction={{ xs: 'column', sm: 'row' }}
+                spacing={3}
+                sx={{ width: '60%', }}
+
+            
+            >
+                <RoleSelect role={role} setRole={setRole} />
+                <TextField
+                    variant="outlined"
+                    label="ID 검색"
+                    fullWidth
+                    sx={{ width: '300%', mt: 2 }}
+                    value={searchId}
+                    onChange={(e) => setSearchId(e.target.value)} // 입력값 업데이트
+                />
+                <TextField
+                    variant="outlined"
+                    label="전체검색"
+                    fullWidth
+                    sx={{ width: '300%', mt: 2 }}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} // 입력값 업데이트
+                />
+                <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
+            </Stack>
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
             <PostBt></PostBt>
                 <Table>
@@ -176,6 +232,7 @@ export default function PTablePage() {
                                     direction={sortColumn === 'email' ? sortDirection : 'asc'}
                                     onClick={() => handleSort('email')}
                                 >
+                                
                                     Email
                                 </TableSortLabel>
                             </TableCell>
