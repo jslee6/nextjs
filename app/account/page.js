@@ -8,37 +8,11 @@ import { Container, Table, TableBody, TableCell, TableContainer, TableHead, Tabl
 import AccountDialog from './components/AccountDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
-import Enroll from './enroll/page'; // 포스트  페이지 가져옴 + 닫기 버튼 추가
-import RoleSelect from './components/RoleSelect';  //role 관련
+import PostButton from './components/PostButton';  // 컴포넌트로 뻄 등록기능
+// import RoleSelect from './components/RoleSelect';  //role 관련
+import SearchBar from './components/SearchBar'; // 컴포넌트로 뻄 검색기능
 
-
-function PostBt() {
-    const [post, setpost] = useState(false); // 상태값 Ture/False state
-
-
-    //작성 닫기버튼으로 인해 [추가 !=preState]
-    const handlePostButtonClick = () => {
-        setpost((prevState) => !prevState);
-    }; //닫기버튼으로 인해 추가
-
-
-    return (
-        <div>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handlePostButtonClick}
-            >
-                {post ? '닫기' : '작성하기'}
-                {/* 삼항연산자로 처리 */}
-            </Button>
-            {post && <Enroll />}
-            {/* 이게 잘이해안됨 -> post, state 상태값 T/F 로 삼항연산자 표기*/}
-
-
-        </div>
-    );
-}
+//PostButton 뺌//
 
 ///x테이블관련
 
@@ -131,7 +105,7 @@ export default function PTablePage() {
     // const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
     // const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
-   
+
     //axious 삭제
     const handleDelete = async (userId) => {
         try {
@@ -177,33 +151,19 @@ export default function PTablePage() {
 
     return (
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
-            <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={3}
-                sx={{ width: '60%', }}
-            >
-                <RoleSelect role={role} setRole={setRole} />
-                <TextField
-                    variant="outlined"
-                    label="ID 검색"
-                    fullWidth
-                    sx={{ width: '300%', mt: 2 }}
-                    value={searchId}
-                    onChange={(e) => setSearchId(e.target.value)} // 입력값 업데이트
-                />
-                <TextField
-                    variant="outlined"
-                    label="전체검색"
-                    fullWidth
-                    sx={{ width: '300%', mt: 2 }}
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} // 입력값 업데이트
-                />
-                <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
-            </Stack>
+            <SearchBar
+                role={role}
+                setRole={setRole}
+                searchId={searchId}
+                setSearchId={setSearchId}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                handleSearchBoth={handleSearchBoth}
+            /> 
+            {/* props 로 -> Searchㅠar에 넘겨줌  */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-                <PostBt></PostBt>
-
+                <PostButton /> 
+                {/* 포스트버튼 컴포넌트 */}
                 <Table>
                     <TableHead>
                         <TableRow>

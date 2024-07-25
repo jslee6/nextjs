@@ -19,8 +19,7 @@ export default function Enroll() {
             <br></br>
             <Input type="email" name="email" placeholder="이메일" />
           </div>
-          <Button variant="contained" color="success" type="submit">전송<br></br>하기</Button>
-          
+          <Button variant="contained" color="success" type="submit">전송<br></br>하기</Button>      
         </Stack>
       </form>
     </div>
