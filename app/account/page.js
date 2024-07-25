@@ -15,28 +15,28 @@ import RoleSelect from './components/RoleSelect';  //role 관련
 function PostBt() {
     const [post, setpost] = useState(false); // 상태값 Ture/False state
 
-     
+
     //작성 닫기버튼으로 인해 [추가 !=preState]
     const handlePostButtonClick = () => {
-      setpost((prevState) => !prevState);
+        setpost((prevState) => !prevState);
     }; //닫기버튼으로 인해 추가
 
-  
-    return (
-      <div>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handlePostButtonClick}
-        >
-          {post ? '닫기' : '작성하기'}  
-           {/* 삼항연산자로 처리 */}
-        </Button>
-        {post && <Enroll />}
-        {/* 이게 잘이해안됨 -> post, state 상태값 T/F 로 삼항연산자 표기*/}
 
-        
-      </div>
+    return (
+        <div>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={handlePostButtonClick}
+            >
+                {post ? '닫기' : '작성하기'}
+                {/* 삼항연산자로 처리 */}
+            </Button>
+            {post && <Enroll />}
+            {/* 이게 잘이해안됨 -> post, state 상태값 T/F 로 삼항연산자 표기*/}
+
+
+        </div>
     );
 }
 
@@ -85,7 +85,7 @@ export default function PTablePage() {
     };
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...users];
+    let sortedUsers = [...filteredUsers];  // 
     if (sortColumn) {
         sortedUsers.sort((a, b) => {
             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
@@ -98,20 +98,20 @@ export default function PTablePage() {
     // 통합된 검색 핸들러
     const handleSearchBoth = () => {
         const filtered = users.filter(user => {
-            const matchesSearchTerm = 
-            Object.values(user).some(value =>
-                value.toString().includes(searchTerm)
-            ); //전체검색 및 문자 변환
+            const matchesSearchTerm =
+                Object.values(user).some(value =>
+                    value.toString().includes(searchTerm)
+                ); //전체검색 및 문자 변환
 
-            const matchesRole = 
-            role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
+            const matchesRole =
+                role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
 
             const matchesSearchId =
-            user.userId.includes(searchId) || user.password.includes(searchId);
+                user.userId.includes(searchId) || user.password.includes(searchId);
             // ID 컬럼 검색
- 
+
             return matchesSearchTerm && matchesSearchId && matchesRole;
-        
+
         });
         setFilteredUsers(filtered);
     };
@@ -119,13 +119,19 @@ export default function PTablePage() {
     //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
-    };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지
+    };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지(SortedUser ,CurrentUser)
 
     const indexOfLastUser = currentPage * usersPerPage;   // 현재페이지의 마지막 사용자 인덱스 계산
     const indexOfFirstUser = indexOfLastUser - usersPerPage;  //현재 페이지에서 첫번째 사용인덱스 계산  마지믹인덱스 -페이지 유저수
-    const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser); //slice 메서드를 사용해 indexOfFirstUser부터 indexOfLastUser까지의 사용자들을 가져옵니다.
+    const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser); //slice 메서드를 사용해 indexOfFirstUser부터 indexOfLastUser까지의 사용자들을 가져옵니다.
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
 
+    // const indexOfLastUser = currentPage * usersPerPage;
+    // const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    // const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
+    // const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+   
     //axious 삭제
     const handleDelete = async (userId) => {
         try {
@@ -134,7 +140,7 @@ export default function PTablePage() {
             });
             const { message } = response.data;
             console.log(message);
-    
+
             setUsers(users.filter(user => user.id !== userId));
             setFilteredUsers(filteredUsers.filter(user => user.id !== userId));
         } catch (error) {
@@ -143,12 +149,12 @@ export default function PTablePage() {
     };
     //axious 삭제
 
-     // axious 수정
+    // axious 수정
     const handleUpdate = (user) => {
         setSelectedUser(user);
         setOpen(true);
     };
-    
+
     const handleSaveUpdate = async () => {
         try {
             const response = await axios.put('/api/account/put', { ...selectedUser, age: parseInt(selectedUser.age, 10) });
@@ -175,8 +181,6 @@ export default function PTablePage() {
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={3}
                 sx={{ width: '60%', }}
-
-            
             >
                 <RoleSelect role={role} setRole={setRole} />
                 <TextField
@@ -198,7 +202,8 @@ export default function PTablePage() {
                 <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
             </Stack>
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-            <PostBt></PostBt>
+                <PostBt></PostBt>
+
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -249,9 +254,9 @@ export default function PTablePage() {
                                     role
                                 </TableSortLabel>
                             </TableCell>
-                    
+
                             <TableCell
-                            sx={{ width: '10px', }}
+                                sx={{ width: '10px', }}
                             >Update</TableCell>
                             <TableCell >Delete</TableCell>
                         </TableRow>
@@ -295,7 +300,7 @@ export default function PTablePage() {
                 account={selectedUser}
                 onChange={handleInputChange}
                 onSave={handleSaveUpdate}
-                // 다이얼로그에 전달할 프롭스
+            // 다이얼로그에 전달할 프롭스
             />
         </Container>
     );

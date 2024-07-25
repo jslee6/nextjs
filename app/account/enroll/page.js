@@ -30,5 +30,3 @@ export default function Enroll() {
 // 인풋 태그
 
 
-
-///클라이언트 ,  리다이렉트는  api/user/post  에서 추가함

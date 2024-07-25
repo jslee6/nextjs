@@ -7,7 +7,6 @@ export default function Login() {
     // **********************왼쪽 그리드****************************
     <Grid container >
       <Grid item xs={8} >
-
         <Box
           sx={{
             display: "flex",
@@ -18,12 +17,10 @@ export default function Login() {
             bgcolor: "#f7f8f8",
             boxShadow: 3,
             //박스 테두리 그림자
-
             // 요소의 높이를 브라우저 창의 높이와 동일하게 설정합니다. vh는 viewport height의 약자로, 1vh는 현재 브라우저 창의 1% 높이입니다.
           }}
         >
           {/* 왼쪽 그리드의 내용 */}
-
           {/* <Typography variant="h4" gutterBottom>
             환영 합니다.
           </Typography> */}
@@ -32,8 +29,6 @@ export default function Login() {
         </Box>
       </Grid>
       {/* 왼쪽 그리드 */}
-
-
       {/* **********************오른쪽 그리드**************************** */}
 
       <Grid item xs={4}>
@@ -47,7 +42,6 @@ export default function Login() {
             height: "100vh",
           }}
         >
-
           <Box
             component="form"
             method="POST"
@@ -60,9 +54,6 @@ export default function Login() {
               boxShadow: 3,
             }}
           >
-
-
-
             <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
               회원가입
             </Typography>
@@ -71,6 +62,10 @@ export default function Login() {
               <TextField name="userId" type="text" label="아이디" variant="outlined" />
               <TextField name="email" type="email" label="이메일" variant="outlined" />
               <TextField name="password" type="password" label="비밀번호" variant="outlined" />
+              
+              {/* 숨겨진 입력 필드 추가 */}
+              <input type="hidden" name="role" value="user" />
+
               <Button type="submit" variant="contained" sx={{ fontSize: "30px" }}>
                 가입하기
               </Button>
@@ -81,5 +76,4 @@ export default function Login() {
     </Grid>
   );
 }
-
 {/* 오른쪽 그리드 */ }
