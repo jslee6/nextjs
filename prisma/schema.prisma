@@ -51,11 +51,12 @@ model account {
 }
 
 model account2 {
-  id       String  @id @default(uuid())
-  userId   String  @unique
-  password String
-  role     String?
-  email    String?
+  id        String   @id @default(uuid())
+  userId    String   
+  password  String
+  role      String?
+  email     String?
+  createdAt DateTime @default(now())
 }
 
 model accounthistory {

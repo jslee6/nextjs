@@ -1,19 +1,14 @@
 //map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
-
 'use client'
-
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
-// import AccountDialog from '@/app/components/AccountDialog';
 import AccountDialog from './components/AccountDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import PostButton from './components/PostButton';  // 컴포넌트로 뻄 등록기능
-// import RoleSelect from './components/RoleSelect';  //role 관련 , 직접쓰지않고 SearchBar에서 사용
 import SearchBar from './components/SearchBar'; // 컴포넌트로 뻄 검색기능
 import UserTable from './components/UserTable'; //컴포넌트로 테이블뻄
 import PaginationComp from './components/PaginationComp'; //페이지네이션 컴포넌트
-
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
@@ -30,7 +25,7 @@ export default function PTablePage() {
     const [searchId, setSearchId] = useState(''); // ID 검색어 상태 추가
     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 상태
 
-    const [role, setRole] = useState('user'); // 기본값은 'user' 롤 관련선택 
+    const [role, setRole] = useState('all'); // 기본값은 'user' 롤 관련선택 
 
     useEffect(() => {
         const getUser = async () => {
@@ -56,7 +51,6 @@ export default function PTablePage() {
             setSortDirection('asc');
         }
     };
-
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
     let sortedUsers = [...filteredUsers];  
     if (sortColumn) {
@@ -67,7 +61,6 @@ export default function PTablePage() {
         });
     }
     //     데이터를 정렬합니다. 정렬된 데이터를 페이지네이션에 적용합니다. 그렇지않으면 오류발생
-
     // 통합된 검색 핸들러
     const handleSearchBoth = () => {
         const filtered = users.filter(user => {
@@ -84,25 +77,17 @@ export default function PTablePage() {
             // ID 컬럼 검색
 
             return matchesSearchTerm && matchesSearchId && matchesRole;
-
         });
         setFilteredUsers(filtered);
     };
-
     //paging
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
     };  //페이지 변경을 핸들링하는 함수 , value 는 사용자가 클릭한 페이지(SortedUser ,CurrentUser)
-
     const indexOfLastUser = currentPage * usersPerPage;   // 현재페이지의 마지막 사용자 인덱스 계산
     const indexOfFirstUser = indexOfLastUser - usersPerPage;  //현재 페이지에서 첫번째 사용인덱스 계산  마지믹인덱스 -페이지 유저수
     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser); //slice 메서드를 사용해 indexOfFirstUser부터 indexOfLastUser까지의 사용자들을 가져옵니다.
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
-
-    // const indexOfLastUser = currentPage * usersPerPage;
-    // const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    // const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
-    // const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     //axious 삭제
     const handleDelete = async (userId) => {
@@ -135,6 +120,10 @@ export default function PTablePage() {
             const updatedUser = response.data;
             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
+
+              // 다른 DB에 수정된 데이터를 기록하기 위한 요청
+              await axios.post('/api/accounthistroy/post', { ...updatedUser });
+
             setOpen(false);
         } catch (error) {
             console.error('Update error:', error);

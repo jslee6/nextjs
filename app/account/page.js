@@ -30,7 +30,7 @@ export default function PTablePage() {
     const [searchId, setSearchId] = useState(''); // ID 검색어 상태 추가
     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 상태
 
-    const [role, setRole] = useState('user'); // 기본값은 'user' 롤 관련선택 
+    const [role, setRole] = useState('all'); // 기본값은 'user' 롤 관련선택 
 
     useEffect(() => {
         const getUser = async () => {
@@ -156,7 +156,7 @@ export default function PTablePage() {
                 handleSearchBoth={handleSearchBoth}
             />
             {/* props 로 -> Searcbar에 넘겨줌  */}
-            //<TableContainer component={Paper} style={{ marginTop: '30px' }}>
+            <TableContainer component={Paper} style={{ marginTop: '30px' }}>
                 <PostButton /> {/* 포스트버튼 컴포넌트 */}
                 <UserTable
                     users={currentUsers}

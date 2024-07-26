@@ -2,6 +2,9 @@
 import React from 'react';
 import { TextField, Button, Stack } from '@mui/material';
 import RoleSelect from './RoleSelect';
+import Link from 'next/link';
+
+
 
 function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearchTerm, handleSearchBoth }) {
     return (
@@ -23,7 +26,11 @@ function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearch
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
+            <Button variant="contained" onClick={handleSearchBoth} sx={{ width: '70%' ,mt: 2 }}>검색하기</Button>
+            <Button variant="contained" sx={{ width: '70%' ,mt: 2 }} component={Link} href="/test/accountHistory">수정이력</Button>
+            
+            
+
         </Stack>
     );
 }

@@ -33,6 +33,9 @@ export default function Testpage(){
             <ListItem component={Link} href="/accounttest">
             <ListItemText primary="accounttest" />
             </ListItem>
+            <ListItem component={Link} href="/test/accountHistory">
+            <ListItemText primary="accountHistory" />
+            </ListItem>
             <Divider />
             <ListItem component={Link} href="/test/gettest">
             <ListItemText primary="gettest" />
