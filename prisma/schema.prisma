@@ -50,6 +50,34 @@ model account {
   email    String?
 }
 
+model account2 {
+  id       String  @id @default(uuid())
+  userId   String  @unique
+  password String
+  role     String?
+  email    String?
+}
+
+model accounthistory {
+  id        String   @id @default(uuid())
+  accountId String
+  userId    String
+  password  String
+  role      String?
+  email     String?
+  operation String
+  changedAt DateTime @default(now())
+}
+
+model accounthistory3 {
+  id        String   @id
+  accountId String
+  email     String?
+  role      String?
+  password  String
+  updatedAt DateTime @default(now())
+}
+
 enum product_category {
   FASHION
   BEAUTY

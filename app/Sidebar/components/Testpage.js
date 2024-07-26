@@ -30,8 +30,8 @@ export default function Testpage(){
             <ListItemText primary="temp4" />
             </ListItem>
             <Divider />
-            <ListItem component={Link} href="/test/temp5">
-            <ListItemText primary="temp5" />
+            <ListItem component={Link} href="/accounttest">
+            <ListItemText primary="accounttest" />
             </ListItem>
             <Divider />
             <ListItem component={Link} href="/test/gettest">

@@ -58,7 +58,7 @@ export default function PTablePage() {
     };
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...filteredUsers];  // 
+    let sortedUsers = [...filteredUsers];  
     if (sortColumn) {
         sortedUsers.sort((a, b) => {
             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
@@ -156,7 +156,7 @@ export default function PTablePage() {
                 handleSearchBoth={handleSearchBoth}
             />
             {/* props 로 -> Searcbar에 넘겨줌  */}
-            <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+            //<TableContainer component={Paper} style={{ marginTop: '30px' }}>
                 <PostButton /> {/* 포스트버튼 컴포넌트 */}
                 <UserTable
                     users={currentUsers}
