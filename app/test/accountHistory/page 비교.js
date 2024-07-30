@@ -1,7 +1,3 @@
-// 모든 컬럼 검색: 
-//handleSearch 함수에서 Object.values(user)를 사용하여 사용자 객체의 모든 값을 배열로 가져옵니다.
-// .some() 메서드 사용: 이 배열에 대해 .some() 메서드를 호출하여, 각 값이 searchTerm을 포함하는지 확인합니다. 이 방식으로 모든 컬럼에서 검색어를 찾을 수 있습니다.
-// toString() 메서드 사용: 값이 숫자일 경우에도 검색이 가능하도록 각 값을 문자열로 변환합니다.
 'use client'
 
 import React, { useEffect, useState } from 'react';
@@ -14,12 +10,11 @@ export default function PTablePage() {
     const [users, setUsers] = useState([]);
     const [role, setRole] = useState('all'); // 기본값은 'user'
     const [searchTerm, setSearchTerm] = useState(''); // 모든 검색어 상태 추가
-    const [searchId, setsearchId] = useState(''); // ID 검색어 상태 추가
+    const [searchId, setSearchId] = useState(''); // ID 검색어 상태 추가
     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 사용자 상태
 
-
-    const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
-    const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
+    const [sortColumn, setSortColumn] = useState('userId'); // 테이블 소팅 초기 상태 설정
+    const [sortDirection, setSortDirection] = useState('asc'); // 테이블 소팅 초기 상태 설정
 
     useEffect(() => {
         const getUser = async () => {
@@ -35,33 +30,27 @@ export default function PTablePage() {
         getUser();
     }, []); // 의존성 배열 비워서 한번만 실행하도록 함
 
-    // 테이블소팅 ,handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
+    // 테이블 소팅 함수
     const handleSort = (column) => {
-        if (sortColumn === column) {
-            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-        } else {
-            setSortColumn(column);
-            setSortDirection('asc');
-        }
+        const isAsc = sortColumn === column && sortDirection === 'asc';
+        setSortDirection(isAsc ? 'desc' : 'asc');
+        setSortColumn(column);
     };
+
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...filteredUsers];
-    if (sortColumn) {
-        sortedUsers.sort((a, b) => {
-            if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
-            if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
-            return 0;
-        });
-    }
+    const sortedUsers = [...filteredUsers].sort((a, b) => {
+        if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
+        if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
+        return 0;
+    });
 
     // 통합된 검색 핸들러
     const handleSearchBoth = () => {
         const filtered = users.filter(user => {
-
             const matchesSearchTerm =
                 Object.values(user).some(value =>
                     value.toString().includes(searchTerm)
-                ); //전체검색 및 문자 변환
+                ); // 전체 검색 및 문자 변환
 
             const matchesSearchId =
                 user.userId.includes(searchId) || user.password.includes(searchId);
@@ -73,7 +62,6 @@ export default function PTablePage() {
         });
         setFilteredUsers(filtered);
     };
-
 
     return (
         <Container>
@@ -90,7 +78,7 @@ export default function PTablePage() {
                     fullWidth
                     sx={{ width: '300%', mt: 2 }}
                     value={searchId}
-                    onChange={(e) => setsearchId(e.target.value)} // 입력값 업데이트
+                    onChange={(e) => setSearchId(e.target.value)} // 입력값 업데이트
                 />
                 <TextField
                     variant="outlined"
@@ -157,7 +145,3 @@ export default function PTablePage() {
         </Container>
     );
 }
-
-
-
-
