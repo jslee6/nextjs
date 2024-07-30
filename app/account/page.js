@@ -135,11 +135,17 @@ export default function PTablePage() {
             const updatedUser = response.data;
             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
+
+            
+              // 다른 DB에 수정된 데이터를 기록하기 위한 요청
+              await axios.post('/api/accounthistroy/post', { ...updatedUser });
+
             setOpen(false);
         } catch (error) {
             console.error('Update error:', error);
         }
     };
+    
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     };

@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { TableSortLabel, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack } from '@mui/material';
 import axios from 'axios';
 import RoleSelect from './components/RoleSelect';
-import Link from '@mui/material';
+import Link from '@mui/material/Link';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
@@ -45,7 +45,7 @@ export default function PTablePage() {
         }
     };
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...filteredUsers];
+    let sortedUsers = [...filteredUsers]; // 배열을 복사해서 sortUser로 만들엇으니, map의 배열은 SortUser가 되야함
     if (sortColumn) {
         sortedUsers.sort((a, b) => {
             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
@@ -157,7 +157,3 @@ export default function PTablePage() {
         </Container>
     );
 }
-
-
-
-
