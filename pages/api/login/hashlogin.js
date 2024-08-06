@@ -1,3 +1,5 @@
+//현재 미사용 24.08.03
+
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 

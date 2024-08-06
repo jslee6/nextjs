@@ -1,4 +1,4 @@
-// 해시 회원가입, 추후에 해보자
+// 현재 미사용 해시 회원가입, 추후에 해보자
 
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
