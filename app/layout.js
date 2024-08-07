@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Sidebar from "./Sidebar/page";
 
 
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -24,6 +25,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   let session = await getServerSession(authOptions)
+  //로그인된 유저정보 출력
   console.log(session)
   return (
    
@@ -38,12 +40,20 @@ export default async function RootLayout({ children }) {
             <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
         {/* 이미지 추가 */}
         {'　　'} {/* 공백 추가 */}
+ 
+        
+
+        {/* 서버컴포넌트라서 사용불가. 클라이언트 컴포넌트를 가져옴
+        <button onClick={()=>{ signIn() }}>로그인버튼</button>
+        <button onClick={()=>{ signOut() }}>로그아웃버튼</button>  */}
+        
         {session
           ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
           : <LoginBtn></LoginBtn>
           // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
         }
          {'　'} {/* 공백 추가 */}
+         
         <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button>
         {'　　　　'} {/* 공백 추가 */}
         {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}

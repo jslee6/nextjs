@@ -1,23 +1,35 @@
-//pages/api/auth/signup.js
+// 24.08.07 3 , api 라우터 ,회원가입, 로그인 api
+///loginTest/signup
 
-import { connectDB } from "@/util/database";
-import bcrypt from "bcrypt";// 계정 암호화 라이브러리
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
-export default async function handler(요청, 응답) {
-  if (요청.method === "POST") {
+const prisma = new PrismaClient();
 
-      const hash = await bcrypt.hash(요청.body.password, 10);
-      // 암호화 방식
-    //   요청.body.password = hash; 
-      요청.body.password = hash; 
-      //해쉬 보면 암호화해서 나옴
-    //   console.log(hash)
-      console.log(요청.body)
-      
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    console.log('Request body:', req.body);
+    const { userId, password, email } = req.body;
 
-      let db = (await connectDB).db('forum');
-      await db.collection('user_cred').insertOne(요청.body);
-      응답.status(200).json('성공');
+    // 비밀번호 해싱
+    const hashedPassword = await bcrypt.hash(password, 10);
 
+    try {
+      // 사용자 생성
+      const newAccount = await prisma.account.create({
+        data: {
+          userId,
+          password: hashedPassword,
+          email,
+        },
+      });
+
+      res.status(201).json({ message: '회원가입 성공', account: newAccount });
+    } catch (error) {
+      res.status(400).json({ error: '회원가입 실패', details: error.message });
+    }
+  } else {
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
   }
-}; 
+}

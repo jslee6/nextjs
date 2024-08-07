@@ -73,8 +73,10 @@ export default function PTablePage() {
         const filtered = users.filter(user => {
             const matchesSearchTerm =
                 Object.values(user).some(value =>
-                    value.toString().includes(searchTerm)
-                ); //전체검색 및 문자 변환
+                    value !== null && value !== undefined && value.toString().includes(searchTerm)
+                );
+                // 값이 널이나 언디파인드면 오류가 발생할수잇음.
+                //전체검색 및 문자 변환
 
             const matchesRole =
                 role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
