@@ -1,65 +1,107 @@
+'use client'
 
-import { Button, TextField, Stack, Box, Typography } from "@mui/material";
-import Alert from '@mui/material/Alert';
+import { useState } from 'react';
+import { Button, TextField, Stack, Box, Typography, Alert } from "@mui/material";
 
 export default function Acclogin() {
-    return (
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError(''); // Clear any previous errors
+
+    const response = await fetch('/api/login/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId, password }),
+    });
+
+    if (response.ok) {
+      window.location.href = '/';
+    } else {
+      setError('실패입니다');
+    }
+  };
+
+  return (
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{
+        width: 350,
+        p: 3,
+        border: "1px solid #ccc",
+        borderRadius: 2,
+        boxShadow: 3,
+        mt: 2,
+      }}
+    >
+      <Stack spacing={2}>
+        <Typography sx={{ fontWeight: 'bold', fontSize: '60px', textAlign: "center", color: "#009899" }}>
+          IDIS
+          <Typography component="span" sx={{ fontSize: '25px', color: "#009899" }}>
+            Holdings
+          </Typography>
+        </Typography>
+
+        <Box sx={{ height: '2px' }} />
+
+        {error && (
+          <Alert severity="error">
+            <Typography sx={{ fontWeight: 'bold' }} variant="h7">
+              {error}
+            </Typography>
+          </Alert>
+        )}
 
         <Box
-            component="form"
-            method="POST"
-            action="/api/login/login" // 로그인 API 경로
-            sx={{
-                width: 350, // 폼 너비를 줄임
-                p: 3, // 패딩 조정
-                border: "1px solid #ccc",
-                borderRadius: 2,
-                boxShadow: 3,
-                mt: 2, // 회원가입 폼과 간격을 두기 위함
-            }}
+          sx={{
+            backgroundColor: "#BCE9F1",
+            borderRadius: 10,
+            textAlign: 'left',
+          }}
         >
-        
-            <Stack spacing={2}> {/* 입력 필드 간격 조정 */}
-                <Typography sx={{ fontWeight: 'bold', fontSize: '60px',textAlign: "center", color: "#009899" }} >
-                    IDIS
-                    <Typography  component="span" sx={{  fontSize: '25px', color: "#009899" }}>
-                        Holdings
-                    </Typography>
-                    
-                    {/* component="span" 안쓰면 하이드레이션 오류발생 */}
-                </Typography>
-
-
-                {/* 공백 추가 */}
-                <Box sx={{ height: '2px' }} /> {/* 원하는 높이로 수정 */}
-
-                <Box
-                    sx={{
-                        backgroundColor: "#BCE9F1", // 배경 색상
-                        borderRadius: 10,
-                        textAlign: 'left', // 가운데 정렬
-                    }}
-                >
-                    <>
-                        <Alert severity="info"> <Typography sx={{ fontWeight: 'bold' }} variant="h7">
-                            로그인 후 사용 하세요
-                        </Typography></Alert>
-                    </>
-                </Box>
-                <TextField name="userId" type="text" label="아이디" variant="outlined" />
-                <TextField name="password" type="password" label="비밀번호" variant="outlined" />
-                <Button type="submit" variant="contained"
-                    sx={{
-                        fontWeight: 'bold',
-                        fontSize: "20px", backgroundColor: "#009899",
-                        '&:hover': {
-                            backgroundColor: "#A3D5E5",
-                        }
-                    }}> {/* 버튼 크기 조정 */}
-                    로그인
-                </Button>
-            </Stack>
+          <Alert severity="info">
+            <Typography sx={{ fontWeight: 'bold' }} variant="h7">
+              로그인 후 사용 하세요
+            </Typography>
+          </Alert>
         </Box>
-    )
+        <TextField
+          name="userId"
+          type="text"
+          label="아이디"
+          variant="outlined"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <TextField
+          name="password"
+          type="password"
+          label="비밀번호"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          sx={{
+            fontWeight: 'bold',
+            fontSize: "20px",
+            backgroundColor: "#009899",
+            '&:hover': {
+              backgroundColor: "#A3D5E5",
+            },
+          }}
+        >
+          로그인
+        </Button>
+      </Stack>
+    </Box>
+  );
 }
-

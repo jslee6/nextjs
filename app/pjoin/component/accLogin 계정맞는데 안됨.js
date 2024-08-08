@@ -1,10 +1,9 @@
-//아이디 패스워드 맞는데 로그인이 안됨
+//계정맞는데 안됨
 
 'use client'
 
 import { useState } from "react";
-import { Button, TextField, Stack, Box, Typography } from "@mui/material";
-import Alert from '@mui/material/Alert';
+import { Button, TextField, Stack, Box, Typography ,Alert} from "@mui/material";
 
 export default function Acclogin() {
     const [errorMessage, setErrorMessage] = useState("");  // 에러 메시지 상태 추가
