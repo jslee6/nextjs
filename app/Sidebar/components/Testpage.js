@@ -42,11 +42,15 @@ export default function Testpage(){
             </ListItem>
             <Divider />
 
-            <ListItem component={Link} href="/loginTest/signup">
+            <ListItem component={Link} href="/logInOut/signup">
             <ListItemText primary="signup" />
             </ListItem>
             <Divider />
-            <ListItem component={Link} href="/loginTest/login">
+            <ListItem component={Link} href="/logInOut/login">
+            <ListItemText primary="login" />
+            </ListItem>
+            <Divider />
+            <ListItem component={Link} href="/logInOut/logOut">
             <ListItemText primary="login" />
             </ListItem>
             <Divider />
