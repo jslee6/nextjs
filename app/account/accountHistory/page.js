@@ -5,10 +5,9 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { TableSortLabel, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack } from '@mui/material';
+import { TableSortLabel, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Link } from '@mui/material';
 import axios from 'axios';
 import RoleSelect from '../components/RoleSelect';
-import Link from '@mui/material';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);
@@ -75,7 +74,7 @@ export default function PTablePage() {
 
 
     return (
-        <Container>
+        <Container maxWidth="xl">
             <Stack
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={3}
@@ -103,7 +102,7 @@ export default function PTablePage() {
                 <Button variant="contained" sx={{ width: '100%', mt: 2 }} component={Link} href="/account">계정관리<br />돌아가기</Button>
             </Stack>
 
-            <TableContainer component={Paper} sx={{ mt: 2 }}>
+            <TableContainer component={Paper} sx={{ width: '100%', textAlign: 'c', mt: 2 }}>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -125,7 +124,8 @@ export default function PTablePage() {
                                     userId
                                 </TableSortLabel>
                             </TableCell>
-                            <TableCell>
+                            <TableCell sx={{ width: '150px' }}>
+
                                 <TableSortLabel
                                     active={sortColumn === 'password'}
                                     direction={sortColumn === 'password' ? sortDirection : 'asc'}
@@ -136,9 +136,9 @@ export default function PTablePage() {
                             </TableCell>
                             <TableCell>
                                 <TableSortLabel
-                                    active={sortColumn === 'Email'}
-                                    direction={sortColumn === 'Email' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('Email')}
+                                    active={sortColumn === 'email'}
+                                    direction={sortColumn === 'email' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('email')}
                                 >
                                     Email
                                 </TableSortLabel>
@@ -171,7 +171,7 @@ export default function PTablePage() {
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>
                                 <TableCell>{user.userId}</TableCell>
-                                <TableCell>{user.password}</TableCell>
+                                <TableCell >{user.password}</TableCell>
                                 <TableCell>{user.email}</TableCell>
                                 <TableCell>{user.role}</TableCell>
                                 <TableCell>{user.createdAt}</TableCell>
