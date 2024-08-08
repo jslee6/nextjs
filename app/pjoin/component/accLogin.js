@@ -1,6 +1,4 @@
 
-//색상 변경
-
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 import Alert from '@mui/material/Alert';
 
@@ -20,16 +18,15 @@ export default function Acclogin() {
                 mt: 2, // 회원가입 폼과 간격을 두기 위함
             }}
         >
-            {/* <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
-              로그인
-            </Typography> */}
+        
             <Stack spacing={2}> {/* 입력 필드 간격 조정 */}
                 <Typography sx={{ fontWeight: 'bold', fontSize: '60px',textAlign: "center", color: "#009899" }} >
                     IDIS
-                    <Typography sx={{ display: 'inline', fontSize: '25px', color: "#009899" }}>
+                    <Typography  component="span" sx={{  fontSize: '25px', color: "#009899" }}>
                         Holdings
                     </Typography>
-                    {/* inline 요소 써서 같은줄에 배치 */}
+                    
+                    {/* component="span" 안쓰면 하이드레이션 오류발생 */}
                 </Typography>
 
 
