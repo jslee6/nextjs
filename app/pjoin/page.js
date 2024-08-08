@@ -1,6 +1,11 @@
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
+import Acclogin from "./component/accLogin";
+
+
+// 가입하기, 로그인하기
+
 export default function Login() {
   return (
     <Grid container>
@@ -27,62 +32,18 @@ export default function Login() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "100vh",
+            height: "60vh",
           }}
         >
-          {/* 회원가입 폼 */}
-          <Box
-            component="form"
-            method="POST"
-            action="/api/account/post"
-            sx={{
-              width: 350, // 폼 너비를 줄임
-              p: 3, // 패딩 조정
-              border: "1px solid #ccc",
-              borderRadius: 2,
-              boxShadow: 3,
-              mb: 2, // 폼 간격을 위해 margin-bottom 추가
-            }}
-          >
-            {/* <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
-              회원가입
-            </Typography> */}
-            <Stack spacing={2}> {/* 입력 필드 간격 조정 */}
-              <TextField name="userId" type="text" label="아이디" variant="outlined" />
-              <TextField name="email" type="email" label="이메일" variant="outlined" />
-              <TextField name="password" type="password" label="비밀번호" variant="outlined" />
-              <input type="hidden" name="role" value="user" />
-              <Button type="submit" variant="contained" sx={{ fontSize: "20px" }}> {/* 버튼 크기 조정 */}
-                가입하기
-              </Button>
-            </Stack>
-          </Box>
+{/* 
+          회원가입 폼
+          <Accjoin/>
+          유저 회원가입은 사용하지않아 비활성 */}
 
           {/* 로그인 폼 */}
-          <Box
-            component="form"
-            method="POST"
-            action="/api/login/login" // 로그인 API 경로
-            sx={{
-              width: 350, // 폼 너비를 줄임
-              p: 3, // 패딩 조정
-              border: "1px solid #ccc",
-              borderRadius: 2,
-              boxShadow: 3,
-              mt: 2, // 회원가입 폼과 간격을 두기 위함
-            }}
-          >
-            {/* <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
-              로그인
-            </Typography> */}
-            <Stack spacing={2}> {/* 입력 필드 간격 조정 */}
-              <TextField name="userId" type="text" label="아이디" variant="outlined" />
-              <TextField name="password" type="password" label="비밀번호" variant="outlined" />
-              <Button type="submit" variant="contained" sx={{ fontSize: "20px" }}> {/* 버튼 크기 조정 */}
-                로그인
-              </Button>
-            </Stack>
-          </Box>
+          <Acclogin/>
+        
+
         </Box>
       </Grid>
     </Grid>

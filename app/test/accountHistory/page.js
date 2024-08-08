@@ -76,7 +76,7 @@ export default function PTablePage() {
 
 
     return (
-        <Container>
+        <Container maxWidth="xl">
             <Stack
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={3}
@@ -101,7 +101,7 @@ export default function PTablePage() {
                     onChange={(e) => setSearchTerm(e.target.value)} // 입력값 업데이트
                 />
                 <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
-                <Button variant="contained" sx={{ width: '100%', mt: 2 }} component={Link} href="/accounttest">계정관리<br />돌아가기</Button>
+                <Button variant="contained" sx={{ width: '60%', mt: 2 }} component={Link} href="/accounttest">계정관리<br />돌아가기</Button>
             </Stack>
 
             <TableContainer component={Paper} sx={{ mt: 2 }}>

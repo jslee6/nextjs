@@ -9,8 +9,9 @@ export default function Logout() {
         method: 'POST',
       });
 
-      // 로그아웃 후 리다이렉션 (예: 홈 페이지로)
+      //현재페이지를  로그아웃 후 리다이렉션 (예: 홈 페이지로)
       window.location.href = '/';
+      
     };
 
     handleLogout();
@@ -19,6 +20,7 @@ export default function Logout() {
   return (
     <div>
       <h1>로그아웃 중...</h1>
+    
     </div>
   );
 }

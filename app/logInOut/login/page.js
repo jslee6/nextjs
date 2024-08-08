@@ -19,7 +19,13 @@ export default function Login() {
 
     const data = await response.json();
     setMessage(data.message || data.error);
+
+    /// 리다이렉트 필요없으면 뺴도됨
+    if (response.ok) {
+      window.location.href = '/'; // 현재창에서 원하는 페이지로 변경
+    }
   };
+ /// 리다이렉트 필요없으면 뺴도됨
 
   return (
     <div>
@@ -30,6 +36,7 @@ export default function Login() {
         <button type="submit">로그인</button>
       </form>
       {message && <p>{message}</p>}
+      
     </div>
   );
 }

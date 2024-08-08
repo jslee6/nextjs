@@ -99,7 +99,7 @@ export default function PTablePage() {
                     onChange={(e) => setSearchTerm(e.target.value)} // 입력값 업데이트
                 />
                 <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
-                <Button variant="contained" sx={{ width: '100%', mt: 2 }} component={Link} href="/account">계정관리<br />돌아가기</Button>
+                <Button variant="contained" sx={{ width: '60%', mt: 2 }} component={Link} href="/account">계정관리<br />돌아가기</Button>
             </Stack>
 
             <TableContainer component={Paper} sx={{ width: '100%', textAlign: 'c', mt: 2 }}>

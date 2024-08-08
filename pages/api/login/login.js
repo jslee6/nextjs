@@ -21,8 +21,15 @@ export default async function handler(req, res) {
       if (user && user.password) {
         // 평문 비밀번호 비교
         if (password === user.password) {
-          // 로그인 성공
-          res.status(200).json({ message: '로그인 성공' });
+          
+          // 로그인 성공  
+          res.writeHead(302, { Location: '/' });
+          res.end(); 
+          // 앤드없으면 무한로딩
+        
+          //글자로 뛰우려면 아래처럼
+          // res.status(200).json({ message: '로그인 성공' });
+
         } else {
           // 로그인 실패
           res.status(401).json({ message: '잘못된 사용자 ID나 비밀번호' });

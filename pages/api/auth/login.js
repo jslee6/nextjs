@@ -29,6 +29,7 @@ export default async function handler(req, res) {
       // HttpOnly;  JavaScript에서 이 쿠키에 접근할 수 없도록 합니다. 이는 XSS(교차 사이트 스크립팅) 공격으로부터 쿠키를 보호도움. (잘모르겟음, 뻄)
 
       // Max-Age=3600` : 쿠키 유효기간 3600초
+      
       res.status(200).json({ message: '로그인 성공' });
     } catch (error) {
       res.status(500).json({ error: '로그인 실패', details: error.message });

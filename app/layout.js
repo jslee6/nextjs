@@ -14,8 +14,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import Sidebar from "./Sidebar/page";
 
-
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -47,21 +45,24 @@ export default async function RootLayout({ children }) {
         <button onClick={()=>{ signIn() }}>로그인버튼</button>
         <button onClick={()=>{ signOut() }}>로그아웃버튼</button>  */}
         
+        {/* <Logout/> */}
+        
         {session
           ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
           : <LoginBtn></LoginBtn>
           // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
         }
          {'　'} {/* 공백 추가 */}
-         
-        <Button component={Link} href="/pjoin" variant="contained" color="error">계정 생성</Button>
+         <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button> 
+        <Button component={Link} href="/pjoin" variant="contained" color="error">로그인</Button>
         {'　　　　'} {/* 공백 추가 */}
         {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
-        <Button component={Link} href="/ptable" variant="contained" color="secondary">ptable</Button>
-        <Button component={Link} href="/account" variant="contained" color="secondary">계정관리</Button>
-        <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
-        <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button>
-        <Button component={Link} href="/" variant="contained" >HOME</Button>
+        <Button component={Link} href="/" variant="contained" color="info" >HOME</Button>
+        <Button component={Link} href="/ptable" variant="contained" color="info">ptable</Button>
+        <Button component={Link} href="/account" variant="contained" color="info">계정관리</Button>
+        {/* <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
+        <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> */}
+        
               {/* {/* <Typography variant="h5" color="white">
                 C 구역 상단 Nav bar
               </Typography> */}
@@ -70,29 +71,21 @@ export default async function RootLayout({ children }) {
           </Grid>
         </Grid>
 
-        <Grid item xs={1}>
+        <Grid item xs={1.1}>
         <Box sx={{ borderRight: '1px solid lightgrey', height: '100vh' }}>
         
           {/* A섹션에 우측에 선그려서 섹션구분 */}
+    
             <Sidebar/>
-            <Typography variant="h5" color="white">
-              A 구역
-            </Typography>
-            <Typography variant="body1" color="white">
-                좌측 설명구역
-            </Typography>
+
           </Box>
         </Grid>
-        <Grid item xs={11}>
+        <Grid item xs={10.9}>
           <Box >
           {children}
-        
-            {/* <Typography variant="h5" color="white">
-              B 구역
-            </Typography>
-            <Typography variant="body1" color="white">
-                우측 구역
-            </Typography> */}
+
+          {/* B구역 */}
+      
           </Box>
         </Grid>
       </Grid>
