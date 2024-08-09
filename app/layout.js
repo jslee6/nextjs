@@ -8,7 +8,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
 import { Stack, Container, Link as MuiLink } from "@mui/material";
-import { Drawer, List, ListItem, ListItemText, Divider,  Accordion, AccordionSummary, AccordionDetails, Box, Grid, Typography, Button } from "@mui/material";
+import { Drawer, List, ListItem, ListItemText, Divider, Accordion, AccordionSummary, AccordionDetails, Box, Grid, Typography, Button } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
@@ -26,71 +26,74 @@ export default async function RootLayout({ children }) {
   //로그인된 유저정보 출력
   console.log(session)
   return (
-   
+
     <html lang="en">
       <head />
       <body>
-      <Box>
-      <Grid container spacing={1}>
-        <Grid container >
-          <Grid item xs={12}>
-            <Box className="navbar">
-            <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
-        {/* 이미지 추가 */}
-        {'　　'} {/* 공백 추가 */}
- 
-        
+        <Box>
+          <Grid container spacing={1}>
+            <Grid container >
+              <Grid item xs={12}>
+                <Box className="navbar">
+                  <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
+                  {/* 이미지 추가 */}
+                  {'　　'} {/* 공백 추가 */}
 
-        {/* 서버컴포넌트라서 사용불가. 클라이언트 컴포넌트를 가져옴
+
+
+                  {/* 서버컴포넌트라서 사용불가. 클라이언트 컴포넌트를 가져옴
         <button onClick={()=>{ signIn() }}>로그인버튼</button>
         <button onClick={()=>{ signOut() }}>로그아웃버튼</button>  */}
-        
-        {/* <Logout/> */}
-        
-        {session
-          ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
-          : <LoginBtn></LoginBtn>
-          // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
-        }
-         {'　'} {/* 공백 추가 */}
-         <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button> 
-        <Button component={Link} href="/pjoin" variant="contained" color="error">로그인</Button>
-        {'　　　　'} {/* 공백 추가 */}
-        {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
-        <Button component={Link} href="/" variant="contained" color="info" >HOME</Button>
-        <Button component={Link} href="/ptable" variant="contained" color="info">ptable</Button>
-        <Button component={Link} href="/account" variant="contained" color="info">계정관리</Button>
-        {/* <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>
-        <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> */}
-        
-              {/* {/* <Typography variant="h5" color="white">
+
+                  {/* <Logout/> */}
+
+                  {session
+                    ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
+                    : <LoginBtn></LoginBtn>
+                    // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
+                  }
+                  {'　'} {/* 공백 추가 */}
+                  <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
+
+                  <Button component={Link} href="/pjoin" variant="contained" color="error">로그인</Button>
+                  {'　　　　'} {/* 공백 추가 */}
+                  {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
+                  <Button component={Link} href="/" className="button-navbar"  >HOME</Button>
+                  <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
+                  <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
+                  <Button component={Link} href="/account" className="button-navbar">  </Button>
+                  {/* 글로벌 css navbar 사용 */}
+                   {/* <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>  */}
+                  {/* <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> */}
+
+                  {/* {/* <Typography variant="h5" color="white">
                 C 구역 상단 Nav bar
               </Typography> */}
-         
-            </Box>
+
+                </Box>
+              </Grid>
+            </Grid>
+
+            <Grid item xs={1.1}>
+              <Box sx={{ borderRight: '1px solid lightgrey', height: '100vh' }}>
+
+                {/* A섹션에 우측에 선그려서 섹션구분 */}
+
+                <Sidebar />
+
+              </Box>
+            </Grid>
+            <Grid item xs={10.9}>
+              <Box >
+                {children}
+
+                {/* B구역 */}
+
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
 
-        <Grid item xs={1.1}>
-        <Box sx={{ borderRight: '1px solid lightgrey', height: '100vh' }}>
-        
-          {/* A섹션에 우측에 선그려서 섹션구분 */}
-    
-            <Sidebar/>
-
-          </Box>
-        </Grid>
-        <Grid item xs={10.9}>
-          <Box >
-          {children}
-
-          {/* B구역 */}
-      
-          </Box>
-        </Grid>
-      </Grid>
-    </Box>
-        
       </body>
     </html>
   );

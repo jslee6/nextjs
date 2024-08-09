@@ -23,14 +23,14 @@ export default function Acclogin() {
     if (response.ok) {
       window.location.href = '/';
     } else {
-      setError('실패입니다');
+      setError('ID/PW 확인이 필요합니다.');
     }
   };
 
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit}  // 폼 제출 시 처리할 함수
       sx={{
         width: 350,
         p: 3,

@@ -22,7 +22,7 @@ export default async function handler(req, res) {
       }
 
       // 세션 생성 (여기서는 간단히 쿠키에 사용자 ID를 저장)
-      res.setHeader('Set-Cookie', `sessionID=${account.userId};  Path=/; Max-Age=3600`);
+      res.setHeader('Set-Cookie', `sessionID=${account.userId}; HttpOnly, Path=/; Max-Age=3600`);
       // 쿠키에 설정을 전달, 
       // 쿠키이름: sessionID=${account.userId}; , 
       // Path=/; =>웹브라우저 모든경로에서 사용가능, 
