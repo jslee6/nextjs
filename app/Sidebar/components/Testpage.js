@@ -29,8 +29,8 @@ export default function Testpage() {
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link} href="/test/temp3">
-            <Typography className="typo-sidebar" component="span">temp3</Typography>
+          <ListItem className="typo-sidebar" component={Link} href="/register">
+            <Typography className="typo-sidebar" component="span">register</Typography>
           </ListItem>
           <Divider />
           <ListItem className="typo-sidebar" component={Link}  href="/test/temp4">

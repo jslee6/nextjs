@@ -25,15 +25,18 @@ export const authOptions = {
       },
 
       //2. 로그인요청시 실행되는코드
-      //직접 DB에서 아이디,비번 비교하고 
+      //직접 DB에서 아이디,비번 비교하고 *********************
       //아이디,비번 맞으면 return 결과, 틀리면 return null 해야함
       async authorize(credentials) {
         let db = (await connectDB).db('forum');
         let user = await db.collection('user_cred').findOne({email : credentials.email})
+        // 이메일비교
         if (!user) {
           console.log('해당 이메일은 없음');
           return null
         }
+
+        //비번비교
         const pwcheck = await bcrypt.compare(credentials.password, user.password);
         if (!pwcheck) {
           console.log('비번틀림');
@@ -46,10 +49,10 @@ export const authOptions = {
 
   ],
 
-   //3. jwt 써놔야 잘됩니다 + jwt 만료일설정
+   //3. jwt 써놔야 잘됩니다 + jwt 만료일설정 (세션은 설명안해줌)
    session: {
     strategy: 'jwt',
-    maxAge: 30 * 24 * 60 * 60 //30일
+    maxAge:   4 *60 * 60 //4시간
   },
 
 

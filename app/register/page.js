@@ -1,13 +1,13 @@
-//app/register/page.js
+//(app/register/page.js)
 
 export default function Register() {
   return (
     <div>
-        <form method="POST" action="/api/auth/signup">
+        <form method="POST" action="/api/auth2/signup">
           <input name="name" type="text" placeholder="이름" /> 
           <input name="email" type="text" placeholder="이메일" />
           <input name="password" type="password" placeholder="비번" />
-          <button type="submit">ID/PW 가입요청</button>
+          <button type="submit">id/pw 가입요청</button>
         </form>
     </div>
   )
