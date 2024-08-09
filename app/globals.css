@@ -42,13 +42,14 @@ body {
     
   } 
   .navbar a {
-    margin-right: 10px;
+    margin-right: 0px;
     text-decoration: none;
   } 
 
   .navbar {
+    /* background: #d6f1e8; */
     background: rgb(188, 233, 241);
-    padding: 20px;
+    padding: 15px;
   }
 
 
@@ -101,3 +102,50 @@ body {
 .button-navbar:hover {
     background-color: #1976D2; /* 마우스 오버 시 배경색 */
 }
+
+/* Sidebar listItem  */
+.Accordion-Bg {
+  font-weight: bold;
+  font-size: 20px;
+  color: white; /* 기본 글자색 */
+  background-color: #5aa6ed;
+  /* text-shadow: 
+      0.5px 0.5px 1px gray, 
+      -0.5px -0.5px 1px gray,
+      0.5px -0.5px 1px gray,
+      -0.5px 0.5px 1px gray;  */
+      
+      /* 얇고 연한 회색 테두리 효과 */
+}
+
+.Accordion-Bg:hover {
+  background-color: #1976D2; /* 마우스 오버 시 배경색 */
+}
+
+
+/* Sidebar listItem  */
+.listItem-sidebar {
+  font-weight: bold;
+  font-size: 20px;
+  /* color: #6AD2CD; */
+  /* 기본 글자색 */
+  color: #1976D2; /* 기본 글자색 */
+
+  /* text-shadow: 
+      0.5px 0.5px 1px gray, 
+      -0.5px -0.5px 1px gray,
+      0.5px -0.5px 1px gray,
+      -0.5px 0.5px 1px gray;  */
+      
+      /* 얇고 연한 회색 테두리 효과 */
+}
+
+.listItem-sidebar:hover {
+  background-color: rgb(240, 235, 235); /* 마우스 오버 시 배경색 */
+
+  /* background-color: #d6f1e8; 연녹색 */ 
+}
+
+
+
+

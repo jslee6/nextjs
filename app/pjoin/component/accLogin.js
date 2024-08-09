@@ -71,25 +71,10 @@ export default function Acclogin() {
             </Typography>
           </Alert>
         </Box>
-        <TextField
-          name="userId"
-          type="text"
-          label="아이디"
-          variant="outlined"
-          value={userId}
-          onChange={(e) => setUserId(e.target.value)}
-        />
-        <TextField
-          name="password"
-          type="password"
-          label="비밀번호"
-          variant="outlined"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button
-          type="submit"
-          variant="contained"
+        <TextField name="userId" type="text" label="아이디" variant="outlined" value={userId} onChange={(e) => setUserId(e.target.value)}/>
+        <TextField name="password" type="password" label="비밀번호" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        
+        <Button type="submit"variant="contained"
           sx={{
             fontWeight: 'bold',
             fontSize: "20px",
@@ -105,3 +90,5 @@ export default function Acclogin() {
     </Box>
   );
 }
+
+

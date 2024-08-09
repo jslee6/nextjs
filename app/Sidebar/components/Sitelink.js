@@ -6,8 +6,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 export default function Sitelink(){
     return (
       <Accordion>
-      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-        <Typography variant="h6" gutterBottom >  
+      <AccordionSummary className="Accordion-Bg" expandIcon={<ExpandMoreIcon />}>
+        <Typography sx={{fontSize: "25px"}} >  
         Site Link
         </Typography>
       </AccordionSummary>

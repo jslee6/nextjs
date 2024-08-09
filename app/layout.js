@@ -1,3 +1,5 @@
+
+
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
@@ -10,6 +12,8 @@ import LoginBtn from "./LoginBtn";
 import { Stack, Container, Link as MuiLink } from "@mui/material";
 import { Drawer, List, ListItem, ListItemText, Divider, Accordion, AccordionSummary, AccordionDetails, Box, Grid, Typography, Button } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+
 
 
 import Sidebar from "./Sidebar/page";
@@ -54,6 +58,7 @@ export default async function RootLayout({ children }) {
                   }
                   {'　'} {/* 공백 추가 */}
                   <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
+                  {'　'} {/* 공백 추가 */}
 
                   <Button component={Link} href="/pjoin" variant="contained" color="error">로그인</Button>
                   {'　　　　'} {/* 공백 추가 */}
@@ -61,7 +66,7 @@ export default async function RootLayout({ children }) {
                   <Button component={Link} href="/" className="button-navbar"  >HOME</Button>
                   <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
                   <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
-                  <Button component={Link} href="/account" className="button-navbar">  </Button>
+                  
                   {/* 글로벌 css navbar 사용 */}
                    {/* <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>  */}
                   {/* <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> */}
@@ -74,16 +79,16 @@ export default async function RootLayout({ children }) {
               </Grid>
             </Grid>
 
-            <Grid item xs={1.1}>
+            <Grid item xs={1.5}>
               <Box sx={{ borderRight: '1px solid lightgrey', height: '100vh' }}>
 
                 {/* A섹션에 우측에 선그려서 섹션구분 */}
-
-                <Sidebar />
+     
+                <Sidebar/>
 
               </Box>
             </Grid>
-            <Grid item xs={10.9}>
+            <Grid item xs={10.5}>
               <Box >
                 {children}
 
