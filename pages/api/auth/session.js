@@ -1,5 +1,7 @@
 //24.08.07 4 세션확인 api  JSON 형식으로 응답을 반환
 
+//pages\api\auth\session.js
+
 export default function handler(req, res) {
     const cookie = req.headers.cookie || '';
     //요청헤더에서 쿠키 정보를 가져옴. 쿠키가 없으면 빈 문자열로 설정합니다.
