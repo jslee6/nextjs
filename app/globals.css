@@ -108,7 +108,7 @@ body {
   font-weight: bold;
   font-size: 20px;
   color: white; /* 기본 글자색 */
-  background-color: #5aa6ed;
+  background-color: #1976D2;
   /* text-shadow: 
       0.5px 0.5px 1px gray, 
       -0.5px -0.5px 1px gray,
@@ -124,11 +124,11 @@ body {
 
 
 /* Sidebar listItem  */
-.listItem-sidebar {
+.typo-sidebar {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 18px;
   /* color: #6AD2CD; */
-  /* 기본 글자색 */
+  
   color: #1976D2; /* 기본 글자색 */
 
   /* text-shadow: 
@@ -140,10 +140,11 @@ body {
       /* 얇고 연한 회색 테두리 효과 */
 }
 
-.listItem-sidebar:hover {
-  background-color: rgb(240, 235, 235); /* 마우스 오버 시 배경색 */
+.typo-sidebar:hover {
+  /* background-color: rgb(240, 235, 235); 마우스 오버 시 배경색 */
 
-  /* background-color: #d6f1e8; 연녹색 */ 
+  background-color: #d6f1e8; 
+  /* 연녹색  */
 }
 
 

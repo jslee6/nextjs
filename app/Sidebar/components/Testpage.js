@@ -4,70 +4,70 @@ import React from 'react';
 import { List, ListItem, ListItemText, Divider, Link, Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+
+
 export default function Testpage() {
   return (
     //defaultExpanded 추가하면 기본으로 확장상태로 열림
     <Accordion defaultExpanded>
       <AccordionSummary className="Accordion-Bg" expandIcon={<ExpandMoreIcon />}>
-        <Typography sx={{fontSize: "25px"}} >
+        <Typography sx={{ fontSize: "25px" }} >
           Test Page
         </Typography>
       </AccordionSummary>
       <Divider />
       <AccordionDetails>
         <List>
-          <ListItem component={Link} className="listItem-sidebar" href="/test/temp">
-            <ListItemText primary="temp" />
+          <ListItem className="typo-sidebar" component={Link} href="/test/temp">
+            {/* <ListItemText primary="temp" /> */}
+            <Typography className="typo-sidebar" component="span">temp</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+          <Divider />
+          <ListItem className="typo-sidebar" component={Link} href="/test/temp2">
+            <Typography className="typo-sidebar" component="span">temp2</Typography>
           </ListItem>
           <Divider />
-          <ListItem component={Link} className="listItem-sidebar" href="/test/temp2">
-            <ListItemText primary="temp2" />
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/temp3">
+            <Typography className="typo-sidebar" component="span">temp3</Typography>
           </ListItem>
           <Divider />
-          <ListItem component={Link} className="listItem-sidebar" href="/test/temp3">
-            <ListItemText primary="temp3" />
+          <ListItem className="typo-sidebar" component={Link}  href="/test/temp4">
+            <Typography className="typo-sidebar" component="span">temp4</Typography>
           </ListItem>
           <Divider />
-          <ListItem component={Link}  className="listItem-sidebar" href="/test/temp4">
-            <ListItemText primary="temp4" />
+
+          <ListItem className="typo-sidebar" component={Link}  href="/accounttest">
+            <Typography className="typo-sidebar" component="span">accounttest</Typography>
           </ListItem>
           <Divider />
-          <ListItem component={Link} className="listItem-sidebar" href="/accounttest">
-            <ListItemText primary="accounttest" />
-          </ListItem>
-          <Divider />
-          <ListItem component={Link} className="listItem-sidebar" href="/test/accountHistory">
-            <ListItemText primary=
-              //jsx 프래그먼트 사용
-              {<>
-                account<br />
-                History
-              </>
-              }
-            />
+
+          <ListItem className="typo-sidebar" component={Link}  href="/test/accountHistory">
+            <Typography className="typo-sidebar" component="span">account<br />history</Typography>
           </ListItem>
           <Divider />
 
           <Divider />
-          <ListItem component={Link} className="listItem-sidebar" href="/test/gettest">
-            <ListItemText primary="gettest" />
+          <ListItem className="typo-sidebar" component={Link}  href="/test/gettest">
+            <Typography className="typo-sidebar" component="span">gettest</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem component={Link}  className="listItem-sidebar" href="/logInOut/signup">
-            <ListItemText primary="signup" />
+          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/signup">
+            <Typography className="typo-sidebar" component="span">signup</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem component={Link} className="listItem-sidebar" href="/logInOut/login">
-            <ListItemText primary="login" />
+          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/login">
+            <Typography className="typo-sidebar" component="span">login</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem component={Link} className="listItem-sidebar" href="/logInOut/logout">
-            <ListItemText primary="logOut" />
+          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/logout">
+            <Typography className="typo-sidebar" component="span">logout</Typography>
           </ListItem>
-          
+
         </List>
       </AccordionDetails>
     </Accordion>
