@@ -1,4 +1,4 @@
-//(pages/api/auth/signup.js)
+//(pages/api/auth/signup.js) ++ 이건 몽고DB고
 // 코딩애플 08.09
 
 import { connectDB } from "@/util/database";

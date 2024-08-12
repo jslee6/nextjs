@@ -1,4 +1,5 @@
-//프리즈마 + CredentialsProvider +커스텀페이지 , sign IN
+// // 프리즈마 + 암호화
+
 
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -59,16 +60,14 @@ export const authOptions = {
       return session;
     },
   },
-// 중요***********///
-  pages: {
-    signIn: '/auth/signin', // 사용자 정의 로그인 페이지 경로****** app라우터 하단
-  },
+
+  // pages: {
+  //   signIn: '/auth/signin', // 사용자 정의 로그인 페이지 경로
+  // },
 
   secret: 'git6579!!', // 비밀 키
   adapter: PrismaAdapter(prisma) // Prisma 어댑터 사용
 }
-// 중요***********///
 
 export default NextAuth(authOptions);
-
 

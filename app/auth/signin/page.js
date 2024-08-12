@@ -1,8 +1,9 @@
+// credentials 로그인(Acclogin) + 암호화
+
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-import Acclogin from "./component/accLogin_Fecth";
-import Accjoin from "./component/accjoin";
+import Acclogin from "@/app/pjoin/component/accLogin";
 
 
 // 가입하기, 로그인하기
@@ -36,18 +37,22 @@ export default function Login() {
             height: "60vh",
           }}
         >
-
-          {/* <Accjoin /> */}
-          {/* 회원가입 폼
-
+{/* 
+          회원가입 폼
+          <Accjoin/>
           유저 회원가입은 사용하지않아 비활성 */}
 
           {/* 로그인 폼 */}
-          <Acclogin />
-
+          <Acclogin/>
+        
 
         </Box>
       </Grid>
     </Grid>
   );
 }
+
+
+
+
+

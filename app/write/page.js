@@ -4,6 +4,9 @@
 
 
 export default async function Write() {
+
+  if(유저세)
+
   return (
 <div>
       <form action="/api/post/new" method="POST">

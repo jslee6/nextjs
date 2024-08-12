@@ -6,7 +6,7 @@ import { signIn } from 'next-auth/react'
 
 
 export default function LoginBtn() {
-  return <Button variant="contained" color="error" onClick={() => { signIn() }}>git 로그인</Button>
+  return <Button variant="contained" color="error" onClick={() => { signIn() }}>메인 로그인</Button>
 } 
 
 

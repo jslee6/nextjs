@@ -51,8 +51,9 @@ export default async function RootLayout({ children }) {
 
                   {/* <Logout/> */}
 
-                  {session
-                    ? <span><b>{session.user.name}</b> <LogOutBtn></LogOutBtn> </span>
+                  {session 
+                    ? <span><b>{session.user.userId}</b> <LogOutBtn></LogOutBtn> </span>
+                    // 왜 user 로 받지 account 아니라 확인
                     : <LoginBtn></LoginBtn>
                     // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
                   }

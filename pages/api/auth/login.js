@@ -1,4 +1,4 @@
-// //24.08.09 세션
+// //24.08.09 세션 되는거 암호화
 
 import bcrypt from 'bcrypt';
 import { PrismaClient } from '@prisma/client';

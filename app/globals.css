@@ -96,7 +96,9 @@ body {
         0.5px 0.5px 1px gray, 
         -0.5px -0.5px 1px gray,
         0.5px -0.5px 1px gray,
-        -0.5px 0.5px 1px gray; /* 얇고 연한 회색 테두리 효과 */
+        -0.5px 0.5px 1px gray; 
+        
+        /* 얇고 연한 회색 테두리 효과 */
 }
 
 .button-navbar:hover {
@@ -146,7 +148,6 @@ body {
   background-color: #d6f1e8; 
   /* 연녹색  */
 }
-
 
 
 

@@ -1,10 +1,10 @@
-//SignIn 로그인
+//Fetch 로그인 +세션방식
 
 'use client'
 
 import { useState } from 'react';
 import { Button, TextField, Stack, Box, Typography, Alert } from "@mui/material";
-import { signIn } from 'next-auth/react'; // signIn 임포트 추가
+
 
 export default function Acclogin() {
   const [userId, setUserId] = useState('');
@@ -13,24 +13,26 @@ export default function Acclogin() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setError(''); // 이전 에러 초기화
+    setError(''); // Clear any previous errors
 
-    ///////////////** Sign IN 로그인 */////////////////////////////////////
-    const result = await signIn('credentials', {
-      redirect: false,
-      userId,
-      password,
+      //패치 로그인//
+
+    const response = await fetch('/api/login/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userId, password }),
     });
 
-
-    if (result.error) {
-      setError('ID/PW 확인이 필요합니다.'); // 에러 메시지 설정
+    if (response.ok) {
+      window.location.href = '/';
     } else {
-      window.location.href = '/'; // 로그인 성공 시 리다이렉션
+      setError('ID/PW 확인이 필요합니다.');
     }
   };
 
-      ///////////////** Sign IN 로그인 */////////////////////////////////////
+  //로그인//
 
   return (
     <Box
@@ -95,3 +97,5 @@ export default function Acclogin() {
     </Box>
   );
 }
+
+
