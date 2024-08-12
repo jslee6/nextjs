@@ -61,7 +61,7 @@ export default async function RootLayout({ children }) {
                   <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
                   {'　'} {/* 공백 추가 */}
 
-                  <Button component={Link} href="/pjoin" variant="contained" color="error">로그인</Button>
+                  <Button component={Link} href="/pjoin" variant="contained" color="error">평문 로그인</Button>
                   {'　　　　'} {/* 공백 추가 */}
                   {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
                   <Button component={Link} href="/" className="button-navbar"  >HOME</Button>
