@@ -3,7 +3,8 @@
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
-import Acclogin from "@/app/pjoin/component/accLogin";
+
+import Acclogin from "../component/accLogin";
 
 
 // 가입하기, 로그인하기

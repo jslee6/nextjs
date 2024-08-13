@@ -18,7 +18,7 @@ export default function Adminpage() {
       <Divider />
       <AccordionDetails>
         <List>
-          <ListItem className="typo-sidebar" component={Link} href="/register">
+          <ListItem className="typo-sidebar" component={Link} href="/auth/join">
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">계정등록</Typography> {/* 스타일 적용 */}
           </ListItem>

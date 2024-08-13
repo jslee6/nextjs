@@ -1,4 +1,4 @@
-//프리즈마 + CredentialsProvider +커스텀페이지 , sign IN
+//프리즈마 + 로그인 +CredentialsProvider +커스텀페이지 , sign IN
 
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -61,7 +61,7 @@ export const authOptions = {
   },
 // 중요***********///
   pages: {
-    signIn: '/auth/signin', // 사용자 정의 로그인 페이지 경로****** app라우터 하단
+    signIn: '/auth/login', // 사용자 정의 로그인 페이지 경로****** app라우터 하단
   },
 
   secret: 'git6579!!', // 비밀 키
