@@ -1,7 +1,3 @@
-//24.08.07 회원가입 프론트
-
-
-
 
 //24.08.07 회원가입 프론트
 
@@ -17,7 +13,7 @@ export default function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/auth/signup', {
+    const response = await fetch('/api/auth/jwt/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ userId, password, email }),

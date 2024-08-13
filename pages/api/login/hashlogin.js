@@ -1,4 +1,4 @@
-//현재 미사용 24.08.03
+//현재 미사용 24.08.03 암호화추가 +세션없음
 
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';

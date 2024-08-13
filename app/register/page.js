@@ -9,7 +9,7 @@ export default function Accjoin(){
         <Box
             component="form"
             method="POST"
-            action="/api/auth//signup"
+            action="/api/auth/jwt/signup"
             sx={{
               width: 350, // 폼 너비를 줄임
               p: 3, // 패딩 조정

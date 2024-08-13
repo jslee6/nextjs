@@ -1,3 +1,5 @@
+/// 로그인상태유지 미구현//
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
