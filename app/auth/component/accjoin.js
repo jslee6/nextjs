@@ -17,12 +17,21 @@ export default function Accjoin(){
               borderRadius: 2,
               boxShadow: 3,
               mb: 2, // 폼 간격을 위해 margin-bottom 추가
+              mt: 10
+              
+              
             }}
           >
             {/* <Typography variant="h4" gutterBottom style={{ textAlign: 'center' }}>
               회원가입
             </Typography> */}
             <Stack spacing={2}> {/* 입력 필드 간격 조정 */}
+
+            
+            <Typography   className="Accordion-blue" sx={{ fontWeight: 'bold', fontSize: '40px', textAlign: "center", color: "#1976D2" }}>
+          계정 등록 PAGE
+          </Typography>
+              
             <Typography sx={{ fontWeight: 'bold', fontSize: '60px', textAlign: "center", color: "#009899" }}>
           IDIS
           <Typography component="span" sx={{ fontSize: '25px', color: "#009899" }}>
@@ -44,7 +53,7 @@ export default function Accjoin(){
             },
           }}
         >
-          로그인
+          계정 생성
         </Button>
             </Stack>
           </Box>
