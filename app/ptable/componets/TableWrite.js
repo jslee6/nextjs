@@ -7,7 +7,7 @@ export default function TableWrite() {
   
   return (
 <div>
-      <form action="/api/user/post" method="POST">
+      <form action="/api/user/getPost" method="POST">
         <Stack direction="row" spacing={2}>
           <div>
             <Input type="text" name="firstName" placeholder="이름" required />

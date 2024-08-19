@@ -122,8 +122,9 @@ export default function PTablePage() {
             console.error('Delete error:', error);
         }
     };
-    //axious 삭제로 바꿈
 
+    
+    //axious 삭제로 바꿈
 
      // axious 수정
     const handleUpdate = (user) => {
