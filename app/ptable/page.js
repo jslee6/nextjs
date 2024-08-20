@@ -122,15 +122,17 @@ export default function PTablePage() {
         } catch (error) {
             // ********권한이 없을 경우 리다이렉트 처리***********
             if (error.response && error.response.status === 403) {
-                const redirectUrl = error.response.data.redirect;
-                
+                const redirectUrl = error.response.data.redirect;   // /api/user/delete' 에서 가져온 redirect 값을 리다이렉트
+
                 if (redirectUrl) {
-                    window.location.href = redirectUrl;
+                window.location.href = redirectUrl;  
+                window.location.href = '/roleDeny';    //1회성 리다이렉트 클라이언트에서 함
                 }
             } else {
                 console.error('Delete error:', error);
             }
-             // ********권한이 없을 경우 리다이렉트 처리**********
+            // ********권한이 없을 경우 리다이렉트 처리**********
+
         }
     };
 

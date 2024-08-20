@@ -55,7 +55,8 @@ export default async function handler(req, res) {
 
     // 토큰이 없거나 role이 admin이 아닌 경우
     if (!token || token.user.role !== 'admin') {
-      return res.status(403).json({ redirect: '/roleDeny' }); // 권한 없음 응답  redirect 를 페이지에 전달해줌
+      return res.status(403).json({ redirect: '/roleDeny' }); // 권한 없음 응답  redirect 를 페이지에 전달해줌  ,리다이렉트를 여러번쓰려면  redirect 에 담아주는게 좋음
+      // return res.status(403).json({ error: '권한이 없습니다.' });  //권한 없음 응답 ,
     }
     //** 토큰  에서 권한 비교 */
 
