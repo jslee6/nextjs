@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Button } from '@mui/material';
+
 
 const ResetPassword = () => {
   const [userId, setUserId] = useState('');
@@ -42,7 +44,9 @@ const ResetPassword = () => {
         value={newPassword}
         onChange={(e) => setNewPassword(e.target.value)}
       />
-      <button onClick={handleResetPassword}>비밀번호 초기화</button>
+      <br/>
+      <br/>
+      <Button variant="contained" color="error"  onClick={handleResetPassword}>비밀번호 초기화</Button>
       {message && <p>{message}</p>} {/* 메시지 표시 */}
     </div>
   );

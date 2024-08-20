@@ -30,7 +30,7 @@ export default function Adminpage() {
             <Typography className="typo-sidebar" component="span">계정관리</Typography> {/* 스타일 적용 */}
           </ListItem>
           <Divider />
-ㅅ
+
           
           <ListItem className="typo-sidebar" component={Link} href="/rsTest">
             {/* <ListItemText primary="temp" /> */}
