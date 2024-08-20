@@ -17,26 +17,26 @@ function PostBt() {
 
     //작성 닫기버튼으로 인해 [추가 !=preState]
     const handlePostButtonClick = () => {
-        setpost((prevState) => !prevState);
+      setpost((prevState) => !prevState);
     }; //닫기버튼으로 인해 추가
 
     return (
 
         <Box>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handlePostButtonClick}
-            >
-                {post ? '닫기' : '작성하기'}
-                {/* 삼항연산자로 처리 */}
-            </Button>
-            {post && <TableWrite />}
-            {/* 이게 잘이해안됨 */}
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handlePostButtonClick}
+        >
+          {post ? '닫기' : '작성하기'}  
+           {/* 삼항연산자로 처리 */}
+        </Button>
+        {post && <TableWrite />}
+        {/* 이게 잘이해안됨 */}
         </Box>
-
+      
     );
-}
+  }
 
 ///
 
@@ -104,7 +104,7 @@ export default function PTablePage() {
     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
     const totalPages = Math.ceil(users.length / usersPerPage);  //전체유저 길이(수) / 1페이지의 로우수로 나눔
     //paging , 배열러 페이지정리
-
+    
     // fetch 기존삭제
 
 
@@ -115,34 +115,25 @@ export default function PTablePage() {
                 data: { id: userId },
             });
 
-            // 삭제가 성공했을 경우
-            console.log(response.data.message);
+            
+            const { message } = response.data;
+            console.log(message);
+    
             setUsers(users.filter(user => user.id !== userId));
-
         } catch (error) {
-            // ********권한이 없을 경우 리다이렉트 처리***********
-            if (error.response && error.response.status === 403) {
-                const redirectUrl = error.response.data.redirect;
-                
-                if (redirectUrl) {
-                    window.location.href = redirectUrl;
-                }
-            } else {
-                console.error('Delete error:', error);
-            }
-             // ********권한이 없을 경우 리다이렉트 처리**********
+            console.error('Delete error:', error);
         }
     };
 
-
+    
     //axious 삭제로 바꿈
 
-    // axious 수정
+     // axious 수정
     const handleUpdate = (user) => {
         setSelectedUser(user);
         setOpen(true);
     };
-
+    
     const handleSaveUpdate = async () => {
         try {
             const response = await axios.put('/api/user/put', { ...selectedUser, age: parseInt(selectedUser.age, 10) });
@@ -167,7 +158,7 @@ export default function PTablePage() {
 
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-                <PostBt></PostBt>
+            <PostBt></PostBt>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -284,7 +275,7 @@ export default function PTablePage() {
                 user={selectedUser}
                 onChange={handleInputChange}
                 onSave={handleSaveUpdate}
-            // props 로 UserDialog 로 전달
+                // props 로 UserDialog 로 전달
             />
         </Container>
     );
