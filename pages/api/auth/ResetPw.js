@@ -1,5 +1,6 @@
 // /pages/api/auth/ResetPw.js
 //암호 초기화 해시화
+
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 
@@ -10,6 +11,8 @@ export default async function handler(req, res) {
     const { userId, newPassword } = req.body;
 
     try {
+      // 사용자의 신원을 확인하는 로직 추가 필요
+
       // 새 비밀번호 해시화
       const hashedPassword = await bcrypt.hash(newPassword, 10);
 

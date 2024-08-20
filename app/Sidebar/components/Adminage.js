@@ -29,9 +29,19 @@ export default function Adminpage() {
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">계정관리</Typography> {/* 스타일 적용 */}
           </ListItem>
-          
           <Divider />
-{/* 
+ㅅ
+          
+          <ListItem className="typo-sidebar" component={Link} href="/rsTest">
+            {/* <ListItemText primary="temp" /> */}
+            <Typography className="typo-sidebar" component="span">해시암호 초기화</Typography> {/* 스타일 적용 */}
+          </ListItem>
+          <Divider />
+
+
+
+
+          {/* 
           <ListItem className="typo-sidebar" component={Link} href="/test/temp2">
             <Typography className="typo-sidebar" component="span">temp2</Typography>
           </ListItem>
