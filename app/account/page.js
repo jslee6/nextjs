@@ -13,6 +13,7 @@ import PostButton from './components/PostButton';  // 컴포넌트로 뻄 등록
 import SearchBar from './components/SearchBar'; // 컴포넌트로 뻄 검색기능
 import UserTable from './components/UserTable'; //컴포넌트로 테이블뻄
 import PaginationComp from './components/PaginationComp'; //페이지네이션 컴포넌트
+import ResetPassword from './components/resetPw'; // 암호 초기화
 
 
 export default function PTablePage() {
@@ -58,7 +59,7 @@ export default function PTablePage() {
     };
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
-    let sortedUsers = [...filteredUsers];  
+    let sortedUsers = [...filteredUsers];
     if (sortColumn) {
         sortedUsers.sort((a, b) => {
             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
@@ -75,8 +76,8 @@ export default function PTablePage() {
                 Object.values(user).some(value =>
                     value !== null && value !== undefined && value.toString().includes(searchTerm)
                 );
-                // 값이 널이나 언디파인드면 오류가 발생할수잇음.
-                //전체검색 및 문자 변환
+            // 값이 널이나 언디파인드면 오류가 발생할수잇음.
+            //전체검색 및 문자 변환
 
             const matchesRole =
                 role === 'all' || user.role === role; // "전체"를 포함한 역할 필터링
@@ -107,6 +108,7 @@ export default function PTablePage() {
     // const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
     //axious 삭제
+
     const handleDelete = async (userId) => {
         try {
             const response = await axios.delete('/api/account/delete', {
@@ -138,33 +140,40 @@ export default function PTablePage() {
             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
 
-            
-              // 다른 DB에 수정된 데이터를 기록하기 위한 요청
-              await axios.post('/api/accounthistroy/post', { ...updatedUser });
+
+            // 다른 DB에 수정된 데이터를 기록하기 위한 요청
+            await axios.post('/api/accounthistroy/post', { ...updatedUser });
 
             setOpen(false);
         } catch (error) {
             console.error('Update error:', error);
         }
     };
-    
+
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     };
     //axious 수정
     return (
+
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
-            <SearchBar
-                role={role}
-                setRole={setRole}
-                searchId={searchId}
-                setSearchId={setSearchId}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                handleSearchBoth={handleSearchBoth}
-            />
+            <Stack direction="row" spacing={10}>    
+                <SearchBar
+                    role={role}
+                    setRole={setRole}
+                    searchId={searchId}
+                    setSearchId={setSearchId}
+                    searchTerm={searchTerm}
+                    setSearchTerm={setSearchTerm}
+                    handleSearchBoth={handleSearchBoth}
+                /><ResetPassword />
+            </Stack>
+            {/* 서치바와 해시암호리셋을 정렬 */}
+            
+
             {/* props 로 -> Searcbar에 넘겨줌  */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+
                 <PostButton /> {/* 포스트버튼 컴포넌트 */}
                 <UserTable
                     users={currentUsers}
@@ -179,9 +188,9 @@ export default function PTablePage() {
                 totalPages={totalPages}
                 currentPage={currentPage}
                 handlePageChange={handlePageChange}
-            /> 
+            />
             {/* props로 전달 */}
-    
+
             {/* mui 다이알로그 페이지 가이드 */}
             <AccountDialog
                 open={open}

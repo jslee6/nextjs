@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, TextField, Stack } from '@mui/material';
 
 
 const ResetPassword = () => {
@@ -30,25 +30,31 @@ const ResetPassword = () => {
   };
 
   return (
-    <div>
-      <h2>비밀번호 초기화 페이지</h2>
-      <input
-        type="text"
-        placeholder="사용자 ID"
-        value={userId}
-        onChange={(e) => setUserId(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="새 비밀번호"
-        value={newPassword}
-        onChange={(e) => setNewPassword(e.target.value)}
-      />
-      <br/>
-      <br/>
-      <Button variant="contained" color="error"  onClick={handleResetPassword}>비밀번호 초기화</Button>
-      {message && <p>{message}</p>} {/* 메시지 표시 */}
-    </div>
+    <>
+      {/* <h2>비밀번호 초기화 페이지</h2> */}
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ width: '40%' }}>
+        <TextField
+          type="text"
+          variant="outlined"
+          label="ID"
+          value={userId}
+          onChange={(e) => setUserId(e.target.value)}
+        />
+        <TextField
+          type="password"
+          label="신규암호"
+          value={newPassword}
+          onChange={(e) => setNewPassword(e.target.value)}
+        />
+
+        <Button
+          sx={{ width: '20%' }}
+          variant="contained"
+          color="error" onClick={handleResetPassword}>암호리셋</Button>
+        {message && <p>{message}</p>} {/* 메시지 표시 */}
+      </Stack>
+    </>
+
   );
 };
 

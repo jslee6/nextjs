@@ -6,7 +6,7 @@ import AccountHistoryComponent from '@/app/test/temp5/page';
 
 function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearchTerm, handleSearchBoth }) {
     return (
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ width: '60%' }}>
+        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ width: '70%' }}>
             <RoleSelect role={role} setRole={setRole} />
             <TextField
                 variant="outlined"

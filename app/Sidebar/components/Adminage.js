@@ -32,7 +32,7 @@ export default function Adminpage() {
           <Divider />
 
           
-          <ListItem className="typo-sidebar" component={Link} href="/rsTest">
+          <ListItem className="typo-sidebar" component={Link} href="/ResetPassword">
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">해시암호 초기화</Typography> {/* 스타일 적용 */}
           </ListItem>
