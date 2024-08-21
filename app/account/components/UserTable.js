@@ -8,7 +8,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete }) {
     return (
         <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-            <Table>
+           <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
+            {/* 테이블 간격 패딩 전체조정 '8px' */}
                 <TableHead>
                     <TableRow>
                         <TableCell>

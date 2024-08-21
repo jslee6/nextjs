@@ -22,7 +22,7 @@ export default function PTablePage() {
     const [open, setOpen] = useState(false);  // 수정관련
 
     const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
-    const usersPerPage = 7;   //페이징  로우수 ok
+    const usersPerPage = 10;   //페이징  로우수 ok
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
@@ -157,8 +157,12 @@ export default function PTablePage() {
     return (
 
         <Container maxWidth="xl" sx={{ mt: 2 }}> {/* maxWidth를 설정하여 전체 너비를 조정 */}
-            <Stack direction="row" spacing={10}>    
-                <SearchBar
+               <Stack direction={{ md: 'column', lg: 'row' }}  spacing={2}> 
+
+               {/*  */}
+
+               {/* 화면작을떄는 세로, sm 이상이면 row가로 */}
+                <SearchBar 
                     role={role}
                     setRole={setRole}
                     searchId={searchId}
@@ -166,6 +170,7 @@ export default function PTablePage() {
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
+                    
                 /><ResetPassword />
             </Stack>
             {/* 서치바와 해시암호리셋을 정렬 */}
@@ -173,6 +178,8 @@ export default function PTablePage() {
 
             {/* props 로 -> Searcbar에 넘겨줌  */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+
+            
 
                 <PostButton /> {/* 포스트버튼 컴포넌트 */}
                 <UserTable

@@ -10,7 +10,8 @@ const RoleSelect = ({ role, setRole }) => {
                 onChange={(e) => setRole(e.target.value)}
                 label="Role"
             >
-                <MenuItem value="all">All</MenuItem>
+                  <MenuItem sx={{ minWidth: '100%' }} value="all">All</MenuItem> 
+                  {/* 최소 픽셀 설정했어도, 상단에서 비율로 설정하면 적용되지않음 */}
                 <MenuItem value="admin">Admin</MenuItem>
                 <MenuItem value="user">User</MenuItem>
             </Select>

@@ -181,7 +181,7 @@ export default function PTablePage() {
     return (
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <Stack
-                direction={{ xs: 'column', sm: 'row' }}
+                
                 spacing={3}
                 sx={{ width: '60%', }}
             >

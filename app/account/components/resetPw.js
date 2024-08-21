@@ -32,7 +32,7 @@ const ResetPassword = () => {
   return (
     <>
       {/* <h2>비밀번호 초기화 페이지</h2> */}
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ width: '40%' }}>
+      <Stack direction="row" spacing={2} sx={{ width: '100%' }}>
         <TextField
           type="text"
           variant="outlined"
@@ -48,7 +48,7 @@ const ResetPassword = () => {
         />
 
         <Button
-          sx={{ width: '20%' }}
+          sx={{ width: '50px' }}
           variant="contained"
           color="error" onClick={handleResetPassword}>암호리셋</Button>
         {message && <p>{message}</p>} {/* 메시지 표시 */}

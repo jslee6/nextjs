@@ -3,7 +3,7 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import {Grid, Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
@@ -155,7 +155,7 @@ export default function PTablePage() {
     //axious 수정
 
     return (
-
+      
         <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
             <PostBt></PostBt>
@@ -278,5 +278,6 @@ export default function PTablePage() {
                 // props 로 UserDialog 로 전달
             />
         </Container>
+      
     );
 }

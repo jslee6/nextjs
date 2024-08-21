@@ -22,10 +22,10 @@ export default async function handler(req, res) {
         data: { password: hashedPassword },
       });
 
-      res.status(200).json({ message: '비밀번호가 성공적으로 초기화되었습니다.', user: updatedUser });
+      res.status(200).json({ message: '암호 초기화 성공.', user: updatedUser });
     } catch (error) {
       console.error('Error resetting password:', error);
-      res.status(500).json({ error: '비밀번호 초기화에 실패했습니다.', details: error.message });
+      res.status(500).json({ error: '암호 초기화 실패.', details: error.message });
     }
   } else {
     res.status(405).json({ message: 'Method not allowed' });

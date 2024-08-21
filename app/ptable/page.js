@@ -1,44 +1,15 @@
+
+// app/ptable/page.js
 //map 부분 수정, 전체 데이터 정렬 후 , 페이지네이션해야함, 안그러면 오류생김
 
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import { Grid, Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
-
-
-// 포스트 , writetest,  페이지 가져옴 + 닫기 버튼 추가
-import TableWrite from './componets/TableWrite';
-
-function PostBt() {
-    const [post, setpost] = useState(false);
-
-    //작성 닫기버튼으로 인해 [추가 !=preState]
-    const handlePostButtonClick = () => {
-        setpost((prevState) => !prevState);
-    }; //닫기버튼으로 인해 추가
-
-    return (
-
-        <Box>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handlePostButtonClick}
-            >
-                {post ? '닫기' : '작성하기'}
-                {/* 삼항연산자로 처리 */}
-            </Button>
-            {post && <TableWrite />}
-            {/* 이게 잘이해안됨 */}
-        </Box>
-
-    );
-}
-
-///
+import PostBt from './componets/PostBt';
 
 
 export default function PTablePage() {
@@ -47,7 +18,7 @@ export default function PTablePage() {
     const [open, setOpen] = useState(false);  // 수정관련
 
     const [currentPage, setCurrentPage] = useState(1); //페이징 ,초기값 1
-    const usersPerPage = 7;   //페이징  로우수 ok
+    const usersPerPage = 10;   //페이징  로우수 ok
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
@@ -125,8 +96,8 @@ export default function PTablePage() {
                 const redirectUrl = error.response.data.redirect;   // /api/user/delete' 에서 가져온 redirect 값을 리다이렉트
 
                 if (redirectUrl) {
-                window.location.href = redirectUrl;  
-                window.location.href = '/roleDeny';    //1회성 리다이렉트 클라이언트에서 함
+                    window.location.href = redirectUrl;
+                    window.location.href = '/roleDeny';    //1회성 리다이렉트 클라이언트에서 함
                 }
             } else {
                 console.error('Delete error:', error);
@@ -135,8 +106,6 @@ export default function PTablePage() {
 
         }
     };
-
-
     //axious 삭제로 바꿈
 
     // axious 수정
@@ -164,130 +133,134 @@ export default function PTablePage() {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     };
     //axious 수정
-
     return (
 
-        <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
-            <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-                <PostBt></PostBt>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>
-                                {/* 테이블 소팅순서 예시 */}
-                                <TableSortLabel
-                                    active={sortColumn === 'id'}
-                                    direction={sortColumn === 'id' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('id')}
-                                >
-                                    ID(숨김처리예정)
-                                </TableSortLabel>
-                                {/* 테이블 소팅순서 예시 */}
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'firstName'}
-                                    direction={sortColumn === 'firstName' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('firstName')}
-                                >
-                                    FirstName
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'lastName'}
-                                    direction={sortColumn === 'lastName' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('lastName')}
-                                >
-                                    LastName
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'email'}
-                                    direction={sortColumn === 'email' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('email')}
-                                >
-                                    Email
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'age'}
-                                    direction={sortColumn === 'age' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('age')}
-                                >
-                                    Age
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'address'}
-                                    direction={sortColumn === 'address' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('address')}
-                                >
-                                    Address
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell>
-                                <TableSortLabel
-                                    active={sortColumn === 'createdAt'}
-                                    direction={sortColumn === 'createdAt' ? sortDirection : 'asc'}
-                                    onClick={() => handleSort('createdAt')}
-                                >
-                                    Create
-                                </TableSortLabel>
-                            </TableCell>
-                            <TableCell >Update</TableCell>
-                            <TableCell>Delete</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {/* 필터 ,텍스트필드, 키프레스, 이벤트핸들러 */}
+            <Container maxWidth="xl" > {/* maxWidth를 설정하여 전체 너비를 조정 */}
+                <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+                       
+                            <PostBt></PostBt>
+                            {/* <Table> */}
+                            <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
+                                {/* 테이블패딩 간격조정, 멀티셀  패딩 전체적용 복붙쓰자. 못 외우겟다.*/}
 
-                        {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
-                        {currentUsers.map((user) => (
-                            <TableRow key={user.id}>
-                                <TableCell>{user.id}</TableCell>
-                                <TableCell>{user.firstName}</TableCell>
-                                <TableCell>{user.lastName}</TableCell>
-                                <TableCell>{user.email}</TableCell>
-                                <TableCell>{user.age}</TableCell>
-                                <TableCell>{user.address}</TableCell>
-                                <TableCell>{user.createdAt}</TableCell>
-                                <TableCell>
-                                    <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
-                                        수정
-                                    </Button>
-                                </TableCell>
-                                <TableCell>
-                                    <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>
+                                            {/* 테이블 소팅순서 예시 */}
+                                            <TableSortLabel
+                                                active={sortColumn === 'id'}
+                                                direction={sortColumn === 'id' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('id')}
+                                            >
+                                                ID(숨김처리예정)
+                                            </TableSortLabel>
+                                            {/* 테이블 소팅순서 예시 */}
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'firstName'}
+                                                direction={sortColumn === 'firstName' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('firstName')}
+                                            >
+                                                FirstName
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'lastName'}
+                                                direction={sortColumn === 'lastName' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('lastName')}
+                                            >
+                                                LastName
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'email'}
+                                                direction={sortColumn === 'email' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('email')}
+                                            >
+                                                Email
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'age'}
+                                                direction={sortColumn === 'age' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('age')}
+                                            >
+                                                Age
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'address'}
+                                                direction={sortColumn === 'address' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('address')}
+                                            >
+                                                Address
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell>
+                                            <TableSortLabel
+                                                active={sortColumn === 'createdAt'}
+                                                direction={sortColumn === 'createdAt' ? sortDirection : 'asc'}
+                                                onClick={() => handleSort('createdAt')}
+                                            >
+                                                Create
+                                            </TableSortLabel>
+                                        </TableCell>
+                                        <TableCell >Update</TableCell>
+                                        <TableCell>Delete</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    {/* 필터 ,텍스트필드, 키프레스, 이벤트핸들러 */}
 
-            {/* mui 페이지 가이드 */}
-            <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
-                <Pagination
-                    count={totalPages}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    color="primary"
+                                    {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
+                                    {currentUsers.map((user) => (
+                                        <TableRow key={user.id}>
+                                            <TableCell>{user.id}</TableCell>
+                                            <TableCell>{user.firstName}</TableCell>
+                                            <TableCell>{user.lastName}</TableCell>
+                                            <TableCell>{user.email}</TableCell>
+                                            <TableCell>{user.age}</TableCell>
+                                            <TableCell>{user.address}</TableCell>
+                                            <TableCell>{user.createdAt}</TableCell>
+                                            <TableCell>
+                                                <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
+                                                    수정
+                                                </Button>
+                                            </TableCell>
+                                            <TableCell>
+                                                <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
+                </TableContainer>
+
+                {/* mui 페이지 가이드 */}
+                <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
+                    <Pagination
+                        count={totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        color="primary"
+                    />
+                </Stack>
+
+                {/* mui 페이지 가이드 */}
+                <UserDialog
+                    open={open}
+                    onClose={() => setOpen(false)}
+                    user={selectedUser}
+                    onChange={handleInputChange}
+                    onSave={handleSaveUpdate}
+                // props 로 UserDialog 로 전달
                 />
-            </Stack>
-
-            {/* mui 페이지 가이드 */}
-            <UserDialog
-                open={open}
-                onClose={() => setOpen(false)}
-                user={selectedUser}
-                onChange={handleInputChange}
-                onSave={handleSaveUpdate}
-            // props 로 UserDialog 로 전달
-            />
-        </Container>
+            </Container>
+      
     );
 }

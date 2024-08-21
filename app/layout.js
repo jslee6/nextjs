@@ -31,15 +31,13 @@ export default async function RootLayout({ children }) {
       <body>
         <Box>
           <Grid container spacing={1}>
-            <Grid container >
+            <Grid container spacing={1} sx={{ flexDirection: 'row', flexWrap: 'nowrap' }}>
               <Grid item xs={12}>
                 <Box className="navbar">
                   <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
                   {/* 이미지 추가 */}
                   {'　　'} {/* 공백 추가 */}
                   {/* 서버컴포넌트라서 사용불가. 클라이언트 컴포넌트를 가져옴
-        <button onClick={()=>{ signIn() }}>로그인버튼</button>
-        <button onClick={()=>{ signOut() }}>로그아웃버튼</button>  */}
 
                   {/* <Logout/> */}
 
@@ -76,11 +74,13 @@ export default async function RootLayout({ children }) {
             {/* A 섹션 반응형으로 수정 */}
             <Grid
               item
-              xs={1.5}
+              // xs={1.5}   // sx속성에 width 를 픽셀로 입력하지 않고, xs 값을 12로 나누어서 설정할수도 있음
               sx={{
                 display: { xs: 'none', lg: 'block' }, // xs 크기에서는 숨기고, xl 크기 이상에서는 보이게 설정[블럭]
                 borderRight: '1px solid lightgrey',
-                height: '100vh'
+                height: '100vh', //사이드바 높이
+                width: '220px'
+
               }}
             >
               {/* A섹션에 우측에 선그려서 섹션구분 */}
@@ -88,16 +88,16 @@ export default async function RootLayout({ children }) {
             </Grid>
             {/* A 섹션 반응형으로 수정 */}
 
-            <Grid 
-            xs={10.5}
-            sx={{
-                display: { xs: 'block' }, // xs 크기에서는 숨기고, xl 크기 이상에서는 보이게 설정[블럭]
-                width: { xs: '30%', xm: '100%' }
+            <Grid
+              item
+              xs
+              sx={{
+                overflow: 'auto', // 내용이 넘칠 경우 스크롤바 표시
+                minWidth: '300px', // 최소 너비 설정
               }}
-              >
-                {children} 
-                {/* B구역 */}
-              
+            >
+              {children}
+              {/* B구역 */}
             </Grid>
           </Grid>
         </Box>
