@@ -88,12 +88,16 @@ export default async function RootLayout({ children }) {
             </Grid>
             {/* A 섹션 반응형으로 수정 */}
 
-
-            <Grid item xs={10.5}>
-              <Box >
-                {children}
+            <Grid 
+            xs={10.5}
+            sx={{
+                display: { xs: 'block' }, // xs 크기에서는 숨기고, xl 크기 이상에서는 보이게 설정[블럭]
+                width: { xs: '30%', xm: '100%' }
+              }}
+              >
+                {children} 
                 {/* B구역 */}
-              </Box>
+              
             </Grid>
           </Grid>
         </Box>

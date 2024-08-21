@@ -156,7 +156,7 @@ export default function PTablePage() {
     //axious 수정
     return (
 
-        <Container maxWidth="xl"> {/* maxWidth를 설정하여 전체 너비를 조정 */}
+        <Container maxWidth="xl" sx={{ mt: 2 }}> {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <Stack direction="row" spacing={10}>    
                 <SearchBar
                     role={role}
