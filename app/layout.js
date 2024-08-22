@@ -2,17 +2,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-
-
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
-import { Stack, Container, Link as MuiLink } from "@mui/material";
-import { Drawer, List, ListItem, ListItemText, Divider, Accordion, AccordionSummary, AccordionDetails, Box, Grid, Typography, Button } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Box, Grid, Button } from "@mui/material";
 import Sidebar from "./Sidebar/page";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -21,81 +16,61 @@ export const metadata = {
 };
 
 
-const pathname = "/auth/login";
-
 export default async function RootLayout({ children }) {
-  let session = await getServerSession(authOptions)
-  //로그인된 유저정보 출력
+  const session = await getServerSession(authOptions);
+  //서버에서 세션 가져와 로그인된 유저정보 출력
   console.log(children)
   return (
-
     <html lang="en">
       <head />
       <body>
-
-
         {/* 이거 넣으면 경로는 바로 바뀜 */}
         {/* {pathname === "/auth/login" ? <>{children} </>
         : */}
-        
         <Box>
           <Grid container spacing={1}>
             <Grid container spacing={1} sx={{ flexDirection: 'row', flexWrap: 'nowrap' }}>
+              {/* C 섹션: 상단 Nav 바 */}
               <Grid item xs={12}>
                 <Box className="navbar">
-                  <img src="/IDIS_Basic.png " alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 이미지 추가 */}
-                  {/* 이미지 추가 */}
-                  {'　　'} {/* 공백 추가 */}
-                  {/* 서버컴포넌트라서 사용불가. 클라이언트 컴포넌트를 가져옴
-
-                  {/* <Logout/> */}
-
-                  {session
-                    ? <span><b>{session.user.userId}</b> <LogOutBtn></LogOutBtn> </span>
-                    // 왜 user 로 받지 account 아니라 확인
-                    : <LoginBtn></LoginBtn>
-                    // 조건식 ? 조건식참일때 남길html : 거짓일때 남길html
-                  }
-                  {'　'} {/* 공백 추가 */}
-                  <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
-                  {'　'} {/* 공백 추가 */}
-
-                  {/* <Button component={Link} href="/pjoin" variant="contained" color="error">평문 로그인</Button> */}
-                  {/* 아이디 패스 워 같으면 통과 */}
-                  {'　　　　'} {/* 공백 추가 */}
-                  {/* <Button component={Link} href="/writetest" variant="contained" color="secondary">post, wrtietest</Button> */}
-                  <Button component={Link} href="/" className="button-navbar"  >HOME</Button>
-                  <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
-                  <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
-
-                  {/* 글로벌 css navbar 사용 */}
-                  {/* <Button component={Link} href="/accodion" variant="contained" color="secondary">DB 관리</Button>  */}
-                  {/* <Button component={Link} href="/test/gettest" variant="contained" color="secondary">get, test</Button> */}
-
-                  {/* {/* <Typography variant="h5" color="white">
-                C 구역 상단 Nav bar
-              </Typography> */}
-
+                  <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 로고 이미지 */}
+                  {'　　'} {/* 공백 추가 */}       {/* 이미지 추가 */}
+                  {session ? ( // 세션이 존재하는 경우에만 Nav 바와 버튼들을 렌더링합니다.
+                    <>
+                      <span><b>{session.user.userId}</b> <LogOutBtn /></span> {/* 로그인된 사용자 정보와 로그아웃 버튼 */}
+                      {'　　　　'} {/* 공백 추가 */}
+                      <Button component={Link} href="/" className="button-navbar">HOME</Button>
+                      <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
+                      <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
+                    </>
+                  ) :
+                  
+                  ( // 세션이 없을 경우 로그인 버튼만 렌더링합니다.
+                    <>
+                      <LoginBtn /> {/* 로그인 버튼 */}
+                      {'　'}
+                      <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
+                    </>
+                  )}
                 </Box>
               </Grid>
             </Grid>
 
-            {/* A 섹션 반응형으로 수정 */}
-            <Grid
-              item
-              // xs={1.5}   // sx속성에 width 를 픽셀로 입력하지 않고, xs 값을 12로 나누어서 설정할수도 있음
-              sx={{
-                display: { xs: 'none', lg: 'block' }, // xs 크기에서는 숨기고, xl 크기 이상에서는 보이게 설정[블럭]
-                borderRight: '1px solid lightgrey',
-                height: '120vh',
-                width: '220px'
-
-              }}
-            >
-              {/* A섹션에 우측에 선그려서 섹션구분 */}
-              <Sidebar />
-            </Grid>
-            {/* A 섹션 반응형으로 수정 */}
+            {/* A 섹션: 사이드바 */}
+            {session && ( // 세션이 존재하는 경우에만 사이드바를 렌더링합니다. ,&& 이 조건부 랜더링
+              <Grid
+                item
+                // xs={1.5}   // sx속성에 width 를 픽셀로 입력하지 않고, xs 값을 12로 나누어서 설정할수도 있음
+                sx={{
+                  display: { xs: 'none', lg: 'block' }, // 작은 화면에서는 숨기고, 큰 화면에서는 보이게 설정합니다.
+                  borderRight: '1px solid lightgrey', // 우측 라인
+                  height: '120vh',
+                  width: '220px'
+                }}
+              >
+                <Sidebar />
+              </Grid>
+            )}
 
             <Grid
               item
@@ -106,17 +81,14 @@ export default async function RootLayout({ children }) {
               }}
             >
               {children}
-              {/* B구역 */}
+              {/* B구역 메인*/}
             </Grid>
           </Grid>
         </Box>
-        
-        {/* } */}  
-        {/* 이거 넣으면 경로는 바로 바뀜 */}
 
+        {/* } */}
+        {/* 이거 넣으면 경로는 바로 바뀜 */}
       </body>
     </html>
   );
 }
-
-
