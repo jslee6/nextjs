@@ -1,3 +1,4 @@
+//조건부 랜더링을 활용하여 로그인페이지에서 /a,c 섹션 안보이게함
 
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -35,7 +36,8 @@ export default async function RootLayout({ children }) {
                 <Box className="navbar">
                   <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 로고 이미지 */}
                   {'　　'} {/* 공백 추가 */}       {/* 이미지 추가 */}
-                  {session ? ( // 세션이 존재하는 경우에만 Nav 바와 버튼들을 렌더링합니다.
+                  
+                  {session ? ( // 조건부 랜더링. 세션이 존재하는 경우에만 Nav 바와 버튼들을 렌더링합니다.
                     <>
                       <span><b>{session.user.userId}</b> <LogOutBtn /></span> {/* 로그인된 사용자 정보와 로그아웃 버튼 */}
                       {'　　　　'} {/* 공백 추가 */}

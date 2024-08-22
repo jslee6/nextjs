@@ -26,7 +26,7 @@ export default function Acclogin() {
     if (result.error) {
       setError('ID/PW 확인이 필요합니다.'); // 에러 메시지 설정
     } else {
-      window.location.href = '/'; // 로그인 성공 시 리다이렉션
+      window.location.href = '/home'; // 로그인 성공 시 리다이렉션
     }
   };
 
@@ -78,7 +78,6 @@ export default function Acclogin() {
         </Box>
         <TextField name="userId" type="text" label="아이디" variant="outlined" value={userId} onChange={(e) => setUserId(e.target.value)} />
         <TextField name="password" type="password" label="비밀번호" variant="outlined" value={password} onChange={(e) => setPassword(e.target.value)} />
-
         <Button type="submit" variant="contained"
           sx={{
             fontWeight: 'bold',

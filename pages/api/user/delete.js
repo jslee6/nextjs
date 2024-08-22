@@ -51,7 +51,7 @@ export default async function handler(req, res) {
 
     //** 토큰  에서 권한 비교 */
 
-    const token = await getToken({ req, secret: 'your-secret' });
+    const token = await getToken({ req, secret: 'git6579!!' });
 
     // 토큰이 없거나 role이 admin이 아닌 경우
     if (!token || token.user.role !== 'admin') {

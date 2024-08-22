@@ -21,7 +21,7 @@ export default function Login() {
           sx={{
             display: "flex",
             justifyContent: "center",
-            height: "100vh",
+            height: "90vh",
             bgcolor: "#f7f8f8",
             boxShadow: 3,
           }}
@@ -38,18 +38,16 @@ export default function Login() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            height: "60vh",
+            height: "80vh",
           }}
         >
-{/* 
+          {/* 
           회원가입 폼
           <Accjoin/>
           유저 회원가입은 사용하지않아 비활성 */}
 
           {/* 로그인 폼 */}
-          <Acclogin/>
-        
-
+          <Acclogin />
         </Box>
       </Grid>
     </Grid>

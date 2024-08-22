@@ -6,6 +6,10 @@ import { getToken } from 'next-auth/jwt';
 export async function middleware(req) {
   const token = await getToken({ req, secret: 'git6579!!' });
 
+   // 토큰 객체를 로그로 출력
+   console.log('Token:', token); // 여기서 token 객체를 출력합니다.
+
+
   // 토큰이 없거나 role이 admin이 아니면 로그인 페이지로 리다이렉트
   if (!token || token.user.role !== 'admin') {
     return NextResponse.redirect(new URL('/roleDeny', req.url));
