@@ -6,6 +6,7 @@ import Testpage from './components/Testpage';
 import Adminpage from './components/Adminage';
 import SwManage from './components/SwManage';
 
+
 export default function Sidebar() {
   return (
     <div style={{ width: '100%' }}> {/* 원하는 폭으로 설정 */} 
@@ -15,6 +16,7 @@ export default function Sidebar() {
       <Adminpage/>
       <SwManage/>
       <Testpage/>
+    
       
       {/* 컴포넌트로 사이트링크, TEST Page만듬 */}
     </div>

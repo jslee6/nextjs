@@ -68,6 +68,13 @@ export default function Testpage() {
             <Typography className="typo-sidebar" component="span">logout</Typography>
           </ListItem>
 
+          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/logout">
+            <Typography className="typo-sidebar" component="span">logout</Typography>
+          </ListItem>
+
+
+          
+
         </List>
       </AccordionDetails>
     </Accordion>
