@@ -1,5 +1,7 @@
 // credentials 로그인(Acclogin) + 암호화
 
+'use client'
+
 import { Button, TextField, Stack, Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
