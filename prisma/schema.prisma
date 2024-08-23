@@ -88,3 +88,14 @@ enum product_category {
   HOUSEHOLD_SUPPLIES
   KITCHENWARE
 }
+// 파일업로드 를 위한 스키마  24.08.23
+//npx prisma db push  스키마 수정후 디비반영
+
+
+model productUpload {
+  id        Int      @id @default(autoincrement())
+  title     String   // 제품의 제목 또는 설명
+  imageUrl  String?  // 업로드된 이미지의 URL
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

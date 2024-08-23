@@ -9,7 +9,7 @@
 //   if (req.method === 'DELETE') {
 
 //     // **jwt 토큰 가져와서 확인함**
-//     const token = await getToken({ req, secret: 'your-secret' }); // JWT 토큰 가져오기
+//     const token = await getToken({ req, secret: 'git6579!!' }); // JWT 토큰 가져오기
 
 //     // 토큰이 없거나 role이 admin이 아닌 경우
 //     if (!token || token.user.role !== 'admin') {
@@ -37,7 +37,6 @@
 
 
 //****
-
 
 // pages/api/user/delete.js
 

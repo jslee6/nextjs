@@ -32,6 +32,8 @@ export default function AccordionSitelink() {
             <Button href="https://book.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >bookstack </Button>
             <Button href="http://zabbix.idis.co.kr/zabbix/zabbix.php?action=dashboard.view" target="_blank" rel="noopener noreferrer" variant="contained" >자빅스 </Button>
             <Button href="https://redmine.idis.co.kr" target="_blank" rel="noopener noreferrer" variant="contained" >redmine </Button>
+            <Button href="http://10.0.102.195/" target="_blank" rel="noopener noreferrer" variant="contained" >UPS </Button>
+            
           </Box>
         </AccordionDetails>
       </Accordion>

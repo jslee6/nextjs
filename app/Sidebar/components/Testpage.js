@@ -18,6 +18,12 @@ export default function Testpage() {
       <Divider />
       <AccordionDetails>
         <List>
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/img">
+            <Typography className="typo-sidebar" component="span">img</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+          <Divider />
           <ListItem className="typo-sidebar" component={Link} href="/test/temp">
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">temp</Typography> {/* 스타일 적용 */}
@@ -33,47 +39,47 @@ export default function Testpage() {
             <Typography className="typo-sidebar" component="span">register</Typography>
           </ListItem>
           <Divider />
-          <ListItem className="typo-sidebar" component={Link}  href="/test/temp4">
+          <ListItem className="typo-sidebar" component={Link} href="/test/temp4">
             <Typography className="typo-sidebar" component="span">temp4</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link}  href="/accounttest">
+          <ListItem className="typo-sidebar" component={Link} href="/accounttest">
             <Typography className="typo-sidebar" component="span">accounttest</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link}  href="/test/accountHistory">
+          <ListItem className="typo-sidebar" component={Link} href="/test/accountHistory">
             <Typography className="typo-sidebar" component="span">account<br />history</Typography>
           </ListItem>
           <Divider />
 
           <Divider />
-          <ListItem className="typo-sidebar" component={Link}  href="/test/gettest">
+          <ListItem className="typo-sidebar" component={Link} href="/test/gettest">
             <Typography className="typo-sidebar" component="span">gettest</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/signup">
+          <ListItem className="typo-sidebar" component={Link} href="/logInOut/signup">
             <Typography className="typo-sidebar" component="span">signup</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/login">
+          <ListItem className="typo-sidebar" component={Link} href="/logInOut/login">
             <Typography className="typo-sidebar" component="span">login</Typography>
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/logout">
+          <ListItem className="typo-sidebar" component={Link} href="/logInOut/logout">
             <Typography className="typo-sidebar" component="span">logout</Typography>
           </ListItem>
 
-          <ListItem className="typo-sidebar" component={Link}  href="/logInOut/logout">
+          <ListItem className="typo-sidebar" component={Link} href="/logInOut/logout">
             <Typography className="typo-sidebar" component="span">logout</Typography>
           </ListItem>
 
 
-          
+
 
         </List>
       </AccordionDetails>

@@ -29,6 +29,11 @@ export default function Sitelink(){
           <ListItem component={Link} href="https://redmine.idis.co.kr" target="_blank">
             <ListItemText primary="레드마인" />
           </ListItem>
+
+          <Divider />
+          <ListItem component={Link} href="http://10.0.102.195/" target="_blank">
+            <ListItemText primary="UPS" />
+          </ListItem>
         </List>
       </AccordionDetails>
     </Accordion>
