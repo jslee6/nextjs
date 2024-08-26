@@ -411,7 +411,14 @@ export default function PTablePage() {
 
         const formData = new FormData();
         formData.append('image', file);
+
         formData.append('title', `User ${userId}`);
+   
+        // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
+        
+
+        // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
+        // 따라서, 사용자가 'Upload' 버튼을 클릭하고 파일을 선택하면title필드는 자동으로'User ' + user.id` 값으로 설정됩니다.
 
         try {
             const response = await axios.post('/api/products/upload', formData, {
@@ -532,7 +539,7 @@ export default function PTablePage() {
                                     <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
                                 </TableCell>
 
-                                {/* 파일업로드 셀 */}
+                                {/* 파일업로드 셀 중요 여기서 e, user.id 가 아니라 e.user.email 로하면 이멜값으로 들어옴*****/}
                                 <TableCell>
                                     <input
                                         type="file"
