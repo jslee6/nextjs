@@ -1,4 +1,4 @@
-//pages\api\products
+//pages\api\products\up
 // 파일업로드 를 위한 api  24.08.23
 
 import { PrismaClient } from '@prisma/client';

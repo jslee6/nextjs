@@ -40,7 +40,10 @@ model user {
   firstName String?
   lastName  String?
   updatedAt DateTime @updatedAt
+   imageUrl   String? // Optional field to store image URL
 }
+
+
 
 model account {
   id       String  @id @default(uuid())
@@ -92,10 +95,34 @@ enum product_category {
 //npx prisma db push  스키마 수정후 디비반영
 
 
-model productUpload {
-  id        Int      @id @default(autoincrement())
-  title     String   // 제품의 제목 또는 설명
-  imageUrl  String?  // 업로드된 이미지의 URL
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model ProductUpload {
+  id          Int          @id @default(autoincrement())
+  title       String       // 제품의 제목 또는 설명
+  imageUrl    String?      // 대표 이미지 URL
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  attachments Attachment[] // 첨부파일과의 관계
+}
+//이미지 업로드용
+
+
+model Attachment {
+  id             Int           @id @default(autoincrement())
+  fileName       String        // 파일 이름
+  fileUrl        String        // 파일 경로
+  productId      Int           // ProductUpload와의 관계를 위한 외래키
+  productUpload  ProductUpload @relation(fields: [productId], references: [id])
+}
+
+model userTest1 {
+  id      Int      @id @default(autoincrement())
+  name    String
+  images  imgTest1[]
+}
+
+model imgTest1 {
+  id       Int      @id @default(autoincrement())
+  url      String
+  userId   Int
+  user     userTest1 @relation(fields: [userId], references: [id])
 }
