@@ -275,11 +275,12 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { Grid, Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+import { Link, Typography, Grid, Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
 import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import PostBt from './componets/PostBt';
+import { useRouter } from 'next/router';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
@@ -311,6 +312,7 @@ export default function PTablePage() {
 
     // 테이블소팅
     // handleSort 함수를 구현하여 정렬 기준과 방향을 업데이트합니다.
+
 
     const handleSort = (column) => {
         if (sortColumn === column) {
@@ -412,10 +414,10 @@ export default function PTablePage() {
         const formData = new FormData();
         formData.append('image', file);
 
-        formData.append('title', `User ${userId}`);
-   
+        formData.append('title', `${userId}`);
+
         // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
-        
+
 
         // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
         // 따라서, 사용자가 'Upload' 버튼을 클릭하고 파일을 선택하면title필드는 자동으로'User ' + user.id` 값으로 설정됩니다.
@@ -432,8 +434,6 @@ export default function PTablePage() {
         }
     };
     //File 추가 핸들러
-
- 
 
     return (
 
@@ -515,6 +515,7 @@ export default function PTablePage() {
                             <TableCell >Update</TableCell>
                             <TableCell>Delete</TableCell>
                             <TableCell>첨부파일</TableCell>
+                            <TableCell>View Images</TableCell>  {/* 추가된 컬럼 */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -549,11 +550,34 @@ export default function PTablePage() {
                                     />
                                     <label htmlFor={`upload-button-${user.id}`}>
                                         <Button variant="contained" component="span">
-                                            Upload
+                                            첨부
                                         </Button>
                                     </label>
                                 </TableCell>
                                 {/* 파일업로드 셀 */}
+
+                                {/* 추가된 이동버튼 이렇게 하면안되나? */}
+
+                                {/* <TableCell>
+                                    <a href="/imgtable">
+                                        <Button variant="contained" color="secondary">
+                                            테이블이동
+                                        </Button>
+                                    </a>
+                                </TableCell> */}
+
+                                
+                                <TableCell>
+                                    <Button variant="contained" component={Link} href="/imgtable">
+                                       조회 
+                                    </Button>
+                                </TableCell>
+
+
+                                {/* 추가된 이동버튼 이렇게 하면안되나? */}
+
+
+
                             </TableRow>
                         ))}
                     </TableBody>
@@ -582,6 +606,7 @@ export default function PTablePage() {
         </Container>
     );
 }
+
 
 
 
