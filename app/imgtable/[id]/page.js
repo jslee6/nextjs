@@ -7,6 +7,9 @@
 //     return <div>Product{id} 페이지</div>;
 //   }
   
+
+
+//   app\imgtable\[id]\page.js
 export default function Product({ params }) {
     const { id } = params;
   
@@ -14,4 +17,14 @@ export default function Product({ params }) {
   }
   
 
+
+
+
+
+
+  
+
   // next js 13에서는 유즈라우트 안쓰고 파람스로 가져옴 증요 메모
+
+
+  

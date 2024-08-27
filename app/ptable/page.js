@@ -271,6 +271,7 @@
 
 //******* 업로드추가**********
 
+// app/ptable/page.js
 
 'use client'
 
@@ -280,7 +281,11 @@ import UserDialog from '@/app/components/UserDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import PostBt from './componets/PostBt';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/router'; 
+
+
+
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회관련(삭제관련)
@@ -292,6 +297,22 @@ export default function PTablePage() {
 
     const [sortColumn, setSortColumn] = useState(null);   //테이블 소팅관련
     const [sortDirection, setSortDirection] = useState(null);  //테이블 소팅관련
+
+    // 이동관련 유즈라우터 및 라우팅 관련 핸들러
+    const router = useRouter();
+
+    const handleRowClick = (id) => {
+        router.push(`/details/${id}`);
+    };
+
+    const handleButtonClick = (id) => {
+        router.push(`/imgtable?id=${id}`);
+    };
+
+    // 이동관련 유즈라우터 및 라우팅 관련 핸들러
+
+
+
 
     // get 엑시오스로 바꿈
 
@@ -322,6 +343,7 @@ export default function PTablePage() {
             setSortDirection('asc');
         }
     };
+
 
     // 정렬된 데이터를 렌더링하기 위해 users 배열을 정렬합니다.
 
@@ -374,7 +396,6 @@ export default function PTablePage() {
                 console.error('Delete error:', error);
             }
             // ********권한이 없을 경우 리다이렉트 처리**********
-
         }
     };
     //axious 삭제로 바꿈
@@ -406,6 +427,7 @@ export default function PTablePage() {
     //axious 수정
 
 
+
     //File 추가 핸들러
     const handleFileUpload = async (e, userId) => {
         const file = e.target.files[0];
@@ -421,6 +443,7 @@ export default function PTablePage() {
 
         // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
         // 따라서, 사용자가 'Upload' 버튼을 클릭하고 파일을 선택하면title필드는 자동으로'User ' + user.id` 값으로 설정됩니다.
+
 
         try {
             const response = await axios.post('/api/products/upload', formData, {
@@ -439,7 +462,6 @@ export default function PTablePage() {
 
         <Container maxWidth="xl" > {/* maxWidth를 설정하여 전체 너비를 조정 */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-
                 <PostBt></PostBt>
                 {/* <Table> */}
                 <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
@@ -556,27 +578,28 @@ export default function PTablePage() {
                                 </TableCell>
                                 {/* 파일업로드 셀 */}
 
-                                {/* 추가된 이동버튼 이렇게 하면안되나? */}
+                                {/* 유즈라우트로 이동 */}
 
-                                {/* <TableCell>
-                                    <a href="/imgtable">
-                                        <Button variant="contained" color="secondary">
-                                            테이블이동
-                                        </Button>
-                                    </a>
-                                </TableCell> */}
-
-                                
                                 <TableCell>
-                                    <Button variant="contained" component={Link} href="/imgtable">
-                                       조회 
+
+                                    <Button
+                                        variant="contained"
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // 행전체의 영향주지 않기위해, 클릭 이벤트 전파 방지 ,없어도 되는거같은데?
+                                            handleButtonClick(user.id);
+                                            // handleRowClick(user.id);                          
+                                        }}
+                                    >
+                                        조회
                                     </Button>
+{/* 
+                                    <Button
+                                        variant="contained"
+                                        onClick={() => router.push(`/imgtable?id=${user.id}`)}>
+                                        조회
+                                    </Button> */}
                                 </TableCell>
-
-
-                                {/* 추가된 이동버튼 이렇게 하면안되나? */}
-
-
+                                {/* 유즈라우트로 이동 */}
 
                             </TableRow>
                         ))}
@@ -606,7 +629,6 @@ export default function PTablePage() {
         </Container>
     );
 }
-
 
 
 
