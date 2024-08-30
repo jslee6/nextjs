@@ -540,7 +540,7 @@ export default function PTablePage() {
                     <TableBody>
                         {/* 필터 ,텍스트필드, 키프레스, 이벤트핸들러 */}
 
-                        {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
+                        {/* 정렬 후 페이지네이션, 했기에 현재 유저로 MAP */}
                         {currentUsers.map((user) => (
                             <TableRow key={user.id}>
                                 <TableCell>{user.id}</TableCell>

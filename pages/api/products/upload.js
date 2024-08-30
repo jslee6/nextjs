@@ -38,8 +38,9 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     // 원래 파일 이름을 그대로 사용
-    const filename = file.originalname;
-    cb(null, filename); // 파일 이름을 원래대로 설정
+    // const filename = file.originalname; 기존코드
+    const filename = Buffer.from(file.originalname, 'latin1').toString('utf8');   //utf-8 로 인코딩해서 한글이 깨지지 않게함
+    cb(null, filename); // 변환된 파일 이름 설정
   },
 });
 //파일 이름 그대로 저장
