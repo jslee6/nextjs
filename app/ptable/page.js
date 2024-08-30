@@ -301,10 +301,6 @@ export default function PTablePage() {
     // 이동관련 유즈라우터 및 라우팅 관련 핸들러
     const router = useRouter();
 
-    const handleRowClick = (id) => {
-        router.push(`/details/${id}`);
-    };
-
     const handleButtonClick = (id) => {
         router.push(`/imgtable?id=${id}`);
     };
@@ -437,6 +433,7 @@ export default function PTablePage() {
         formData.append('image', file);
 
         formData.append('title', `${userId}`);
+
 
         // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
 

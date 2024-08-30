@@ -163,7 +163,7 @@
 // }
 
 
-//지피티가 알려준거 안됨..
+//pdf 안보임//
 'use client'
 
 import React, { useEffect, useState } from 'react';
@@ -232,7 +232,6 @@ export default function PTablePage() {
 
     // const filteredUsers = id ? sortedUsers.filter(user => user.title === id) : sortedUsers;
     // 이건 완전 동일
-
     // 'id'가 URL 쿼리 파라미터와 일치하는 사용자만 필터링
     
     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
@@ -330,3 +329,195 @@ export default function PTablePage() {
     );
 }
 
+
+
+
+
+
+
+
+
+
+
+
+// //pdf 보인다고 햇는데 안됨
+
+// 'use client'
+
+// import React, { useEffect, useState } from 'react';
+// import { Grid, Box, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Pagination } from '@mui/material';
+// import { useRouter } from 'next/navigation';
+// import TableSortLabel from '@mui/material/TableSortLabel';
+// import axios from 'axios';
+// import { useSearchParams } from 'next/navigation';
+
+// export default function PTablePage() {
+//     const router = useRouter();
+
+//     const [users, setUsers] = useState([]);
+//     const [currentPage, setCurrentPage] = useState(1);
+//     const usersPerPage = 10;
+//     const [sortColumn, setSortColumn] = useState(null);
+//     const [sortDirection, setSortDirection] = useState(null);
+//     const [selectedImage, setSelectedImage] = useState(null);
+//     const [selectedPdf, setSelectedPdf] = useState(null); // PDF URL 상태 추가
+
+//     const params = useSearchParams();
+//     const id = params.get('id');
+
+//     useEffect(() => {
+//         const getUser = async () => {
+//             try {
+//                 const response = await axios.get('/api/imgtest/get');
+//                 setUsers(response.data);
+//             } catch (error) {
+//                 console.error('get error:', error);
+//             }
+//         };
+//         getUser();
+//     }, []);
+
+//     const handleSort = (column) => {
+//         if (sortColumn === column) {
+//             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+//         } else {
+//             setSortColumn(column);
+//             setSortDirection('asc');
+//         }
+//     };
+
+//     let sortedUsers = [...users];
+//     if (sortColumn) {
+//         sortedUsers.sort((a, b) => {
+//             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
+//             if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
+//             return 0;
+//         });
+//     }
+
+//     const handlePageChange = (event, value) => {
+//         setCurrentPage(value);
+//     };
+
+//     const indexOfLastUser = currentPage * usersPerPage;
+//     const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    
+//     const filteredUsers = id ? sortedUsers.filter(user => user.title.includes(id)) : sortedUsers;
+
+//     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+//     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+
+//     const handleDelete = async (userId) => {
+//         try {
+//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             setUsers(users.filter(user => user.id !== userId));
+//         } catch (error) {
+//             console.error('Delete error:', error);
+//         }
+//     };
+
+//     const handleImageClick = (imageUrl) => {
+//         setSelectedImage(imageUrl); 
+//         setSelectedPdf(null); // PDF 선택 해제
+//     };
+
+//     const handlePdfClick = (pdfUrl) => {
+//         setSelectedPdf(pdfUrl);
+//         setSelectedImage(null); // 이미지 선택 해제
+//     };
+
+//     return (
+//         <Container maxWidth="xl">
+//             <Grid container spacing={2}>
+//                 <Grid item xs={8}>
+//                     <TableContainer component={Paper} style={{ marginTop: '30px' }}>
+//                         <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
+//                             <TableHead>
+//                                 <TableRow>
+//                                     <TableCell>
+//                                         <TableSortLabel
+//                                             active={sortColumn === 'id'}
+//                                             direction={sortColumn === 'id' ? sortDirection : 'asc'}
+//                                             onClick={() => handleSort('id')}
+//                                         >
+//                                             ID(숨김처리예정)
+//                                         </TableSortLabel>
+//                                     </TableCell>
+//                                     <TableCell>
+//                                         <TableSortLabel
+//                                             active={sortColumn === 'title'}
+//                                             direction={sortColumn === 'title' ? sortDirection : 'asc'}
+//                                             onClick={() => handleSort('title')}
+//                                         >
+//                                             Title
+//                                         </TableSortLabel>
+//                                     </TableCell>
+//                                     <TableCell>
+//                                         <TableSortLabel
+//                                             active={sortColumn === 'imageUrl'}
+//                                             direction={sortColumn === 'imageUrl' ? sortDirection : 'asc'}
+//                                             onClick={() => handleSort('imageUrl')}
+//                                         >
+//                                             Image URL
+//                                         </TableSortLabel>
+//                                     </TableCell>
+//                                     <TableCell>Delete</TableCell>
+//                                 </TableRow>
+//                             </TableHead>
+
+//                             <TableBody>
+//                                 {currentUsers.map((user) => (
+//                                     <TableRow key={user.id}>
+//                                         <TableCell>{user.id}</TableCell>
+//                                         <TableCell>{user.title}</TableCell>
+//                                         <TableCell>
+//                                             <a href="#" onClick={() => handleImageClick(user.imageUrl)} style={{ textDecoration: 'none' }}>
+//                                                 {user.imageUrl}
+//                                             </a>
+//                                             {/* PDF 링크 추가 */}
+//                                             {user.pdfUrl && (
+//                                                 <a href="#" onClick={() => handlePdfClick(user.pdfUrl)} style={{ textDecoration: 'none', marginLeft: '10px' }}>
+//                                                     PDF
+//                                                 </a>
+//                                             )}
+//                                         </TableCell>
+//                                         <TableCell>
+//                                             <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
+//                                         </TableCell>
+//                                     </TableRow>
+//                                 ))}
+//                             </TableBody>
+//                         </Table>
+//                     </TableContainer>
+
+//                     <Stack spacing={2} alignItems="center" sx={{ marginTop: 2 }}>
+//                         <Pagination
+//                             count={totalPages}
+//                             page={currentPage}
+//                             onChange={handlePageChange}
+//                             color="primary"
+//                         />
+//                     </Stack>
+//                 </Grid>
+//                 <Grid item xs={4}>
+//                     {selectedImage && (
+//                         <Box sx={{ mt: '100px', textAlign: 'center' }}> 
+//                             <img src={selectedImage} alt="Selected" style={{ maxWidth: '100%', borderRadius: '8px' }} />
+//                         </Box>
+//                     )}
+//                     {selectedPdf && (
+//                         <Box sx={{ mt: '100px', textAlign: 'center' }}>
+//                             <iframe
+//                                 src={selectedPdf}
+//                                 width="100%"
+//                                 height="500px"
+//                                 title="PDF Preview"
+//                                 style={{ border: 'none' }}
+//                             />
+//                         </Box>
+//                     )}
+//                 </Grid>
+//             </Grid>
+//         </Container>
+//     );
+// }

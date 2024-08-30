@@ -24,7 +24,7 @@ export default function Testpage() {
           </ListItem>
 
           <ListItem className="typo-sidebar" component={Link} href="/imgtable">
-            <Typography className="typo-sidebar" component="span">imgtest</Typography> {/* 스타일 적용 */}
+            <Typography className="typo-sidebar" component="span">imgtable</Typography> {/* 스타일 적용 */}
           </ListItem>
 
           <Divider />

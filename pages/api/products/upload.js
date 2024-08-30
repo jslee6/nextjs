@@ -15,16 +15,35 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // Configure multer to store files in the 'public/uploads' directory
+
+//파일 이름 변경하여 저장
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, uploadDir); // 파일을 저장할 디렉토리
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = path.extname(file.originalname); // 파일 확장자
+//     const filename = `${Date.now()}${ext}`; // 현재 시간과 확장자를 조합한 파일 이름
+//     cb(null, filename); // 새로운 파일 이름 설정
+//   },
+// });
+//파일이름 변경하여 저장
+
+
+
+//파일 이름 그대로 저장
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir);
+    cb(null, uploadDir); // 파일을 저장할 디렉토리
   },
   filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const filename = `${Date.now()}${ext}`;
-    cb(null, filename);
+    // 원래 파일 이름을 그대로 사용
+    const filename = file.originalname;
+    cb(null, filename); // 파일 이름을 원래대로 설정
   },
 });
+//파일 이름 그대로 저장
+
 
 const upload = multer({ storage });
 
