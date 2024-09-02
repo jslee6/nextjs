@@ -179,8 +179,7 @@ export default function PTablePage() {
             {/* props 로 -> Searcbar에 넘겨줌  */}
             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
 
-            
-
+        
                 <PostButton /> {/* 포스트버튼 컴포넌트 */}
                 <UserTable
                     users={currentUsers}

@@ -44,6 +44,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@mui/material';
 import * as XLSX from 'xlsx';
 
+
 const MyTableComponent = () => {
   // 상태를 관리하기 위한 useState 훅: 초기값은 빈 배열
   const [data, setData] = useState([]);

@@ -18,4 +18,3 @@ function PaginationComp({ totalPages, currentPage, handlePageChange }) {
 
 export default PaginationComp;
 
-//
