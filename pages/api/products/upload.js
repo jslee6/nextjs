@@ -4,7 +4,7 @@
 import { PrismaClient } from '@prisma/client';
 import multer from 'multer';
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs'; //파일시스템 관련 모듈(node js)
 
 const prisma = new PrismaClient();
 const uploadDir = 'public/uploads';
