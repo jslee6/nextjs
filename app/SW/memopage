@@ -1,0 +1,83 @@
+
+//뺀 Table  UserTable
+
+ <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>
+                                {/* 테이블 소팅순서 예시 */}
+                                <TableSortLabel
+                                    active={sortColumn === 'id'}
+                                    direction={sortColumn === 'id' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('id')}
+                                >
+                                    ID(숨김처리예정)
+                                </TableSortLabel>
+                                {/* 테이블 소팅순서 예시 */}
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'userId'}
+                                    direction={sortColumn === 'userId' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('userId')}
+                                >
+                                    userId
+                                </TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'password'}
+                                    direction={sortColumn === 'password' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('password')}
+                                >
+                                    password
+                                </TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'email'}
+                                    direction={sortColumn === 'email' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('email')}
+                                >
+                                    Email
+                                </TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel
+                                    active={sortColumn === 'age'}
+                                    direction={sortColumn === 'age' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('age')}
+                                >
+                                    role
+                                </TableSortLabel>
+                            </TableCell>
+
+                            <TableCell
+                                sx={{ width: '10px', }}
+                            >Update</TableCell>
+                            <TableCell >Delete</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+
+                        {/* 정렬 후 페이지네이션, 했기에 커런테트유저로 MAP */}
+                        {currentUsers.map((user) => (
+                            <TableRow key={user.id}>
+                                <TableCell>{user.id}</TableCell>
+                                <TableCell>{user.userId}</TableCell>
+                                <TableCell>{user.password}</TableCell>
+                                <TableCell>{user.email}</TableCell>
+                                <TableCell>{user.role}</TableCell>
+                                <TableCell>
+                                    <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
+                                        수정
+                                    </Button>
+                                </TableCell>
+                                <TableCell>
+                                    <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+

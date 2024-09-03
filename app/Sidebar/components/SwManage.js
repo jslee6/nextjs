@@ -19,7 +19,7 @@ export default function SwManage() {
 
       <AccordionDetails>
         <List>
-          <ListItem className="typo-sidebar" component={Link} href="/auth/join">
+          <ListItem className="typo-sidebar" component={Link} href="/SW">
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">SW 조회</Typography> {/* 스타일 적용 */}
           </ListItem>
