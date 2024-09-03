@@ -12,7 +12,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
             {/* 테이블 간격 패딩 전체조정 '8px' */}
                 <TableHead>
                     <TableRow>
-                        <TableCell>
+                        {/* <TableCell>
                             <TableSortLabel
                                 active={sortColumn === 'id'}
                                 direction={sortColumn === 'id' ? sortDirection : 'asc'}
@@ -20,43 +20,107 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             >
                                 ID(숨김처리예정)
                             </TableSortLabel>
-                        </TableCell>
+                        </TableCell> */}
+
+
                         <TableCell>
                             <TableSortLabel
-                                active={sortColumn === 'userId'}
-                                direction={sortColumn === 'userId' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('userId')}
+                                active={sortColumn === 'docsNumber'}
+                                direction={sortColumn === 'docsNumber' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('docsNumber')}
                             >
-                                userId
+                                docsNumber
                             </TableSortLabel>
                         </TableCell>
                         <TableCell>
                             <TableSortLabel
-                                active={sortColumn === 'password'}
-                                direction={sortColumn === 'password' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('password')}
+                                active={sortColumn === 'name'}
+                                direction={sortColumn === 'name' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('name')}
                             >
-                                password
+                                name
                             </TableSortLabel>
                         </TableCell>
                         <TableCell>
                             <TableSortLabel
-                                active={sortColumn === 'email'}
-                                direction={sortColumn === 'email' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('email')}
+                                active={sortColumn === 'Department'}
+                                direction={sortColumn === 'Department' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('Department')}
                             >
-                                Email
+                                Department
                             </TableSortLabel>
                         </TableCell>
                         <TableCell>
                             <TableSortLabel
-                                active={sortColumn === 'role'}
-                                direction={sortColumn === 'role' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('role')}
+                                active={sortColumn === 'SwName'}
+                                direction={sortColumn === 'SwName' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('SwName')}
                             >
-                                role
+                                SwName
                             </TableSortLabel>
                         </TableCell>
+
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'period'}
+                                direction={sortColumn === 'period' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('period')}
+                            >
+                                period
+                            </TableSortLabel>
+                        </TableCell>
+
+                
+
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'licensKey'}
+                                direction={sortColumn === 'licensKey' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('licensKey')}
+                            >
+                                licensKey
+                            </TableSortLabel>
+                        </TableCell>
+
+                  
+
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'madeCompany'}
+                                direction={sortColumn === 'madeCompany' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('madeCompany')}
+                            >
+                                제조사
+                            </TableSortLabel>
+                        </TableCell>
+
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'etc'}
+                                direction={sortColumn === 'etc' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('etc')}
+                            >
+                                기타내역
+                            </TableSortLabel>
+                        </TableCell>
+
+
+                        
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'createdAt'}
+                                direction={sortColumn === 'createdAt' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('createdAt')}
+                            >
+                                생성일
+                            </TableSortLabel>
+                        </TableCell>
+
+                             
+               
+
+                        
+
                         <TableCell sx={{ width: '10px' }}>Update</TableCell>
                         <TableCell>Delete</TableCell>
                     </TableRow>
@@ -64,11 +128,23 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                 <TableBody>
                     {users.map(user => (
                         <TableRow key={user.id}>
-                            <TableCell>{user.id}</TableCell>
-                            <TableCell>{user.userId}</TableCell>
-                            <TableCell>{user.password}</TableCell>
-                            <TableCell>{user.email}</TableCell>
-                            <TableCell>{user.role}</TableCell>
+                            {/* <TableCell>{user.id}</TableCell> */}
+                            <TableCell>{user.docsNumber}</TableCell>
+                            <TableCell>{user.name}</TableCell>
+                            <TableCell>{user.Department}</TableCell>
+                            <TableCell>{user.SwName}</TableCell>
+                            <TableCell>{user.period}</TableCell>
+                            <TableCell>{user.licensKey}</TableCell>
+                            
+                            <TableCell>{user.madeCompany}</TableCell>
+                            <TableCell>{user.etc}</TableCell>
+                            <TableCell>{user.createdAt}</TableCell>
+                            
+
+                        
+
+                        
+                            
                             <TableCell>
                                 <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                                     수정

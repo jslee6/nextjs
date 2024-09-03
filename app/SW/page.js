@@ -262,7 +262,7 @@ export default function PTablePage() {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get('/api/account/get');
+                const response = await axios.get('/api/sw/get');
                 console.log('get data:', response.data);
                 setUsers(response.data);
                 setFilteredUsers(response.data); // 초기 상태로 전체 사용자 설정
@@ -340,21 +340,24 @@ export default function PTablePage() {
 
 
     // axious 삭제
-    const handleDelete = async (userId) => {
+    const handleDelete = async (id) => {
         try {
-            const response = await axios.delete('/api/account/delete', {
-                data: { id: userId },
+            const response = await axios.delete('/api/sw/delete', {
+                data: { id: id },
             });
             const { message } = response.data;
             console.log(message);
 
-            setUsers(users.filter(user => user.id !== userId));
-            setFilteredUsers(filteredUsers.filter(user => user.id !== userId));  // 필터링된 사용자 목록에서 삭제
+            setUsers(users.filter(user => user.id !== id));
+            setFilteredUsers(filteredUsers.filter(user => user.id !== id));  // 필터링된 사용자 목록에서 삭제
         } catch (error) {
             console.error('Delete error:', error);
         }
     };
     // axious 삭제
+
+
+
 
     // axious 수정
     const handleUpdate = (user) => {

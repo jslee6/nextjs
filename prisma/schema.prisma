@@ -14,10 +14,21 @@ model usertest {
   id     Int     @id @default(autoincrement())
 }
 
-model sw {
-  swName  String? @db.VarChar(100)
-  swPrice String? @db.VarChar(100)
-  swId    Int     @id
+model softWare {
+  // id          String   @id @default(uuid())
+  id          Int       @id @default(autoincrement())
+  // userId      String    @unique
+  docsNumber  String?
+  SwuserID    String?
+  name        String?
+  Department  String?
+  SwName      String?
+  period      String?
+  madeCompany String?
+  licensKey   String?
+  etc          String?   @db.Text // TEXT 타입으로 설정
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime?
 }
 
 model product {
@@ -40,10 +51,8 @@ model user {
   firstName String?
   lastName  String?
   updatedAt DateTime @updatedAt
-   imageUrl   String? // Optional field to store image URL
+  imageUrl  String? // Optional field to store image URL
 }
-
-
 
 model account {
   id       String  @id @default(uuid())
@@ -55,7 +64,7 @@ model account {
 
 model account2 {
   id        String   @id @default(uuid())
-  userId    String   
+  userId    String
   password  String
   role      String?
   email     String?
@@ -91,42 +100,41 @@ enum product_category {
   HOUSEHOLD_SUPPLIES
   KITCHENWARE
 }
+
 // 파일업로드 를 위한 스키마  24.08.23
 //npx prisma db push  스키마 수정후 디비반영
 
-
 model ProductUpload {
   id          Int          @id @default(autoincrement())
-  title       String       // 제품의 제목 또는 설명
-  imageUrl    String?      // 대표 이미지 URL
+  title       String // 제품의 제목 또는 설명
+  imageUrl    String? // 대표 이미지 URL
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   attachments Attachment[] // 첨부파일과의 관계
 }
+
 //이미지 업로드용
 
-
 model Attachment {
-  id             Int           @id @default(autoincrement())
-  fileName       String        // 파일 이름
-  fileUrl        String        // 파일 경로
-  productId      Int           // ProductUpload와의 관계를 위한 외래키
-  productUpload  ProductUpload @relation(fields: [productId], references: [id])
+  id            Int           @id @default(autoincrement())
+  fileName      String // 파일 이름
+  fileUrl       String // 파일 경로
+  productId     Int // ProductUpload와의 관계를 위한 외래키
+  productUpload ProductUpload @relation(fields: [productId], references: [id])
 }
 
 model userTest1 {
-  id      Int      @id @default(autoincrement())
-  name    String
-  images  imgTest1[]
+  id     Int        @id @default(autoincrement())
+  name   String
+  images imgTest1[]
 }
 
 model imgTest1 {
-  id       Int      @id @default(autoincrement())
-  url      String
-  userId   Int
-  user     userTest1 @relation(fields: [userId], references: [id])
+  id     Int       @id @default(autoincrement())
+  url    String
+  userId Int
+  user   userTest1 @relation(fields: [userId], references: [id])
 }
-
 
 model Product2 {
   id        Int      @id @default(autoincrement())
@@ -150,3 +158,15 @@ model Image {
   itemId    Int
   createdAt DateTime @default(now())
 }
+
+// model SoftWare {
+//   id               String  @id @default(uuid())
+//   swID             String  @unique
+//   docsNumber       String?
+//   permanentVersion String?
+//   SwName           String?
+//   licensKey        String?
+//   etc              String?
+//   createdAt DateTime @default(now())
+//   updatedAt DateTime
+// }
