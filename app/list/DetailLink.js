@@ -1,3 +1,5 @@
+//안씀 코딩애플 학습
+
 'use client'
 
 import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation"

@@ -1,3 +1,5 @@
+//안씀
+
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 import Cart from '../components/comptest';
