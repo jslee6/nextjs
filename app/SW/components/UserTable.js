@@ -12,7 +12,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
             {/* 테이블 간격 패딩 전체조정 '8px' */}
                 <TableHead>
                     <TableRow>
-                        {/* <TableCell>
+                        <TableCell>
                             <TableSortLabel
                                 active={sortColumn === 'id'}
                                 direction={sortColumn === 'id' ? sortDirection : 'asc'}
@@ -20,7 +20,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             >
                                 ID(숨김처리예정)
                             </TableSortLabel>
-                        </TableCell> */}
+                        </TableCell>
 
 
                         <TableCell>
@@ -128,7 +128,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                 <TableBody>
                     {users.map(user => (
                         <TableRow key={user.id}>
-                            {/* <TableCell>{user.id}</TableCell> */}
+                            <TableCell>{user.id}</TableCell>
                             <TableCell>{user.docsNumber}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.Department}</TableCell>

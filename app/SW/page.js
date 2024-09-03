@@ -339,7 +339,7 @@ export default function PTablePage() {
 
 
 
-    // axious 삭제
+    // axious 삭제 user.id 는 필터링된 값의 id.  그거랑 딜리트  api의 id랑 비교
     const handleDelete = async (id) => {
         try {
             const response = await axios.delete('/api/sw/delete', {
@@ -355,6 +355,7 @@ export default function PTablePage() {
         }
     };
     // axious 삭제
+
 
 
 
