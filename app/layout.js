@@ -51,9 +51,9 @@ export default async function RootLayout({ children }) {
                         <LogOutBtn /> */}
                       {/* </span> */}
                       {'　　　　'} {/* 공백 추가 */}
-                      <Button component={Link} href="/" className="button-navbar">HOME</Button>
+                      <Button component={Link} href="/home" className="button-navbar">HOME</Button>
                       <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
-                      <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
+                      {/* <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button> */}
                     </>
                   ) :
 

@@ -24,7 +24,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 direction={sortColumn === 'id' ? sortDirection : 'asc'}
                                 onClick={() => handleSort('id')}
                             >
-                                ID(숨김처리예정)
+                                ID
                             </TableSortLabel>
                         </TableCell>
 
