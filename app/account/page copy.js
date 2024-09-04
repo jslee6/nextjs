@@ -188,7 +188,7 @@ export default function PTablePage() {
                 <RoleSelect role={role} setRole={setRole} />
                 <TextField
                     variant="outlined"
-                    label="ID 검색"
+                    label="사용자 검색"
                     fullWidth
                     sx={{ width: '300%', mt: 2 }}
                     value={searchId}

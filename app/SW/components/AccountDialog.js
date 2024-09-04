@@ -3,7 +3,7 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
 
 // const AccountDialog = ({ open, onClose, user, onChange, onSave }) => {
-const AccountDialog = ({ open, onClose, account, onChange, onSave }) => {
+const AccountDialog = ({ open, onClose, sw, onChange, onSave }) => {
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>사용자 정보 수정</DialogTitle>
@@ -17,32 +17,82 @@ const AccountDialog = ({ open, onClose, account, onChange, onSave }) => {
                 /> */}
 
                 <TextField
-                    name="userId"
+                    name="id"
                     label="아이디"
-                    value={account?.userId || ''}
+                    value={sw?.id || ''}
                     onChange={onChange}
-                    margin="normal"
+                    margin="normal" 무명
+
                     disabled // 아이디 수정불가
                 />
 
-                {/* <TextField
-                    name="password"
-                    label="암호"
-                    value={account?.password || ''}
+                <TextField
+                    name="docsNumber"
+                    label="문서번호"
+                    value={sw?.docsNumber || ''}
                     onChange={onChange}
                     margin="normal"
-                /> */}
+                />
+
                 <TextField
-                    name="role"
-                    label="역활"
-                    value={account?.role || ''}
+                    name="SwuserID"
+                    label="유저ID"
+                    value={sw?.SwuserID || ''}
                     onChange={onChange}
                     margin="normal"
                 />
                 <TextField
-                    name="email"
-                    label="이메일"
-                    value={account?.email || ''}
+                    name="name"
+                    label="이름"
+                    value={sw?.name || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="Department"
+                    label="부서"
+                    value={sw?.Department || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="SwName"
+                    label="SW명"
+                    value={sw?.SwName || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="period"
+                    label="기간여부"
+                    value={sw?.period || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="licensKey"
+                    label="라이센스"
+                    value={sw?.licensKey || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="madeCompany"
+                    label="제조사"
+                    value={sw?.madeCompany || ''}
+                    onChange={onChange}
+                    margin="normal"
+                />
+
+                <TextField
+                    name="etc"
+                    label="기타내역"
+                    value={sw?.etc || ''}
                     onChange={onChange}
                     margin="normal"
                 />

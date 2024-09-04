@@ -25,7 +25,7 @@ export default function Adminpage() {
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link} href="/ptable">
+          <ListItem className="typo-sidebar" component={Link} href="/account">
             {/* <ListItemText primary="temp" /> */}
             <Typography className="typo-sidebar" component="span">계정관리</Typography> {/* 스타일 적용 */}
           </ListItem>

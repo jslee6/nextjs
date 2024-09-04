@@ -7,7 +7,7 @@ import AccountHistoryComponent from '@/app/test/temp5/page';
 function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearchTerm, handleSearchBoth }) {
     return (
         <Stack direction="row" spacing={2} sx={{ width: '50%' }}>
-            <RoleSelect role={role} setRole={setRole} />
+            {/* <RoleSelect role={role} setRole={setRole} /> */}
             <TextField
                 variant="outlined"
                 label="ID 검색"

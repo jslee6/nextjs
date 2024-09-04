@@ -210,7 +210,7 @@ body {
   0.5px -0.5px 1px gray,
   -0.5px 0.5px 1px gray; 
 }
-.button-bg:hover {
+.button-orange:hover {
   background-color: black; /* 마우스 오버 시 배경색 */
 }
 
