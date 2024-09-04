@@ -14,6 +14,7 @@ export default async function select2(req, res) {
           password: true,
           email: true,
           role: true,
+          createdAt: true,
 
         }
       });

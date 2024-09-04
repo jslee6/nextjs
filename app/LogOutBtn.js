@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 
 export function LogOutBtn(){
     return (
-      <Button variant="contained" color="error" onClick={()=>{ signOut() }}>JWT 로그아웃</Button>
+      <Button className='button-red' variant="contained" color="error" onClick={()=>{ signOut() }}>JWT 로그아웃</Button>
     )
   } 
 

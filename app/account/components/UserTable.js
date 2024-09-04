@@ -4,6 +4,7 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import TableSortLabel from '@mui/material/TableSortLabel';
+import { format } from 'date-fns';   //시간 날짜 관련 라이브러리
 
 function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete }) {
     return (
@@ -57,6 +58,18 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 role
                             </TableSortLabel>
                         </TableCell>
+
+
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortColumn === 'c'}
+                                direction={sortColumn === 'role' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('role')}
+                            >
+                                생성일
+                            </TableSortLabel>
+                        </TableCell>
+
                         <TableCell sx={{ width: '10px' }}>Update</TableCell>
                         <TableCell>Delete</TableCell>
                     </TableRow>
@@ -69,6 +82,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             <TableCell>{user.password}</TableCell>
                             <TableCell>{user.email}</TableCell>
                             <TableCell>{user.role}</TableCell>
+                            <TableCell>  {format(new Date(user.createdAt), 'yyyy-MM-dd HH:mm')} {/* 날짜 포맷팅 */}</TableCell>
                             <TableCell>
                                 <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                                     수정

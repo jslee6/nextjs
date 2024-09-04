@@ -357,9 +357,6 @@ export default function PTablePage() {
     // axious 삭제
 
 
-
-
-
     // axious 수정
     const handleUpdate = (user) => {
         setSelectedUser(user);
@@ -390,8 +387,6 @@ export default function PTablePage() {
     // axious 수정
 
 
-
-
     return (
 
         <Container maxWidth="xl" sx={{ mt: 2 }}> {/* maxWidth를 설정하여 전체 너비를 조정 */}
@@ -408,7 +403,8 @@ export default function PTablePage() {
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
 
-                /><ResetPassword />
+                />
+                {/* <ResetPassword/> 암호리셋 SW에선미사용 */}
             </Stack>
             {/* 서치바와 해시암호리셋을 정렬 */}
 
@@ -419,9 +415,6 @@ export default function PTablePage() {
                     <PostButton /> {/* Post button component */}
                     <ExcelExport users={filteredUsers} /> {/* 필터링 된 유저만 내보냄 */}
                 </Stack>
-
-
-
 
                 {/* 4. UserTable 컴포넌트로 currentUsers를 전달함. */}
 

@@ -26,7 +26,7 @@ model softWare {
   period      String?
   madeCompany String?
   licensKey   String?
-  etc          String?   @db.Text // TEXT 타입으로 설정
+  etc         String?   @db.Text // TEXT 타입으로 설정
   createdAt   DateTime? @default(now())
   updatedAt   DateTime?
 }
@@ -55,11 +55,12 @@ model user {
 }
 
 model account {
-  id       String  @id @default(uuid())
-  userId   String  @unique
-  password String
-  role     String?
-  email    String?
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  password  String
+  role      String?
+  email     String?
+  createdAt DateTime @default(now())
 }
 
 model account2 {

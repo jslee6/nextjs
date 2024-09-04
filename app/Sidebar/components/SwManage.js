@@ -25,9 +25,14 @@ export default function SwManage() {
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link} href="/auth/join">
+          {/* <ListItem className="typo-sidebar" component={Link} href="/auth/join">
+            <Typography className="typo-sidebar" component="span">SW 수정</Typography> 
+          </ListItem>
+          <Divider /> */}
+
+          <ListItem className="typo-sidebar" component={Link} href="/imgtable">
             {/* <ListItemText primary="temp" /> */}
-            <Typography className="typo-sidebar" component="span">SW 수정</Typography> {/* 스타일 적용 */}
+            <Typography className="typo-sidebar" component="span">첨부파일</Typography> {/* 스타일 적용 */}
           </ListItem>
           <Divider />
 

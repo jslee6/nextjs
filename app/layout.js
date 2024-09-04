@@ -7,7 +7,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { LogOutBtn } from "./LogOutBtn";
 import LoginBtn from "./LoginBtn";
-import { Box, Grid, Button } from "@mui/material";
+import { Box, Grid, Button, Typography } from "@mui/material";
 import Sidebar from "./Sidebar/page";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,24 +36,34 @@ export default async function RootLayout({ children }) {
                 <Box className="navbar">
                   <img src="/IDIS_Basic.png" alt="Idis" style={{ width: '80px', marginBottom: '-5px' }} /> {/* 로고 이미지 */}
                   {'　　'} {/* 공백 추가 */}       {/* 이미지 추가 */}
-                  
+
                   {session ? ( // 조건부 랜더링. 세션이 존재하는 경우에만 Nav 바와 버튼들을 렌더링합니다.
                     <>
-                      <span><b>{session.user.userId}</b> <LogOutBtn /></span> {/* 로그인된 사용자 정보와 로그아웃 버튼 */}
+                      <span ><Button className="button-blue" variant="contained"> {session.user.userId}</Button> <LogOutBtn /></span> 
+                      {/* <span style={{ display: 'flex', alignItems: 'center' }}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          style={{ marginRight: '8px' }}
+                        >
+                          Logon: {session.user.userId}
+                        </Button>
+                        <LogOutBtn /> */}
+                      {/* </span> */}
                       {'　　　　'} {/* 공백 추가 */}
                       <Button component={Link} href="/" className="button-navbar">HOME</Button>
                       <Button component={Link} href="/ptable" className="button-navbar">ptable</Button>
                       <Button component={Link} href="/account" className="button-navbar" color="info">계정관리</Button>
                     </>
                   ) :
-                  
-                  ( // 세션이 없을 경우 로그인 버튼만 렌더링합니다.
-                    <>
-                      <LoginBtn /> {/* 로그인 버튼 */}
-                      {'　'}
-                      <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
-                    </>
-                  )}
+
+                    ( // 세션이 없을 경우 로그인 버튼만 렌더링합니다.
+                      <>
+                        <LoginBtn /> {/* 로그인 버튼 */}
+                        {'　'}
+                        <Button component={Link} href="/logInOut/login" variant="contained" color="info">세션 로그인</Button>
+                      </>
+                    )}
                 </Box>
               </Grid>
             </Grid>

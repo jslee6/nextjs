@@ -129,9 +129,92 @@ body {
       /* 얇고 연한 회색 테두리 효과 */
 }
 
+.table-header {
+  font-weight: bold;
+  font-size: 15px;
+  color: white; /* 기본 글자색 */
+  background-color: #2e7ecf;
+  text-align: center; /* 가운데 정렬 */
+  text-shadow: 
+      0.5px 0.5px 1px gray, 
+      -0.5px -0.5px 1px gray,
+      0.5px -0.5px 1px gray,
+      -0.5px 0.5px 1px gray; 
+      
+      /* 얇고 연한 회색 테두리 효과 */
+}
+.table-header:hover {
+  background-color: #71d6b5; /* 마우스 오버 시 배경색 */
+  
+}
+
+
 .Accordion-Bg:hover {
   background-color: #1976D2; /* 마우스 오버 시 배경색 */
 }
+
+
+.button-blue {
+  font-weight: bold;
+  color: white; /* 기본 글자색 */
+  background-color: #6a99e4;
+   text-shadow: 
+      0.5px 0.5px 1px gray, 
+      -0.5px -0.5px 1px gray,
+      0.5px -0.5px 1px gray,
+      -0.5px 0.5px 1px gray; 
+}
+
+.button-blue:hover {
+  background-color: black; /* 마우스 오버 시 배경색 */
+}
+
+
+.button-red {
+  font-weight: bold;
+  color: white; /* 기본 글자색 */
+  background-color: #ec6060;
+  text-shadow: 
+  0.5px 0.5px 1px gray, 
+  -0.5px -0.5px 1px gray,
+  0.5px -0.5px 1px gray,
+  -0.5px 0.5px 1px gray; 
+}
+.button-red:hover {
+  background-color: black; /* 마우스 오버 시 배경색 */
+}
+
+
+.button-bg {
+  font-weight: bold;
+  color: white; /* 기본 글자색 */
+  background-color: #44be86;
+  text-shadow: 
+  0.5px 0.5px 1px gray, 
+  -0.5px -0.5px 1px gray,
+  0.5px -0.5px 1px gray,
+  -0.5px 0.5px 1px gray; 
+}
+.button-bg:hover {
+  background-color: black; /* 마우스 오버 시 배경색 */
+}
+
+
+.button-orange {
+  font-weight: bold;
+  color: white; /* 기본 글자색 */
+  background-color: #44be86;
+  text-shadow: 
+  0.5px 0.5px 1px gray, 
+  -0.5px -0.5px 1px gray,
+  0.5px -0.5px 1px gray,
+  -0.5px 0.5px 1px gray; 
+}
+.button-bg:hover {
+  background-color: black; /* 마우스 오버 시 배경색 */
+}
+
+
 
 
 /* Sidebar listItem  */
