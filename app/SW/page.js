@@ -464,7 +464,7 @@
 // 4. UserTable 컴포넌트로 currentUsers를 전달함.
 
 import React, { useEffect, useState } from 'react';
-import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
+import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination, Box } from '@mui/material';
 // import AccountDialog from '@/app/components/AccountDialog';
 import AccountDialog from './components/SwDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
@@ -479,6 +479,8 @@ import ResetPassword from './components/resetPw'; // 암호 초기화
 import ExcelExport from './components/excel';
 import * as XLSX from 'xlsx';
 import SwDialog from './components/SwDialog';
+import PostSw from './components/PostSw';
+
 
 
 export default function PTablePage() {
@@ -585,8 +587,6 @@ export default function PTablePage() {
     };
 
 
-
-
     // 수정 저장 핸들러 함수
     // const handleSaveUpdate = async () => {
     //     console.log('handleSaveUpdate called');
@@ -628,7 +628,6 @@ export default function PTablePage() {
     };
 
 
-
     // 수정 다이얼로그의 입력 변화 핸들러 함수
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
@@ -641,8 +640,10 @@ export default function PTablePage() {
 
 
     return (
-        <Container maxWidth="xl" sx={{ mt: 2 }}>
-            <Stack direction={{ md: 'column', lg: 'row' }} spacing={2}>
+        <Container maxWidth="xl" sx={{ mt: 0.5 }}>
+            {/* <Stack direction={{ md: 'row', lg: 'row' }} spacing={2}> */}
+
+            <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2}>
                 <SearchBar
                     role={role}
                     setRole={setRole}
@@ -652,13 +653,18 @@ export default function PTablePage() {
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
                 />
+
             </Stack>
 
-            <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-                <Stack direction="row" justifyContent="space-between">
-                    <PostButton />
-                    <ExcelExport users={filteredUsers} />
-                </Stack>
+
+            <TableContainer component={Paper} style={{ marginTop: '10px' }}>
+
+                {/* <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2}> */}
+                {/* <Box></Box> */}
+                <PostSw />
+
+                {/* </Stack> */}
+
 
                 <UserTable
                     users={currentUsers}
@@ -667,16 +673,20 @@ export default function PTablePage() {
                     handleSort={handleSort}
                     handleUpdate={handleUpdate}
                     handleDelete={handleDelete}
-  
-
                 />
             </TableContainer>
 
-            <PaginationComp
-                totalPages={totalPages}
-                currentPage={currentPage}
-                handlePageChange={handlePageChange}
-            />
+            <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2} mt={'10px'}>
+                <Box></Box> 
+                <PaginationComp
+                    totalPages={totalPages}
+                    currentPage={currentPage}
+                    handlePageChange={handlePageChange}
+                />
+                <ExcelExport users={filteredUsers} />
+            </Stack>
+            
+            {/* 박스 , 페이지네이션 , 엑셀 균등간격 양쪽정렬 */}
 
             <SwDialog
                 open={open}
@@ -685,8 +695,6 @@ export default function PTablePage() {
                 onChange={handleInputChange} // 다이얼로그 입력 변화 핸들러
                 onSave={handleSaveUpdate} // 저장 핸들러
             />
-
-
         </Container>
     );
 }

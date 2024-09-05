@@ -185,7 +185,7 @@ body {
 }
 
 
-.button-bg {
+.button-bg { 
   font-weight: bold;
   color: white; /* 기본 글자색 */
   background-color: #44be86;
@@ -200,7 +200,7 @@ body {
 }
 
 
-.button-orange {
+.button-orange {   
   font-weight: bold;
   color: white; /* 기본 글자색 */
   background-color: #44be86;
@@ -213,7 +213,7 @@ body {
 .button-orange:hover {
   background-color: black; /* 마우스 오버 시 배경색 */
 }
-
+/* 녹색배경 */
 
 
 

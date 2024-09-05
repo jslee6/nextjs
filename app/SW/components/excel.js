@@ -14,7 +14,7 @@ const ExcelExport = ({ users }) => {
     };
 
     return (
-        <Button variant="outlined" onClick={exportToExcel}>
+        <Button className='button-red' variant="outlined"  onClick={exportToExcel}>
             엑셀로 내보내기
         </Button>
     );

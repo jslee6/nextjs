@@ -31,6 +31,22 @@ model softWare {
   updatedAt   DateTime?
 }
 
+model softWarehistory {
+  id          Int      @id @default(autoincrement())
+  docsNumber  String?
+  SwuserID    String?
+  name        String?
+  Department  String?
+  SwName      String?
+  period      String?
+  madeCompany String?
+  licensKey   String?
+  etc         String?  @db.Text // TEXT 타입으로 설정
+  changedAt   DateTime @default(now())
+  createdAt DateTime @default(now())
+}
+
+
 model product {
   id          String           @id
   name        String

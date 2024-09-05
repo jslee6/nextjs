@@ -1,31 +1,56 @@
 'use client'
 
 // 풋과 딜리트는 안됨
-import { Button, Input, Stack } from "@mui/material";
+import { Button, Input, Stack, Box, TextField } from "@mui/material";
 
 export default function Enroll() {
-  
+
   return (
-<div>
-      <form action="/api/account/post" method="POST">
-        <Stack direction="row" spacing={2}>
+    <Box sx={{ width: '100%' }}> {/* Box를 사용하여 폭을 100%로 설정 */}
+      <form action="/api/sw/post" method="POST">
+        <Stack direction="row" spacing={1}>
           <div>
-            <Input type="text" name="userId" placeholder="아이디" required />
-            <br></br>
-            <Input type="text" name="password" placeholder="암호" />
+            <Input type="text" name="docsNumber" placeholder="문서번호" />
+            <br />
+            <Input type="text" name="SwName" placeholder="SW명" />
           </div>
+
           <div>
-            <Input type="text" name="role" placeholder="역활" required />
-            <br></br>
-            <Input type="email" name="email" placeholder="이메일" />
+            <Input type="text" name="Department" placeholder="부서" />
+            <br />
+            <Input type="text" name="period" placeholder="기간여부" />
           </div>
-          <Button variant="contained" color="success" type="submit">전송<br></br>하기</Button>      
+
+          <div>
+            <Input type="text" name="SwuserID" placeholder="유저ID" />
+            <br />
+            <Input type="text" name="licensKey" placeholder="라이센스키" />
+          </div>
+
+          <div>
+            <Input type="text" name="name" placeholder="이름" required />
+            <br />
+            <Input type="text" name="madeCompany" placeholder="제조사" />
+          </div>
+          
+          <div>
+            <TextField 
+              name="etc" 
+              placeholder="기타사항" 
+              multiline 
+              rows={2} // 높이를 조정할 수 있는 속성
+              // variant="outlined" // 스타일을 설정
+              sx={{ width: '500px' }} // 원하는 너비로 설정 (예: 500px)
+            />
+          </div>
+          
+          <Button className="button-blue" variant="contained" color="info" type="submit">전송<br></br>하기</Button>
+          <Button className="button-red" variant="contained" color="info" type="submit">전송<br></br>완료</Button>
         </Stack>
       </form>
-    </div>
+    </Box>
   );
 }
 
-// 인풋 태그
 
 

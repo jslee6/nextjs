@@ -182,7 +182,7 @@
 //                             </TableCell>
 
 
-                   
+
 
 //                         </TableRow>
 //                     ))}
@@ -199,9 +199,10 @@
 
 // app/components/UserTable.js
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Input } from '@mui/material';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { format } from 'date-fns';
+
 
 
 
@@ -209,7 +210,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
     return (
         <TableContainer component={Paper}
             style={{
-                marginTop: '30px',
+                marginTop: '20px',
             }}>
             <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
                 {/* 테이블 간격 패딩 전체조정 '8px' */}
@@ -234,6 +235,17 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 문서번호
                             </TableSortLabel>
                         </TableCell>
+
+                        <TableCell className='table-header'>
+                            <TableSortLabel
+                                active={sortColumn === 'SwuserID'}
+                                direction={sortColumn === 'SwuserID' ? sortDirection : 'asc'}
+                                onClick={() => handleSort('SwuserID')}
+                            >
+                                유저ID
+                            </TableSortLabel>
+                        </TableCell>
+
                         <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'name'}
@@ -243,6 +255,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 이름
                             </TableSortLabel>
                         </TableCell>
+
                         <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'Department'}
@@ -319,11 +332,13 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
 
                     </TableRow>
                 </TableHead>
+
                 <TableBody>
                     {users.map(user => (
                         <TableRow key={user.id}>
                             <TableCell>{user.id}</TableCell>
                             <TableCell>{user.docsNumber}</TableCell>
+                            <TableCell>{user.SwuserID}</TableCell>
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.Department}</TableCell>
                             <TableCell>{user.SwName}</TableCell>
@@ -341,14 +356,12 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 </Button>
                             </TableCell>
 
-                       
-
                             <TableCell>
                                 <Button className='button-red' onClick={() => handleDelete(user.id)}>삭제</Button>
                             </TableCell>
 
                             <TableCell>
-                                <input
+                                <Input
                                     type="file"
                                     onChange={(e) => handleFileUpload(e, user.id)}
                                     style={{ display: 'none' }}
@@ -360,6 +373,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                     </Button>
                                 </label>
                             </TableCell>
+
                             <TableCell>
                                 <Button
                                     className='button-orange'
@@ -373,6 +387,8 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 </Button>
                             </TableCell>
                         </TableRow>
+
+
                     ))}
                 </TableBody>
             </Table>
