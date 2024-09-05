@@ -57,9 +57,9 @@ export default function PTablePage() {
         const filtered = users.filter(user => {
 
             const matchesSearchTerm =
-                Object.values(user).some(value =>
-                    value.toString().includes(searchTerm)
-                ); //전체검색 및 문자 변환
+                searchTerm === '' || Object.values(user).some(value =>
+                    value !== null && value !== undefined && value.toString().includes(searchTerm)
+                ); // 전체검색 및 문자 변환  value가 null 또는 undefined일 때 toString() 메서드를 호출할 수 없기에, value !== null && value !== undefined && 추가
 
             const matchesSearchId =
                 user.userId.includes(searchId) || user.password.includes(searchId);

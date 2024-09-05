@@ -10,7 +10,7 @@ function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearch
             {/* <RoleSelect role={role} setRole={setRole} /> */}
             <TextField
                 variant="outlined"
-                label="ID 검색"
+                label="이름 검색"
                 fullWidth
                 sx={{ width: '200%', mt: 2 }}
                 value={searchId}

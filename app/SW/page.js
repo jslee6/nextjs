@@ -453,202 +453,8 @@
 // }
 
 
-
-// 'use client'
-// // 0.users 데이터를 가져옴.
-// // 1. 필터링을 먼저 수행하여 filteredUsers를 만듦.
-// // 2. filteredUsers를 정렬하여 sortedUsers를 만듦.
-// // 3.sortedUsers를 페이지네이션으로 잘라내어 currentUsers를 만듦.
-// // 4. UserTable 컴포넌트로 currentUsers를 전달함.
-
-// import React, { useEffect, useState } from 'react';
-// import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
-// // import AccountDialog from '@/app/components/AccountDialog';
-// import AccountDialog from './components/AccountDialog';
-// import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
-// import axios from 'axios';
-// import PostButton from './components/PostButton';  // 컴포넌트로 뻄 등록기능
-// // import RoleSelect from './components/RoleSelect';  //role 관련 , 직접쓰지않고 SearchBar에서 사용
-// import SearchBar from './components/SearchBar'; // 검색 컴포넌트
-// import UserTable from './components/UserTable'; // 유저 테이블 컴포넌트
-// import PaginationComp from './components/PaginationComp'; //페이지네이션 컴포넌트
-// import ResetPassword from './components/resetPw'; // 암호 초기화
-// // import ExcelExport from './componets/excel'; //엑셀 라이브러리
-// import ExcelExport from './components/excel';
-// import * as XLSX from 'xlsx';
-
-// export default function PTablePage() {
-//     const [users, setUsers] = useState([]);   // 조회 관련 상태
-//     const [selectedUser, setSelectedUser] = useState(null);  // 수정 관련 상태
-//     const [open, setOpen] = useState(false);  // 수정 다이얼로그 상태
-
-//     const [currentPage, setCurrentPage] = useState(1); // 페이지네이션 상태, 초기값 1
-//     const usersPerPage = 10;   // 페이지당 유저 수
-
-//     const [sortColumn, setSortColumn] = useState(null);   // 테이블 소팅 관련 상태
-//     const [sortDirection, setSortDirection] = useState(null);  // 테이블 소팅 방향 상태
-
-//     const [searchTerm, setSearchTerm] = useState(''); // 전체 검색어 상태
-//     const [searchId, setSearchId] = useState(''); // ID 검색어 상태
-//     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 유저 상태
-
-//     const [role, setRole] = useState('all'); // 기본값은 'all' 역할 관련 상태
-
-//     useEffect(() => {
-//         const getUser = async () => {
-//             try {
-//                 const response = await axios.get('/api/sw/get');
-//                 console.log('get data:', response.data);
-//                 setUsers(response.data);
-//                 setFilteredUsers(response.data); // 초기 상태로 전체 유저 설정
-//             } catch (error) {
-//                 console.error('get error:', error);
-//             }
-//         };
-//         getUser();
-//     }, []);
-
-//     // 테이블 소팅 핸들러 함수
-//     const handleSort = (column) => {
-//         if (sortColumn === column) {
-//             setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
-//         } else {
-//             setSortColumn(column);
-//             setSortDirection('asc');
-//         }
-//     };
-
-//     // 통합된 검색 핸들러 함수
-//     const handleSearchBoth = () => {
-//         const filtered = users.filter(user => {
-//             const matchesSearchTerm =
-//                 Object.values(user).some(value =>
-//                     value !== null && value !== undefined && value.toString().includes(searchTerm)
-//                 );
-
-//             const matchesRole =
-//                 role === 'all' || user.role === role;
-
-//             const matchesSearchId =
-//                 user.userId.includes(searchId) || user.password.includes(searchId);
-
-//             return matchesSearchTerm && matchesSearchId && matchesRole;
-//         });
-//         setFilteredUsers(filtered);
-//     };
-
-//     // 필터링된 유저를 정렬하여 sortedUsers를 생성
-//     let sortedUsers = [...filteredUsers];
-//     if (sortColumn) {
-//         sortedUsers.sort((a, b) => {
-//             if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
-//             if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
-//             return 0;
-//         });
-//     }
-
-//     // 페이지네이션 핸들러 함수
-//     const handlePageChange = (event, value) => {
-//         setCurrentPage(value);
-//     };
-
-//     const indexOfLastUser = currentPage * usersPerPage;
-//     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-//     const currentUsers = sortedUsers.slice(indexOfFirstUser, indexOfLastUser);
-//     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
-
-//     // 삭제 핸들러 함수
-//     const handleDelete = async (id) => {
-//         try {
-//             const response = await axios.delete('/api/sw/delete', {
-//                 data: { id: id },
-//             });
-//             const { message } = response.data;
-//             console.log(message);
-
-//             setUsers(users.filter(user => user.id !== id));
-//             setFilteredUsers(filteredUsers.filter(user => user.id !== id));
-//         } catch (error) {
-//             console.error('Delete error:', error);
-//         }
-//     };
-
-//     // 수정 핸들러 함수
-//     const handleUpdate = (user) => {
-//         setSelectedUser(user);
-//         setOpen(true);
-//     };
-
-//     // 수정 저장 핸들러 함수
-//     const handleSaveUpdate = async () => {
-//         try {
-//             const response = await axios.put('/api/sw/put', { ...selectedUser, age: parseInt(selectedUser.age, 10) });
-//             const updatedUser = response.data;
-
-//             // 상태 업데이트: 수정된 유저 정보를 반영
-//             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-//             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-
-//             // 수정된 데이터를 기록하기 위한 추가 요청
-//             await axios.post('/api/accounthistroy/post', { ...updatedUser });
-
-//             setOpen(false);
-//         } catch (error) {
-//             console.error('Update error:', error);
-//         }
-//     };
-
-//     // 수정 다이얼로그의 입력 변화 핸들러 함수
-//     const handleInputChange = (e) => {
-//         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
-//     };
-
-//     return (
-//         <Container maxWidth="xl" sx={{ mt: 2 }}>
-//             <Stack direction={{ md: 'column', lg: 'row' }} spacing={2}>
-//                 <SearchBar
-//                     role={role}
-//                     setRole={setRole}
-//                     searchId={searchId}
-//                     setSearchId={setSearchId}
-//                     searchTerm={searchTerm}
-//                     setSearchTerm={setSearchTerm}
-//                     handleSearchBoth={handleSearchBoth}
-//                 />
-//             </Stack>
-
-//             <TableContainer component={Paper} style={{ marginTop: '30px' }}>
-//                 <Stack direction="row" justifyContent="space-between">
-//                     <PostButton />
-//                     <ExcelExport users={filteredUsers} />
-//                 </Stack>
-
-//                 <UserTable
-//                     users={currentUsers}
-//                     sortColumn={sortColumn}
-//                     sortDirection={sortDirection}
-//                     handleSort={handleSort}
-//                     handleUpdate={handleUpdate}
-//                     handleDelete={handleDelete}
-//                 />
-//             </TableContainer>
-
-//             <PaginationComp
-//                 totalPages={totalPages}
-//                 currentPage={currentPage}
-//                 handlePageChange={handlePageChange}
-//             />
-
-//             <AccountDialog
-//                 open={open}
-//                 onClose={() => setOpen(false)}
-//                 sw={selectedUser}
-//                 onChange={handleInputChange}
-//                 onSave={handleSaveUpdate}
-//             />
-//         </Container>
-//     );
-// }
+//기존
+//app/sw/page.js
 
 'use client'
 // 0.users 데이터를 가져옴.
@@ -673,6 +479,7 @@ import ResetPassword from './components/resetPw'; // 암호 초기화
 import ExcelExport from './components/excel';
 import * as XLSX from 'xlsx';
 import SwDialog from './components/SwDialog';
+
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회 관련 상태
@@ -777,36 +584,39 @@ export default function PTablePage() {
         setOpen(true);
     };
 
+
+
+
     // 수정 저장 핸들러 함수
     // const handleSaveUpdate = async () => {
     //     console.log('handleSaveUpdate called');
     //     try {
     //         const response = await axios.put('/api/sw/put', { ...selectedUser });
     //         const updatedUser = response.data;
-    
+
     //         // 상태 업데이트: 수정된 유저 정보를 반영
     //         setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
     //         setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-    
+
     //         // 수정된 데이터를 기록하기 위한 추가 요청
     //         await axios.post('/api/accounthistroy/post', { ...updatedUser });
-    
+
     //         setOpen(false); // 모달 창 닫기
     //     } catch (error) {
     //         console.error('Update error:', error);
     //     }
     // };
-    
+
     const handleSaveUpdate = async () => {
         console.log('handleSaveUpdate called');
         try {
             const response = await axios.put('/api/sw/put', { ...selectedUser });
             const updatedUser = response.data;
-    
+
             // 상태 업데이트: 수정된 유저 정보를 반영
             setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-    
+
             // 수정된 데이터를 기록하기 위한 추가 요청
             await axios.post('/api/accounthistroy/post', { ...updatedUser });
         } catch (error) {
@@ -816,7 +626,7 @@ export default function PTablePage() {
             setOpen(false);
         }
     };
-    
+
 
 
     // 수정 다이얼로그의 입력 변화 핸들러 함수
@@ -857,6 +667,8 @@ export default function PTablePage() {
                     handleSort={handleSort}
                     handleUpdate={handleUpdate}
                     handleDelete={handleDelete}
+  
+
                 />
             </TableContainer>
 
@@ -873,6 +685,8 @@ export default function PTablePage() {
                 onChange={handleInputChange} // 다이얼로그 입력 변화 핸들러
                 onSave={handleSaveUpdate} // 저장 핸들러
             />
+
+
         </Container>
     );
 }
