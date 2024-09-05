@@ -3,7 +3,7 @@ import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button } from '@mui/material';
 
 // const AccountDialog = ({ open, onClose, user, onChange, onSave }) => {
-const AccountDialog = ({ open, onClose, sw, onChange, onSave }) => {
+const SwDialog = ({ open, onClose, sw, onChange, onSave }) => {
     return (
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>사용자 정보 수정</DialogTitle>
@@ -109,4 +109,4 @@ const AccountDialog = ({ open, onClose, sw, onChange, onSave }) => {
     );
 };
 
-export default AccountDialog;
+export default SwDialog;

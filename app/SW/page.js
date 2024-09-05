@@ -660,7 +660,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
 // import AccountDialog from '@/app/components/AccountDialog';
-import AccountDialog from './components/AccountDialog';
+import AccountDialog from './components/SwDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import PostButton from './components/PostButton';  // 컴포넌트로 뻄 등록기능
@@ -672,6 +672,7 @@ import ResetPassword from './components/resetPw'; // 암호 초기화
 // import ExcelExport from './componets/excel'; //엑셀 라이브러리
 import ExcelExport from './components/excel';
 import * as XLSX from 'xlsx';
+import SwDialog from './components/SwDialog';
 
 export default function PTablePage() {
     const [users, setUsers] = useState([]);   // 조회 관련 상태
@@ -822,6 +823,12 @@ export default function PTablePage() {
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
     };
+    //기존의 selectedUser 객체의 모든 속성을 복사
+    // 입력 필드의 name 속성을 키로, value 속성을 값으로 설정
+
+    // [e.target.name] 이벤트가 발생한 요소(예: 입력 필드)의 name 속성 값을 가져옴
+    //. e.target.value  이벤트가 발생한 요소의 현재 값(value)을 가져옵니다. 입력 필드에 "30"을 입력했다면, e.target.value는 "30"이라는 문자열을 반환합니다.
+
 
     return (
         <Container maxWidth="xl" sx={{ mt: 2 }}>
@@ -859,7 +866,7 @@ export default function PTablePage() {
                 handlePageChange={handlePageChange}
             />
 
-            <AccountDialog
+            <SwDialog
                 open={open}
                 onClose={() => setOpen(false)}
                 sw={selectedUser} // 수정할 유저 데이터 전달

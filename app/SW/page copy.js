@@ -8,7 +8,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, TextField, Stack, Pagination } from '@mui/material';
 // import AccountDialog from '@/app/components/AccountDialog';
-import AccountDialog from './components/AccountDialog';
+import AccountDialog from './components/SwDialog';
 import TableSortLabel from '@mui/material/TableSortLabel'; // 테이블소팅관련
 import axios from 'axios';
 import Enroll from './enroll/page'; // 포스트  페이지 가져옴 + 닫기 버튼 추가
