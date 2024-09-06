@@ -62,9 +62,9 @@
 
 //     const indexOfLastUser = currentPage * usersPerPage;
 //     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    
+
 //     const filteredUsers = id ? sortedUsers.filter(user => user.title.includes(id)) : sortedUsers;
-    
+
 //     const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
 //     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
@@ -193,7 +193,7 @@ export default function PTablePage() {
     // 현재 페이지 번호를 저장할 상태 변수
     const [currentPage, setCurrentPage] = useState(1);
     // 한 페이지에 표시할 사용자 수
-    const usersPerPage = 10;
+    const usersPerPage = 12;
     // 현재 정렬된 열과 정렬 방향을 저장할 상태 변수
     const [sortColumn, setSortColumn] = useState(null);
     const [sortDirection, setSortDirection] = useState(null);
@@ -249,7 +249,7 @@ export default function PTablePage() {
     // 현재 페이지에서 보여줄 사용자 목록의 시작과 끝 인덱스를 계산합니다.
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    
+
     // 'id' 쿼리 파라미터에 맞는 사용자만 필터링합니다.
     const filteredUsers = id ? sortedUsers.filter(user => user.title.includes(id)) : sortedUsers;
     // 현재 페이지에 표시할 사용자 목록을 가져옵니다.
@@ -281,22 +281,22 @@ export default function PTablePage() {
         <Container maxWidth="xl">
             <Grid container spacing={2}>
                 {/* 왼쪽에 테이블을 표시하는 Grid */}
-                <Grid item xs={7}>
+                <Grid item xs={6}>
                     <TableContainer component={Paper} sx={{ marginTop: '30px' }}>
                         <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
                             <TableHead>
                                 <TableRow>
                                     {/* 각 열의 제목과 정렬 기능을 제공하는 TableSortLabel */}
-                                    <TableCell>
+                                    <TableCell className='table-header'>
                                         <TableSortLabel
                                             active={sortColumn === 'id'}
                                             direction={sortColumn === 'id' ? sortDirection : 'asc'}
                                             onClick={() => handleSort('id')}
                                         >
-                                            ID(숨김처리예정)
+                                            ID
                                         </TableSortLabel>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className='table-header'>
                                         <TableSortLabel
                                             active={sortColumn === 'title'}
                                             direction={sortColumn === 'title' ? sortDirection : 'asc'}
@@ -305,7 +305,7 @@ export default function PTablePage() {
                                             Title
                                         </TableSortLabel>
                                     </TableCell>
-                                    <TableCell>
+                                    <TableCell className='table-header'>
                                         <TableSortLabel
                                             active={sortColumn === 'imageUrl'}
                                             direction={sortColumn === 'imageUrl' ? sortDirection : 'asc'}
@@ -314,7 +314,7 @@ export default function PTablePage() {
                                             Image URL
                                         </TableSortLabel>
                                     </TableCell>
-                                    <TableCell>Delete</TableCell>
+                                    <TableCell className='table-header'>Delete</TableCell>
                                 </TableRow>
                             </TableHead>
 
@@ -329,7 +329,7 @@ export default function PTablePage() {
                                                 {user.imageUrl}
                                             </a>
                                         </TableCell>
-                                        <TableCell>
+                                        <TableCell align="center">
                                             <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
                                         </TableCell>
                                     </TableRow>
@@ -349,20 +349,20 @@ export default function PTablePage() {
                     </Stack>
                 </Grid>
                 {/* 오른쪽에 파일 미리보기 및 선택된 파일을 표시하는 Grid */}
-                <Grid item xs={5}>
+                <Grid item xs={6}>
                     {selectedFile && (
-                        <Box sx={{ mt: '100px', textAlign: 'center' }}>
+                        <Box sx={{ mt: '30px', textAlign: 'center' }}>
                             {fileType === 'pdf' ? (
                                 <iframe
                                     src={selectedFile}
-                                    style={{ width: '100%', height: '500px' }}
+                                    style={{ width: '100%', height: '700px' }}
                                     title="PDF Viewer"
                                 />
                             ) : (
                                 <img
                                     src={selectedFile}
                                     alt="Selected"
-                                    style={{ maxWidth: '100%', borderRadius: '8px' }}
+                                    style={{ maxWidth: '100%', height: '700px', borderRadius: '8px' }}
                                 />
                             )}
                         </Box>
