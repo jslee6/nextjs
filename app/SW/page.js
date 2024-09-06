@@ -534,26 +534,41 @@ export default function PTablePage() {
     };
 
     // 통합된 검색 핸들러 함수
-    const handleSearchBoth = () => {
-        const filtered = users.filter(user => {
-            const matchesSearchTerm =
-                Object.values(user).some(value =>
-                    value !== null && value !== undefined && value.toString().includes(searchTerm)
-                );
+   
 
-            const matchesRole =
-                role === 'all' || user.role === role;
+    // 통합된 검색 핸들러 함수
+const handleSearchBoth = () => {
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const lowerCaseSearchId = searchId.toLowerCase();
 
-            const matchesSearchId =
-                // user.SwuserID && user.SwuserID.includes(searchId); // SwuserID로 검색
-                user.name && user.name.includes(searchId); // name 이름으로 검색
+    const filtered = users.filter(user => {
+        const matchesSearchTerm =
+            Object.values(user).some(value =>
+                value !== null && value !== undefined && value.toString().toLowerCase().includes(lowerCaseSearchTerm)
+                //모두 소문자로 보냄 .검색을 위함
+            );
 
-            return matchesSearchTerm && matchesSearchId && matchesRole;
-        });
-        setFilteredUsers(filtered);
-    };
+        const matchesRole =
+            role === 'all' || user.role === role;
+
+        const matchesSearchId =
+            user.name && user.name.toLowerCase().includes(lowerCaseSearchId); // name 이름으로 검색 
+             //모두 소문자로 보냄 .검색을 위함
+        
+
+        return matchesSearchTerm && matchesSearchId && matchesRole;
+    });
+    setFilteredUsers(filtered);
+};
+
+
+
+
+
+
 
     // 필터링된 유저를 정렬하여 sortedUsers를 생성
+
     let sortedUsers = [...filteredUsers];
     if (sortColumn) {
         sortedUsers.sort((a, b) => {
@@ -692,6 +707,7 @@ export default function PTablePage() {
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
                     handleButtonClick={handleButtonClick}
+            
                 />
 
             </Stack>

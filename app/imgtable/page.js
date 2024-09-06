@@ -383,6 +383,9 @@ import { Grid, Box, Container, Table, TableBody, TableCell, TableContainer, Tabl
 import TableSortLabel from '@mui/material/TableSortLabel';
 import axios from 'axios'; // 데이터 요청을 위한 라이브러리
 import { useSearchParams } from 'next/navigation'; // URL 쿼리 파라미터를 읽기 위한 hook**********
+import SearchBar from './componets/SearchBar';
+
+
 
 // PTablePage 컴포넌트를 정의합니다.
 export default function PTablePage() {
@@ -402,6 +405,7 @@ export default function PTablePage() {
     // 쿼리스트링에서 'id'를 가져오기 위한 hook
     const params = useSearchParams();
     const id = params.get('id'); // 'id' 파라미터 값
+    // const [searchTerm, setSearchTerm] = useState(''); // 전체 검색어 상태
 
     // 컴포넌트가 마운트될 때 사용자 데이터를 가져오는 함수
     useEffect(() => {
@@ -444,10 +448,19 @@ export default function PTablePage() {
         });
     }
 
+
+    
+
+
+
+
+
     // 페이지 변경 시 호출되는 함수
     const handlePageChange = (event, value) => {
         setCurrentPage(value); // 현재 페이지 상태를 업데이트합니다.
     };
+
+
 
     // 현재 페이지에서 보여줄 사용자 목록의 시작과 끝 인덱스를 계산합니다.
     const indexOfLastUser = currentPage * usersPerPage;
@@ -482,6 +495,11 @@ export default function PTablePage() {
 
     return (
         <Container maxWidth="xl">
+            <SearchBar
+                // setSearchTerm={setSearchTerm}
+
+            ></SearchBar>
+
             <Grid container spacing={2}>
                 {/* 왼쪽에 테이블을 표시하는 Grid */}
                 <Grid item xs={6}>
@@ -589,7 +607,7 @@ export default function PTablePage() {
                             />
                         )
                     ) : (
-                   
+
                         <Box
                             sx={{
                                 mt: '30px',
@@ -615,3 +633,6 @@ export default function PTablePage() {
         </Container>
     );
 }
+
+
+//setSearchTerm
