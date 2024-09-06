@@ -24,8 +24,8 @@ function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearch
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
-            <Button variant="contained" sx={{ width: '50px', mt: 2 }} component={Link} href="/account/accountHistory">수정이력</Button>
+            <Button className='button-blue' variant="contained" onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
+            <Button className='button-blue' variant="contained" sx={{ width: '50px', mt: 2 }} component={Link} href="/account/accountHistory">수정이력</Button>
             {/* D:\self\nextjs\app\account\accountHistory\page.js */}
         </Stack>
     );

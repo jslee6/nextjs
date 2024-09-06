@@ -48,6 +48,7 @@ const ResetPassword = () => {
         />
 
         <Button
+          className='button-red'
           sx={{ width: '50px' }}
           variant="contained"
           color="error" onClick={handleResetPassword}>암호리셋</Button>

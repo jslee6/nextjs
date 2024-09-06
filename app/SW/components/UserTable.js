@@ -206,7 +206,7 @@ import { format } from 'date-fns';
 
 
 
-function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload,handleButtonClick }) {
+function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload, handleButtonClick }) {
     return (
         <TableContainer component={Paper}
             style={{
@@ -382,7 +382,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                     id={`upload-button-${user.id}`}
                                 />
                                 <label htmlFor={`upload-button-${user.id}`}>
-                                    <Button variant="contained" component="span">
+                                    <Button className='button-orange' variant="contained" component="span">
                                         첨부
                                     </Button>
                                 </label>

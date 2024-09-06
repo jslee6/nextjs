@@ -13,7 +13,7 @@ function PostSw() {
 
     return (
         <div>
-            <Button
+            <Button className='button-blue'
                 variant="contained"
                 color="primary"
                 onClick={handlePostButtonClick}

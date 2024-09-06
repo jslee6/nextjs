@@ -14,6 +14,7 @@ function PostButton() {
     return (
         <div>
             <Button
+                className='button-blue'
                 variant="contained"
                 color="primary"
                 onClick={handlePostButtonClick}

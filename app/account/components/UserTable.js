@@ -13,7 +13,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
             {/* 테이블 간격 패딩 전체조정 '8px' */}
                 <TableHead>
                     <TableRow>
-                        <TableCell>
+                        <TableCell className='table-header'> 
                             <TableSortLabel
                                 active={sortColumn === 'id'}
                                 direction={sortColumn === 'id' ? sortDirection : 'asc'}
@@ -22,7 +22,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 ID(숨김처리예정)
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'userId'}
                                 direction={sortColumn === 'userId' ? sortDirection : 'asc'}
@@ -31,7 +31,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 userId
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'password'}
                                 direction={sortColumn === 'password' ? sortDirection : 'asc'}
@@ -40,7 +40,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 password
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'email'}
                                 direction={sortColumn === 'email' ? sortDirection : 'asc'}
@@ -49,7 +49,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 Email
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'role'}
                                 direction={sortColumn === 'role' ? sortDirection : 'asc'}
@@ -60,7 +60,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                         </TableCell>
 
 
-                        <TableCell>
+                        <TableCell className='table-header'>
                             <TableSortLabel
                                 active={sortColumn === 'c'}
                                 direction={sortColumn === 'role' ? sortDirection : 'asc'}
@@ -70,8 +70,8 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             </TableSortLabel>
                         </TableCell>
 
-                        <TableCell sx={{ width: '10px' }}>Update</TableCell>
-                        <TableCell>Delete</TableCell>
+                        <TableCell className='table-header' sx={{ width: '10px' }}>Update</TableCell>
+                        <TableCell className='table-header' >Delete</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -84,12 +84,12 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             <TableCell>{user.role}</TableCell>
                             <TableCell>  {format(new Date(user.createdAt), 'yyyy-MM-dd HH:mm')} {/* 날짜 포맷팅 */}</TableCell>
                             <TableCell>
-                                <Button variant="contained" color="primary" onClick={() => handleUpdate(user)}>
+                                <Button className='button-blue' variant="contained" color="primary" onClick={() => handleUpdate(user)}>
                                     수정
                                 </Button>
                             </TableCell>
                             <TableCell>
-                                <Button variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
+                                <Button  className='button-red' variant="contained" color="error" onClick={() => handleDelete(user.id)}>삭제</Button>
                             </TableCell>
                         </TableRow>
                     ))}
