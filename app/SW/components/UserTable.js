@@ -206,7 +206,7 @@ import { format } from 'date-fns';
 
 
 
-function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete }) {
+function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload,handleButtonClick }) {
     return (
         <TableContainer component={Paper}
             style={{
@@ -360,7 +360,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 <Button className='button-red' onClick={() => handleDelete(user.id)}>삭제</Button>
                             </TableCell>
 
-                            <TableCell>
+                            {/* <TableCell>
                                 <Input
                                     type="file"
                                     onChange={(e) => handleFileUpload(e, user.id)}
@@ -369,6 +369,20 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 />
                                 <label htmlFor={`upload-button-${user.id}`}>
                                     <Button className='button-bg' component="span">
+                                        첨부
+                                    </Button>
+                                </label>
+                            </TableCell> */}
+
+                            <TableCell>
+                                <input
+                                    type="file"
+                                    onChange={(e) => handleFileUpload(e, user.id)}
+                                    style={{ display: 'none' }}
+                                    id={`upload-button-${user.id}`}
+                                />
+                                <label htmlFor={`upload-button-${user.id}`}>
+                                    <Button variant="contained" component="span">
                                         첨부
                                     </Button>
                                 </label>

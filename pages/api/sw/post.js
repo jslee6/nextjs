@@ -16,7 +16,7 @@ export default async function handler(req, res) {
       });
 
       // 리다이렉트 또는 성공 응답
-      res.status(201).json(newUser);  // 성공적인 응답
+      // res.status(201).json(newUser);  // 성공적인 응답
     } catch (error) {
       console.error('Error creating user:', error);
       res.status(500).json({ error: 'Failed to create SW', details: error.message });

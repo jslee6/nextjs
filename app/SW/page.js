@@ -480,6 +480,7 @@ import ExcelExport from './components/excel';
 import * as XLSX from 'xlsx';
 import SwDialog from './components/SwDialog';
 import PostSw from './components/PostSw';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -497,8 +498,16 @@ export default function PTablePage() {
     const [searchTerm, setSearchTerm] = useState(''); // 전체 검색어 상태
     const [searchId, setSearchId] = useState(''); // ID 검색어 상태
     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 유저 상태
+    
 
     const [role, setRole] = useState('all'); // 기본값은 'all' 역할 관련 상태
+
+    const router = useRouter();    // 이동관련 유즈라우터 및 라우팅 관련 핸들러
+    const handleButtonClick = (id) => {
+        router.push(`/imgtable?id=${id}`);
+    }; // 이동관련 유즈라우터 및 라우팅 관련 핸들러
+
+    
 
     useEffect(() => {
         const getUser = async () => {
@@ -639,6 +648,36 @@ export default function PTablePage() {
     //. e.target.value  이벤트가 발생한 요소의 현재 값(value)을 가져옵니다. 입력 필드에 "30"을 입력했다면, e.target.value는 "30"이라는 문자열을 반환합니다.
 
 
+    //File 추가 핸들러
+    const handleFileUpload = async (e, userId) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('title', `${userId}`);
+
+        // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
+        // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
+        // 따라서, 사용자가 'Upload' 버튼을 클릭하고 파일을 선택하면title필드는 자동으로'User ' + user.id` 값으로 설정됩니다.
+
+
+        try {
+            const response = await axios.post('/api/products/upload', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            });
+
+            const updatedProduct = response.data;
+            setUsers(users.map(user => (user.id === userId ? { ...user, imageUrl: updatedProduct.imageUrl } : user)));
+        } catch (error) {
+            console.error('File upload error:', error);
+        }
+    };
+    //File 추가 핸들러
+
+
+
+
     return (
         <Container maxWidth="xl" sx={{ mt: 0.5 }}>
             {/* <Stack direction={{ md: 'row', lg: 'row' }} spacing={2}> */}
@@ -652,6 +691,7 @@ export default function PTablePage() {
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
+                    handleButtonClick={handleButtonClick}
                 />
 
             </Stack>
@@ -673,11 +713,13 @@ export default function PTablePage() {
                     handleSort={handleSort}
                     handleUpdate={handleUpdate}
                     handleDelete={handleDelete}
+                    handleFileUpload={handleFileUpload}
+                    handleButtonClick={handleButtonClick}
                 />
             </TableContainer>
 
             <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2} mt={'10px'}>
-                <Box></Box> 
+                <Box></Box>
                 <PaginationComp
                     totalPages={totalPages}
                     currentPage={currentPage}
@@ -685,7 +727,7 @@ export default function PTablePage() {
                 />
                 <ExcelExport users={filteredUsers} />
             </Stack>
-            
+
             {/* 박스 , 페이지네이션 , 엑셀 균등간격 양쪽정렬 */}
 
             <SwDialog
