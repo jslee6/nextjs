@@ -15,7 +15,7 @@ export default function Enroll() {
             <Input type="text" name="password" placeholder="암호" />
           </div>
           <div>
-            <Input type="text" name="role" placeholder="역활" required />
+            <Input type="text" name="role" placeholder="역할" required />
             <br></br>
             <Input type="email" name="email" placeholder="이메일" />
           </div>

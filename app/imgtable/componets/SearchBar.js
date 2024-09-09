@@ -17,6 +17,7 @@ function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearch
                 value={searchId}
                 onChange={(e) => setSearchId(e.target.value)}
             />
+            
             <TextField
                 variant="outlined"
                 label="전체검색"

@@ -498,16 +498,16 @@ export default function PTablePage() {
     const [searchTerm, setSearchTerm] = useState(''); // 전체 검색어 상태
     const [searchId, setSearchId] = useState(''); // ID 검색어 상태
     const [filteredUsers, setFilteredUsers] = useState([]); // 필터링된 유저 상태
-    
+
 
     const [role, setRole] = useState('all'); // 기본값은 'all' 역할 관련 상태
 
     const router = useRouter();    // 이동관련 유즈라우터 및 라우팅 관련 핸들러
-    const handleButtonClick = (id) => {
-        router.push(`/imgtable?id=${id}`);
+    const handleButtonClick = (id_title) => {
+        router.push(`/imgtable?id=${id_title}`);
     }; // 이동관련 유즈라우터 및 라우팅 관련 핸들러
 
-    
+
 
     useEffect(() => {
         const getUser = async () => {
@@ -534,32 +534,32 @@ export default function PTablePage() {
     };
 
     // 통합된 검색 핸들러 함수
-   
+
 
     // 통합된 검색 핸들러 함수
-const handleSearchBoth = () => {
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    const lowerCaseSearchId = searchId.toLowerCase();
+    const handleSearchBoth = () => {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        const lowerCaseSearchId = searchId.toLowerCase();
 
-    const filtered = users.filter(user => {
-        const matchesSearchTerm =
-            Object.values(user).some(value =>
-                value !== null && value !== undefined && value.toString().toLowerCase().includes(lowerCaseSearchTerm)
-                //모두 소문자로 보냄 .검색을 위함
-            );
+        const filtered = users.filter(user => {
+            const matchesSearchTerm =
+                Object.values(user).some(value =>
+                    value !== null && value !== undefined && value.toString().toLowerCase().includes(lowerCaseSearchTerm)
+                    //모두 소문자로 보냄 .검색을 위함
+                );
 
-        const matchesRole =
-            role === 'all' || user.role === role;
+            const matchesRole =
+                role === 'all' || user.role === role;
 
-        const matchesSearchId =
-            user.name && user.name.toLowerCase().includes(lowerCaseSearchId); // name 이름으로 검색 
-             //모두 소문자로 보냄 .검색을 위함
-        
+            const matchesSearchId =
+                user.name && user.name.toLowerCase().includes(lowerCaseSearchId); // name 이름으로 검색 
+            //모두 소문자로 보냄 .검색을 위함
 
-        return matchesSearchTerm && matchesSearchId && matchesRole;
-    });
-    setFilteredUsers(filtered);
-};
+
+            return matchesSearchTerm && matchesSearchId && matchesRole;
+        });
+        setFilteredUsers(filtered);
+    };
 
 
     // 필터링된 유저를 정렬하여 sortedUsers를 생성
@@ -665,8 +665,8 @@ const handleSearchBoth = () => {
 
         const formData = new FormData();
         formData.append('image', file);
-        formData.append('title', `SW_${userId}`);
-        //SW_PK 값( 유저ID)
+        formData.append('title', `[SW]_${userId}`);
+        //[SW]_PK+ PK(유저ID),  [@@]_으로 테이블 구분할예정
 
         // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
         // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
@@ -702,7 +702,7 @@ const handleSearchBoth = () => {
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
-                    handleButtonClick={handleButtonClick}  
+                    handleButtonClick={handleButtonClick}
                 />
 
             </Stack>

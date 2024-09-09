@@ -34,7 +34,7 @@ const AccountDialog = ({ open, onClose, account, onChange, onSave }) => {
                 /> */}
                 <TextField
                     name="role"
-                    label="역활"
+                    label="역할"
                     value={account?.role || ''}
                     onChange={onChange}
                     margin="normal"
