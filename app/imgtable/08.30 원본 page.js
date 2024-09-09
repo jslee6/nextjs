@@ -21,7 +21,7 @@
 //     useEffect(() => {
 //         const getUser = async () => {
 //             try {
-//                 const response = await axios.get('/api/imgtest/get');
+//                 const response = await axios.get('/api/image/get');
 //                 setUsers(response.data);
 //             } catch (error) {
 //                 console.error('get error:', error);
@@ -59,7 +59,7 @@
 
 //     const handleDelete = async (userId) => {
 //         try {
-//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             await axios.delete('/api/image/delete', { data: { id: userId } });
 //             setUsers(users.filter(user => user.id !== userId));
 //         } catch (error) {
 //             console.error('Delete error:', error);
@@ -193,7 +193,7 @@ export default function PTablePage() {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get('/api/imgtest/get');
+                const response = await axios.get('/api/image/get');
                 setUsers(response.data);
             } catch (error) {
                 console.error('get error:', error);
@@ -239,7 +239,7 @@ export default function PTablePage() {
 
     const handleDelete = async (userId) => {
         try {
-            await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+            await axios.delete('/api/image/delete', { data: { id: userId } });
             setUsers(users.filter(user => user.id !== userId));
         } catch (error) {
             console.error('Delete error:', error);
@@ -368,7 +368,7 @@ export default function PTablePage() {
 //     useEffect(() => {
 //         const getUser = async () => {
 //             try {
-//                 const response = await axios.get('/api/imgtest/get');
+//                 const response = await axios.get('/api/image/get');
 //                 setUsers(response.data);
 //             } catch (error) {
 //                 console.error('get error:', error);
@@ -409,7 +409,7 @@ export default function PTablePage() {
 
 //     const handleDelete = async (userId) => {
 //         try {
-//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             await axios.delete('/api/image/delete', { data: { id: userId } });
 //             setUsers(users.filter(user => user.id !== userId));
 //         } catch (error) {
 //             console.error('Delete error:', error);

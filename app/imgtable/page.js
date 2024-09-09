@@ -40,7 +40,7 @@
 //         const getUser = async () => {
 //             try {
 //                 // API 호출을 통해 사용자 데이터를 가져옵니다.
-//                 const response = await axios.get('/api/imgtest/get');
+//                 const response = await axios.get('/api/image/get');
 //                 setUsers(response.data); // 가져온 데이터를 상태에 저장합니다.
 //             } catch (error) {
 //                 console.error('get error:', error); // 오류 발생 시 콘솔에 출력합니다.
@@ -94,7 +94,7 @@
 //     const handleDelete = async (userId) => {
 //         try {
 //             // 사용자 삭제 요청을 보냅니다.
-//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             await axios.delete('/api/image/delete', { data: { id: userId } });
 //             // 삭제한 사용자 제외하고 상태를 업데이트합니다.
 //             setUsers(users.filter(user => user.id !== userId));
 //         } catch (error) {
@@ -235,7 +235,7 @@
 //     useEffect(() => {
 //         const fetchData = async () => {
 //             try {
-//                 const response = await axios.get('/api/imgtest/get');
+//                 const response = await axios.get('/api/image/get');
 //                 setUsers(response.data); // 사용자 데이터를 상태에 저장
 //             } catch (error) {
 //                 console.error('Error fetching data:', error);
@@ -309,7 +309,7 @@
 //     // 사용자 삭제 처리 함수
 //     const handleDelete = async (userId) => {
 //         try {
-//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             await axios.delete('/api/image/delete', { data: { id: userId } });
 //             // 삭제 후 사용자 데이터 업데이트
 //             setUsers(users.filter(user => user.id !== userId));
 //             setFilteredUsers(filteredUsers.filter(user => user.id !== userId));
@@ -413,7 +413,7 @@
 //     useEffect(() => {
 //         const getUser = async () => {
 //             try {
-//                 const response = await axios.get('/api/imgtest/get');
+//                 const response = await axios.get('/api/image/get');
 //                 console.log('get data:', response.data);
 //                 setUsers(response.data);
 //                 setFilteredUsers(response.data); // 초기 상태로 전체 유저 설정
@@ -429,7 +429,7 @@
 //     // useEffect(() => {
 //     //     const fetchData = async () => {
 //     //         try {
-//     //             const response = await axios.get('/api/imgtest/get');
+//     //             const response = await axios.get('/api/image/get');
 //     //             setUsers(response.data); // 사용자 데이터를 상태에 저장
 //     //         } catch (error) {
 //     //             console.error('Error fetching data:', error);
@@ -504,7 +504,7 @@
 //     // 사용자 삭제 처리 함수
 //     const handleDelete = async (userId) => {
 //         try {
-//             await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+//             await axios.delete('/api/image/delete', { data: { id: userId } });
 //             // 삭제 후 사용자 데이터 업데이트
 //             setUsers(users.filter(user => user.id !== userId));
 //             setFilteredUsers(filteredUsers.filter(user => user.id !== userId));
@@ -609,7 +609,7 @@ export default function PTablePage() {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get('/api/imgtest/get');
+                const response = await axios.get('/api/image/get');
                 console.log('get data:', response.data); // 디버깅을 위한 데이터 출력
                 setUsers(response.data); // 모든 사용자 데이터 설정
                 setFilteredUsers(response.data); // 초기 상태로 필터링된 사용자 설정
@@ -684,7 +684,7 @@ export default function PTablePage() {
     // 사용자 삭제를 처리하는 함수
     const handleDelete = async (userId) => {
         try {
-            await axios.delete('/api/imgtest/delete', { data: { id: userId } });
+            await axios.delete('/api/image/delete', { data: { id: userId } });
             // 삭제 후 사용자 데이터를 업데이트
             setUsers(users.filter(user => user.id !== userId));
             setFilteredUsers(filteredUsers.filter(user => user.id !== userId));
