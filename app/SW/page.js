@@ -562,11 +562,6 @@ const handleSearchBoth = () => {
 };
 
 
-
-
-
-
-
     // 필터링된 유저를 정렬하여 sortedUsers를 생성
 
     let sortedUsers = [...filteredUsers];
@@ -642,7 +637,7 @@ const handleSearchBoth = () => {
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
 
             // 수정된 데이터를 기록하기 위한 추가 요청
-            await axios.post('/api/accounthistroy/post', { ...updatedUser });
+            // await axios.post('/api/accounthistroy/post', { ...updatedUser });
         } catch (error) {
             console.error('Update error:', error);
         } finally {
@@ -706,8 +701,7 @@ const handleSearchBoth = () => {
                     searchTerm={searchTerm}
                     setSearchTerm={setSearchTerm}
                     handleSearchBoth={handleSearchBoth}
-                    handleButtonClick={handleButtonClick}
-            
+                    handleButtonClick={handleButtonClick}  
                 />
 
             </Stack>
