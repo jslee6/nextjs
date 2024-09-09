@@ -21,7 +21,7 @@ export default function SwManage() {
         <List>
           <ListItem className="typo-sidebar" component={Link} href="/SW">
             {/* <ListItemText primary="temp" /> */}
-            <Typography className="typo-sidebar" component="span">SW 조회</Typography> {/* 스타일 적용 */}
+            <Typography className="typo-sidebar" component="span">SW 관리</Typography> {/* 스타일 적용 */}
           </ListItem>
           <Divider />
 

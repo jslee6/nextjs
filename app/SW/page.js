@@ -665,7 +665,8 @@ const handleSearchBoth = () => {
 
         const formData = new FormData();
         formData.append('image', file);
-        formData.append('title', `${userId}`);
+        formData.append('title', `SW_${userId}`);
+        //SW_PK 값( 유저ID)
 
         // 다른 필드값으로 으로 쓰고싶으면 하단 upload 버튼에서    'onChange={(e) => handleFileUpload(e, user.id)} ' 온체인지 뒤에 user.필요필드로 변경
         // formData.append('title', \User ${userId}`);라인은 업로드할 파일과 함께title필드를User {userId}형식으로 서버에 전송하도록 설정하고 있습니다. 
