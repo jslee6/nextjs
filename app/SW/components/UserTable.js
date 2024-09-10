@@ -434,12 +434,15 @@
 // export default UserTable;
 
 
+//\app\SW\components\UserTable.js
+
 import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Box } from '@mui/material';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { format } from 'date-fns';
+import ExcelExport from './excel';
 
-function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload, handleButtonClick }) {
+function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload, handleButtonClick, filteredUsers }) {
     const [isDocsNumberVisible, setDocsNumberVisible] = useState(true);
     const [isEtcVisible, setEtcVisible] = useState(true);
     const [isCreatedAtVisible, setCreatedAtVisible] = useState(true); // '생성일자' 가시성 상태 추가
@@ -459,25 +462,32 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
     // 토글 핸들러 함수
 
     return (
-        <TableContainer component={Paper} style={{ marginTop: '20px' }}>
-            <div>
-                {/*  토글 핸들러 버튼 */}
-                <Button onClick={toggleDocsNumberVisibility}>
-                    {isDocsNumberVisible ? '문서번호 숨기기' : '문서번호 보이기'}
-                </Button>
-                <Button onClick={toggleEtcVisibility}>
-                    {isEtcVisible ? '기타내역 숨기기' : '기타내역 보이기'}
-                </Button>
-                <Button onClick={toggleCreatedAtVisibility}>
-                    {isCreatedAtVisible ? '생성일자 숨기기' : '생성일자 보이기'}
-                </Button> {/* '생성일자' 토글 버튼 추가 */}
-            </div>
+        <TableContainer component={Paper} style={{ marginTop: '5px' }}>
+            <Box>
+                <Stack mb={'5px'}>
+                    <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between">
+                        <Stack direction={{ md: 'row', lg: 'row' }} spacing={2} >
+                            {/*  토글 핸들러 버튼 */}
+                            <Button onClick={toggleDocsNumberVisibility}>
+                                {isDocsNumberVisible ? '문서번호 숨기기' : '문서번호 보이기'}
+                            </Button>
+                            <Button onClick={toggleEtcVisibility}>
+                                {isEtcVisible ? '기타내역 숨기기' : '기타내역 보이기'}
+                            </Button>
+                            <Button onClick={toggleCreatedAtVisibility}>
+                                {isCreatedAtVisible ? '생성일자 숨기기' : '생성일자 보이기'}
+                            </Button> {/* '생성일자' 토글 버튼 추가 */}
+                        </Stack>
+                        <ExcelExport users={filteredUsers} />
+                    </Stack>
+                </Stack>
+            </Box>
             {/*  토글 핸들러 버튼 */}
 
 
 
             <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
-                <TableHead>
+                <TableHead >
                     <TableRow>
                         <TableCell className='table-header'>
                             <TableSortLabel
@@ -585,7 +595,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             </TableCell>
                         )}
 
-                        {isCreatedAtVisible && ( 
+                        {isCreatedAtVisible && (
                             //토글 조건부 랜더링
                             <TableCell className='table-header'>
                                 <TableSortLabel

@@ -535,7 +535,6 @@ export default function PTablePage() {
 
     // 통합된 검색 핸들러 함수
 
-
     // 통합된 검색 핸들러 함수
     const handleSearchBoth = () => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
@@ -605,7 +604,6 @@ export default function PTablePage() {
         setOpen(true);
     };
 
-
     // 수정 저장 핸들러 함수
     // const handleSaveUpdate = async () => {
     //     console.log('handleSaveUpdate called');
@@ -646,7 +644,6 @@ export default function PTablePage() {
         }
     };
 
-
     // 수정 다이얼로그의 입력 변화 핸들러 함수
     const handleInputChange = (e) => {
         setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
@@ -686,9 +683,6 @@ export default function PTablePage() {
     };
     //File 추가 핸들러
 
-
-
-
     return (
         <Container maxWidth="xl" sx={{ mt: 0.5 }}>
             {/* <Stack direction={{ md: 'row', lg: 'row' }} spacing={2}> */}
@@ -704,21 +698,15 @@ export default function PTablePage() {
                     handleSearchBoth={handleSearchBoth}
                     handleButtonClick={handleButtonClick}
                 />
-
             </Stack>
 
-
             <TableContainer component={Paper} style={{ marginTop: '10px' }}>
-
                 {/* <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2}> */}
                 {/* <Box></Box> */}
                 <PostSw />
-
                 {/* </Stack> */}
-
-
                 <UserTable
-                    users={currentUsers}
+                    users={currentUsers}  // 현재 선택된 페이지에 보여줄 유저 (ex 선택된 1페이지만)
                     sortColumn={sortColumn}
                     sortDirection={sortDirection}
                     handleSort={handleSort}
@@ -726,6 +714,7 @@ export default function PTablePage() {
                     handleDelete={handleDelete}
                     handleFileUpload={handleFileUpload}
                     handleButtonClick={handleButtonClick}
+                    filteredUsers={filteredUsers} // 필터된 유저데이터 전체를 를 보냄 , 엑셀 출력시 사용
                 />
             </TableContainer>
 

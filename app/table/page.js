@@ -49,8 +49,6 @@ export default function BasicTable() {
               sx={{ cursor: 'pointer' }} // 커서 모양 변경
             >
 
-
-              
               <TableCell component="th" scope="row">
                 {row.id}
               </TableCell>
