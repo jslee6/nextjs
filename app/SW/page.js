@@ -718,15 +718,15 @@ export default function PTablePage() {
                 />
             </TableContainer>
 
-            <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2} mt={'10px'}>
-                <Box></Box>
+            {/* <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between" spacing={2} mt={'10px'}>
+                <Box></Box> */}
                 <PaginationComp
                     totalPages={totalPages}
                     currentPage={currentPage}
                     handlePageChange={handlePageChange}
                 />
-                <ExcelExport users={filteredUsers} />
-            </Stack>
+                {/* <ExcelExport users={filteredUsers} />
+            </Stack> */}
 
             {/* 박스 , 페이지네이션 , 엑셀 균등간격 양쪽정렬 */}
 
