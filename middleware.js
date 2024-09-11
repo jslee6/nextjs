@@ -53,7 +53,7 @@ export async function middleware(req) {
     req.nextUrl.pathname === '/imgtable' || req.nextUrl.pathname === '/SW') {
       if (!token || !(token.user.role === 'admin' || token.user.role === 'user')) { 
          // 토큰이 없거나 어드민도, 유저도 아닌경우, needLogin 으로 리다이렉트
-      return NextResponse.redirect(new URL('/needLogin', req.url));
+      return NextResponse.redirect(new URL('/auth/login', req.url));
     }
   }
    // 경로에 따른 접근 제어
