@@ -466,15 +466,15 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
             <Box>
                 <Stack mb={'5px'}>
                     <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between">
-                        <Stack direction={{ md: 'row', lg: 'row' }} spacing={2} >
+                        <Stack direction={{ md: 'row', lg: 'row' }} spacing={1} >
                             {/*  토글 핸들러 버튼 */}
-                            <Button onClick={toggleDocsNumberVisibility}>
+                            <Button variant="outlined" onClick={toggleDocsNumberVisibility}>
                                 {isDocsNumberVisible ? '문서번호 숨기기' : '문서번호 보이기'}
                             </Button>
-                            <Button onClick={toggleEtcVisibility}>
+                            <Button variant="outlined" onClick={toggleEtcVisibility}>
                                 {isEtcVisible ? '기타내역 숨기기' : '기타내역 보이기'}
                             </Button>
-                            <Button onClick={toggleCreatedAtVisibility}>
+                            <Button variant="outlined" onClick={toggleCreatedAtVisibility}>
                                 {isCreatedAtVisible ? '생성일자 숨기기' : '생성일자 보이기'}
                             </Button> {/* '생성일자' 토글 버튼 추가 */}
                         </Stack>
