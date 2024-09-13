@@ -631,7 +631,8 @@ export default function PTablePage() {
             const updatedUser = response.data;
 
             // 상태 업데이트: 수정된 유저 정보를 반영
-            setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
+            
+            setUsers(users.map(user => (user.id === updatedUser.id )));
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
 
             // 수정된 데이터를 기록하기 위한 추가 요청
