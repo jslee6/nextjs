@@ -60,6 +60,8 @@
 // 학습필요
 
 
+// pages/api/sw/get.js
+
 import { PrismaClient } from '@prisma/client';
 import { getToken } from 'next-auth/jwt';
 

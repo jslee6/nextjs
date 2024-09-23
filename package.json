@@ -39,6 +39,7 @@
     "react-dom": "^18",
     "react-lazy-load-image-component": "^1.6.2",
     "react-pdf": "^9.1.0",
+    "recharts": "^2.12.7",
     "simplebar-react": "^3.2.6",
     "styled-components": "^6.1.11",
     "xlsx": "^0.18.5",

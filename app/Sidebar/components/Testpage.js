@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 export default function Testpage() {
   return (
     //defaultExpanded 추가하면 기본으로 확장상태로 열림
-    <Accordion defaultExpanded>
+    <Accordion>
       <AccordionSummary className="Accordion-Bg" expandIcon={<ExpandMoreIcon />}>
         <Typography sx={{ fontSize: "25px" }} >
           Test Page
@@ -18,7 +18,20 @@ export default function Testpage() {
       <Divider />
       <AccordionDetails>
         <List>
-        <ListItem className="typo-sidebar" component={Link} href="/test/checkoff">
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/chartVertical">
+            <Typography className="typo-sidebar" component="span">수직차트</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/chartHorizon">
+            <Typography className="typo-sidebar" component="span">일반차트</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/chart">
+            <Typography className="typo-sidebar" component="span">더미 데이터</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+          <ListItem className="typo-sidebar" component={Link} href="/test/checkoff">
             <Typography className="typo-sidebar" component="span">컬럼On/Off</Typography> {/* 스타일 적용 */}
           </ListItem>
 
