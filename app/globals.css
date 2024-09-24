@@ -158,6 +158,22 @@ body {
   
 }
 
+.chart-header {
+  font-weight: bold;
+  font-size: 40px;
+  color: white; /* 기본 글자색 */
+  background-color: #5a95d1;
+  text-align: center; /* 가운데 정렬 */
+  text-shadow: 
+      0.5px 0.5px 1px gray, 
+      -0.5px -0.5px 1px gray,
+      0.5px -0.5px 1px gray,
+      -0.5px 0.5px 1px gray; 
+      
+      /* 얇고 연한 회색 테두리 효과 */
+}
+
+
 
 .Accordion-Bg:hover {
   background-color: #1976D2; /* 마우스 오버 시 배경색 */
