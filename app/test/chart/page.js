@@ -33,6 +33,7 @@ const Home = () => {
                     <XAxis dataKey="name" />
                     {/* XAxis: X축을 설정하며, dataKey는 데이터 배열의 속성을 사용하여 축의 레이블을 정의 */}
                     
+                    
                     <YAxis />
                     {/* YAxis: Y축을 설정 */}
                     
@@ -42,8 +43,8 @@ const Home = () => {
                     <Legend />
                     {/* Legend: 차트의 범례를 표시하여 각 데이터 항목을 설명 */}
                     
-                    <Bar dataKey="sales" fill="#8884d8" />
-                    {/* Bar: 데이터의 판매량을 나타내는 막대. dataKey는 데이터 배열의 속성을 사용 */}
+                    <Bar dataKey="sales" fill="#8884d8"   name="네임값 바꾸기" />
+                    {/* Bar: 데이터의 판매량을 나타내는 막대. dataKey는 데이터 배열의 속성을 사용 , name 값을 바꾸면 됨*/}
                 </BarChart>
             </ResponsiveContainer>
         </div>
@@ -51,3 +52,5 @@ const Home = () => {
 };
 
 export default Home;
+
+

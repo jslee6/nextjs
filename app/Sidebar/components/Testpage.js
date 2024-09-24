@@ -19,12 +19,23 @@ export default function Testpage() {
       <AccordionDetails>
         <List>
 
+      
+
+        <ListItem className="typo-sidebar" component={Link} href="/test/chartStack">
+            <Typography className="typo-sidebar" component="span">chartStack</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
           <ListItem className="typo-sidebar" component={Link} href="/test/chartVertical">
             <Typography className="typo-sidebar" component="span">수직차트</Typography> {/* 스타일 적용 */}
           </ListItem>
 
+          <ListItem className="typo-sidebar" component={Link} href="/test/chartStock">
+            <Typography className="typo-sidebar" component="span">재고차트</Typography> {/* 스타일 적용 */}
+          </ListItem>
+
+
           <ListItem className="typo-sidebar" component={Link} href="/test/chartHorizon">
-            <Typography className="typo-sidebar" component="span">일반차트</Typography> {/* 스타일 적용 */}
+            <Typography className="typo-sidebar" component="span">수평차트</Typography> {/* 스타일 적용 */}
           </ListItem>
 
           <ListItem className="typo-sidebar" component={Link} href="/test/chart">

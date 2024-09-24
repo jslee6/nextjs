@@ -36,13 +36,17 @@ export default function SwManage() {
           </ListItem>
           <Divider />
 
-          <ListItem className="typo-sidebar" component={Link} href="/test/chartVertical">
+          <ListItem className="typo-sidebar" component={Link} href="/SW/chartVertical">
             {/* <ListItemText primary="temp" /> */}
-            <Typography className="typo-sidebar" component="span">차트요약(세로)</Typography> {/* 스타일 적용 */}
+            <Typography className="typo-sidebar" component="span">사용현황 차트</Typography> {/* 스타일 적용 */}
           </ListItem>
           <Divider />
 
-      
+          <ListItem className="typo-sidebar" component={Link} href="/test/chartStack">
+            {/* <ListItemText primary="temp" /> */}
+            <Typography className="typo-sidebar" component="span">재고 차트</Typography> {/* 스타일 적용 */}
+          </ListItem>
+          <Divider />
    
         </List>
       </AccordionDetails>
