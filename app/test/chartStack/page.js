@@ -62,7 +62,7 @@ const Home = () => {
     }, []); // 컴포넌트가 마운트될 때만 실행
 
     return (
-        <div style={{ width: '97%', height: '650px', margin: '0 auto' }}>
+        <div style={{ width: '98%', height: '680px', margin: '0 auto' }}>
             <Typography className='chart-header' variant="h4" align="center" sx={{ mt: '1px', mb: '10px'}}>
                 사용/재고 현황 (상위 10개)
             </Typography>
