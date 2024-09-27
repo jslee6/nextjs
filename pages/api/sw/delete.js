@@ -1,4 +1,4 @@
-// pages/api/software/delete.js
+// pages/api/sw/delete.js
 
 import { PrismaClient } from '@prisma/client'
 
