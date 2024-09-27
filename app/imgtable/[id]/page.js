@@ -19,9 +19,6 @@ export default function Product({ params }) {
 
 
 
-
-
-
   
 
   // next js 13에서는 유즈라우트 안쓰고 파람스로 가져옴 증요 메모
