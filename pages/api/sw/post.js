@@ -1,4 +1,4 @@
-// /pages/api/post/account.js
+// /pages/api/post/post.js
 
 import { PrismaClient } from '@prisma/client';
 

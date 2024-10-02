@@ -64,7 +64,7 @@ function SearchBar({ role, setRole, searchId, setSearchId, searchTerm, setSearch
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
             <Button className='button-blue' onClick={handleSearchBoth} sx={{ mt: 2 }}>검색</Button>
-            <Button className='button-blue' sx={{ width: 'auto', minWidth: '80px', mt: 2 }} component={Link} href="/account/accountHistory">수정이력</Button>
+            <Button className='button-blue' sx={{ width: 'auto', minWidth: '80px', mt: 2 }} component={Link} href="/SW/SwHistory">수정이력</Button>
             {/* D:\self\nextjs\app\account\accountHistory\page.js */}
         </Stack>
     );

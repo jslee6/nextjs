@@ -638,7 +638,7 @@ export default function PTablePage() {
             setFilteredUsers(filteredUsers.map(user => (user.id === updatedUser.id ? updatedUser : user)));
 
             // 수정된 데이터를 기록하기 위한 추가 요청
-            // await axios.post('/api/accounthistroy/post', { ...updatedUser });
+            // await axios.post('/api/sw/post', { ...updatedUser });
         } catch (error) {
             console.error('Update error:', error);
         } finally {
@@ -646,6 +646,12 @@ export default function PTablePage() {
             setOpen(false);
         }
     };
+
+ 
+
+    // await axios.post('/api/accounthistroy/post', { ...updatedUser });
+
+    // setOpen(false);
 
     // 수정 다이얼로그의 입력 변화 핸들러 함수
     const handleInputChange = (e) => {
@@ -658,7 +664,7 @@ export default function PTablePage() {
     //. e.target.value  이벤트가 발생한 요소의 현재 값(value)을 가져옵니다. 입력 필드에 "30"을 입력했다면, e.target.value는 "30"이라는 문자열을 반환합니다.
 
 
-    
+
     //File 추가 핸들러
     const handleFileUpload = async (e, userId) => {
         const file = e.target.files[0];
