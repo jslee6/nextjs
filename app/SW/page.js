@@ -624,6 +624,8 @@ export default function PTablePage() {
     //     }
     // };
 
+
+
     const handleSaveUpdate = async () => {
         console.log('handleSaveUpdate called');
         try {
@@ -656,6 +658,7 @@ export default function PTablePage() {
     //. e.target.value  이벤트가 발생한 요소의 현재 값(value)을 가져옵니다. 입력 필드에 "30"을 입력했다면, e.target.value는 "30"이라는 문자열을 반환합니다.
 
 
+    
     //File 추가 핸들러
     const handleFileUpload = async (e, userId) => {
         const file = e.target.files[0];
