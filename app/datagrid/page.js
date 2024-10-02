@@ -47,8 +47,6 @@ const DataGridPage = () => {
   // delete
 
   //삭제로직
-
-
   const cuserColumns = [
     { field: 'id', headerName: 'ID', width: 200 },
       //아이디 값을 주석 처리해서 공간확보가능
@@ -171,3 +169,6 @@ const DataGridPage = () => {
 // 페이지네이션 및 유저 다이얼로그 컴포넌트 사용
 
 export default DataGridPage;
+
+
+
