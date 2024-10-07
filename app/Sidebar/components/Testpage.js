@@ -18,10 +18,10 @@ export default function Testpage() {
       <Divider />
       <AccordionDetails>
         <List>
-
+{/* 
         <ListItem className="typo-sidebar" component={Link} href="/test/datagrid">
-            <Typography className="typo-sidebar" component="span">데이타그리드</Typography> {/* 스타일 적용 */}
-          </ListItem>
+            <Typography className="typo-sidebar" component="span">데이타그리드</Typography> 
+          </ListItem> */}
 
         <ListItem className="typo-sidebar" component={Link} href="/test/chartStack">
             <Typography className="typo-sidebar" component="span">chartStack</Typography> {/* 스타일 적용 */}

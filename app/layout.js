@@ -88,7 +88,7 @@ export default async function RootLayout({ children }) {
               item
               xs
               sx={{
-                overflow: 'auto', // 내용이 넘칠 경우 스크롤바 표시
+                overflow: 'visible', // 내용이 넘칠 경우 스크롤바 표시
                 minWidth: '300px', // 최소 너비 설정
               }}
             >

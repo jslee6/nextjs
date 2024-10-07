@@ -187,3 +187,31 @@ model Image {
 //   createdAt DateTime @default(now())
 //   updatedAt DateTime
 // }
+
+
+
+
+model TroubleShooting {
+  id                  Int      @id @default(autoincrement())
+  troubleNumber       String   // 문서 번호는 필수
+  createdAt           DateTime @default(now())
+  category            Category // 카테고리도 필수
+  author              String?
+  reviewer            String?
+  receivedAt          DateTime? // 접수일자
+  occurredAt          DateTime?
+  requestDepartment   String?
+  requester           String?
+  troubleDetails      String?
+  notes               String?  // 기타사항
+  resolvedAt          DateTime?  // 처리시간
+  issueCause          String?  // 이슈 원인
+  actionsTaken        String?
+}
+
+enum Category {
+  SERVER
+  NETWORK
+  DATABASE
+  OTHER
+}
