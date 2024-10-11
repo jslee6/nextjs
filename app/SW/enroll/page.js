@@ -32,7 +32,7 @@ export default function Enroll() {
           <div>
             <Input type="text" name="name" placeholder="이름" required />
             <br />
-            <Input type="text" name="madeCompany" placeholder="제조사" />
+            <TextField type="text" name="madeCompany" placeholder="제조사" />
           </div>
           <div>
             <TextField 
@@ -40,7 +40,6 @@ export default function Enroll() {
               placeholder="기타사항" 
               multiline   
               rows={1.5} // 높이를 조정할 수 있는 속성
-              
               sx={{ width: '600px' }} // 원하는 너비로 설정 (예: 500px)
             />
           </div>

@@ -195,7 +195,7 @@ model TroubleShooting {
   id                  Int      @id @default(autoincrement())
   troubleNumber       String   // 문서 번호는 필수
   createdAt           DateTime @default(now())
-  category            Category // 카테고리도 필수
+  // category            Category? // 카테고리도 필수
   author              String?
   reviewer            String?
   receivedAt          DateTime? // 접수일자
@@ -209,9 +209,9 @@ model TroubleShooting {
   actionsTaken        String?
 }
 
-enum Category {
-  SERVER
-  NETWORK
-  DATABASE
-  OTHER
-}
+// enum Category {
+//   SERVER
+//   NETWORK
+//   DATABASE
+//   OTHER
+// }
