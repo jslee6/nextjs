@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Write from '@/app/writetest/page';
+import Write from '@/app/join/page';
 
 export default function OtherComponent() {
   const [showWriteComponent, setShowWriteComponent] = useState(false);
