@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 export default async function select(req, res) {
   if (req.method === 'GET') {
     try {
-      const users = await prisma.troubleShooting.findMany({
+      const users = await prisma.troubleshooting.findMany({
       
       });
       res.status(200).json(users);

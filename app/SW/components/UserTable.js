@@ -494,7 +494,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             )}
 
                             {isCreatedAtVisible && ( // '생성일자' 컬럼의 가시성 조건부 렌더링
-                                <TableCell>{format(new Date(user.createdAt), 'yyyy-MM-dd HH:mm')}</TableCell>
+                                <TableCell>{format(Date(user.createdAt), 'yyyy-MM-dd HH:mm')}</TableCell>
                             )}
 
                             <TableCell>

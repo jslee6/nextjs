@@ -63,10 +63,10 @@
 
 
 
-// 12.05 원본
+
+
+
 // pages/api/sw/get.js
-
-
 
 // import { PrismaClient } from '@prisma/client';
 // import { getToken } from 'next-auth/jwt';
@@ -102,12 +102,9 @@
 //   } else {
 //     res.status(405).json({ error: 'Get만 허용' });
 //   }
-// }
+//}
 
 
-
-
-//24.12.05 test코드
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -115,7 +112,7 @@ const prisma = new PrismaClient();
 export default async function select2(req, res) {
   if (req.method === 'GET') {
     try {
-      const users = await prisma.softWare.findMany({
+      const users = await prisma.software.findMany({
         select: {
           id: true,
           docsNumber: true,
@@ -127,11 +124,9 @@ export default async function select2(req, res) {
           licensKey: true,
           madeCompany: true,
           etc: true,
-          createdAt: true,
-          updatedAt: true,
+
         }
       });
-      
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });
@@ -140,5 +135,6 @@ export default async function select2(req, res) {
     res.status(405).json({ error: 'Method Not Allowed' });
   }
 }
+
 
 

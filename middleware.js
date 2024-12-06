@@ -30,12 +30,16 @@
 
 ///****************** 경로 별 미들웨어 설정*/
 //middleware.js
+//12.06 지워봄
 
 import { NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 export async function middleware(req) {
   const token = await getToken({ req, secret: 'git6579!!' });
+  
+  console.log('Pathname:', req.nextUrl.pathname);
+  console.log('Req Object:', req);
 
   // 토큰 객체를 로그로 출력
   console.log('Token:', token); // 여기서 token 객체를 출력합니다.
@@ -50,7 +54,7 @@ export async function middleware(req) {
   }
   // 로그인 여부가 필요한 경로
   else if (
-    req.nextUrl.pathname === '/imgtable' || req.nextUrl.pathname === '/SW') {
+    req.nextUrl.pathname === '/imgtable' || req.nextUrl.pathname === '/S2W') {
       if (!token || !(token.user.role === 'admin' || token.user.role === 'user')) { 
          // 토큰이 없거나 어드민도, 유저도 아닌경우, needLogin 으로 리다이렉트
       return NextResponse.redirect(new URL('/auth/login', req.url));
@@ -60,3 +64,4 @@ export async function middleware(req) {
 
   return NextResponse.next();
 }
+

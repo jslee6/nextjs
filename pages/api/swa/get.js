@@ -115,7 +115,7 @@ const prisma = new PrismaClient();
 export default async function select2(req, res) {
   if (req.method === 'GET') {
     try {
-      const users = await prisma.softWare.findMany({
+      const users = await prisma.software.findMany({
         select: {
           id: true,
           docsNumber: true,
@@ -127,11 +127,11 @@ export default async function select2(req, res) {
           licensKey: true,
           madeCompany: true,
           etc: true,
-          createdAt: true,
-          updatedAt: true,
+          createdAt: true,  // 추가
+          updatedAt: true,  // 추가
         }
+        
       });
-      
       res.status(200).json(users);
     } catch (error) {
       res.status(500).json({ error: 'Internal Server Error' });

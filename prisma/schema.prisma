@@ -14,39 +14,6 @@ model usertest {
   id     Int     @id @default(autoincrement())
 }
 
-model softWare {
-  // id          String   @id @default(uuid())
-  id          Int       @id @default(autoincrement())
-  // userId      String    @unique
-  docsNumber  String?
-  SwuserID    String?
-  name        String?
-  Department  String?
-  SwName      String?
-  period      String?
-  madeCompany String?
-  licensKey   String?
-  etc         String?   @db.Text // TEXT 타입으로 설정
-  createdAt   DateTime? @default(now())
-  updatedAt   DateTime?
-}
-
-model softWarehistory {
-  id          Int      @id @default(autoincrement())
-  docsNumber  String?
-  SwuserID    String?
-  name        String?
-  Department  String?
-  SwName      String?
-  period      String?
-  madeCompany String?
-  licensKey   String?
-  etc         String?  @db.Text // TEXT 타입으로 설정
-  changedAt   DateTime @default(now())
-  createdAt DateTime @default(now())
-}
-
-
 model product {
   id          String           @id
   name        String
@@ -67,7 +34,7 @@ model user {
   firstName String?
   lastName  String?
   updatedAt DateTime @updatedAt
-  imageUrl  String? // Optional field to store image URL
+  imageUrl  String?
 }
 
 model account {
@@ -108,6 +75,112 @@ model accounthistory3 {
   updatedAt DateTime @default(now())
 }
 
+model attachment {
+  id            Int           @id @default(autoincrement())
+  fileName      String
+  fileUrl       String
+  productId     Int
+  productupload productupload @relation(fields: [productId], references: [id], map: "Attachment_productId_fkey")
+
+  @@index([productId], map: "Attachment_productId_fkey")
+}
+
+model image {
+  id        Int      @id @default(autoincrement())
+  url       String
+  itemId    Int
+  createdAt DateTime @default(now())
+}
+
+model imgtest1 {
+  id        Int       @id @default(autoincrement())
+  url       String
+  userId    Int
+  usertest1 usertest1 @relation(fields: [userId], references: [id], map: "imgTest1_userId_fkey")
+
+  @@index([userId], map: "imgTest1_userId_fkey")
+}
+
+model photo {
+  id        Int      @id @default(autoincrement())
+  url       String
+  productId Int
+  createdAt DateTime @default(now())
+  product2  product2 @relation(fields: [productId], references: [id], map: "Photo_productId_fkey")
+
+  @@index([productId], map: "Photo_productId_fkey")
+}
+
+model product2 {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  photo     photo[]
+}
+
+model productupload {
+  id         Int          @id @default(autoincrement())
+  imageUrl   String?
+  createdAt  DateTime     @default(now())
+  title      String
+  updatedAt  DateTime
+  attachment attachment[]
+}
+
+model software {
+  id          Int       @id @default(autoincrement())
+  docsNumber  String?
+  SwuserID    String?
+  name        String?
+  Department  String?
+  SwName      String?
+  period      String?
+  licensKey   String?
+  createdAt   DateTime? @default(now())
+  updatedAt   DateTime?
+  madeCompany String?
+  etc         String?   @db.Text
+}
+
+model softwarehistory {
+  id          Int      @id @default(autoincrement())
+  docsNumber  String?
+  SwuserID    String?
+  name        String?
+  Department  String?
+  SwName      String?
+  period      String?
+  madeCompany String?
+  licensKey   String?
+  etc         String?  @db.Text
+  changedAt   DateTime @default(now())
+  createdAt   DateTime @default(now())
+}
+
+model troubleshooting {
+  id                Int       @id @default(autoincrement())
+  troubleNumber     String
+  createdAt         DateTime  @default(now())
+  author            String?
+  reviewer          String?
+  receivedAt        DateTime?
+  occurredAt        DateTime?
+  requestDepartment String?
+  requester         String?
+  troubleDetails    String?
+  notes             String?
+  resolvedAt        DateTime?
+  issueCause        String?
+  actionsTaken      String?
+}
+
+model usertest1 {
+  id       Int        @id @default(autoincrement())
+  name     String
+  imgtest1 imgtest1[]
+}
+
 enum product_category {
   FASHION
   BEAUTY
@@ -117,101 +190,3 @@ enum product_category {
   HOUSEHOLD_SUPPLIES
   KITCHENWARE
 }
-
-// 파일업로드 를 위한 스키마  24.08.23
-//npx prisma db push  스키마 수정후 디비반영
-
-model ProductUpload {
-  id          Int          @id @default(autoincrement())
-  title       String // 제품의 제목 또는 설명
-  imageUrl    String? // 대표 이미지 URL
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  attachments Attachment[] // 첨부파일과의 관계
-}
-
-//이미지 업로드용
-
-model Attachment {
-  id            Int           @id @default(autoincrement())
-  fileName      String // 파일 이름
-  fileUrl       String // 파일 경로
-  productId     Int // ProductUpload와의 관계를 위한 외래키
-  productUpload ProductUpload @relation(fields: [productId], references: [id])
-}
-
-model userTest1 {
-  id     Int        @id @default(autoincrement())
-  name   String
-  images imgTest1[]
-}
-
-model imgTest1 {
-  id     Int       @id @default(autoincrement())
-  url    String
-  userId Int
-  user   userTest1 @relation(fields: [userId], references: [id])
-}
-
-model Product2 {
-  id        Int      @id @default(autoincrement())
-  name      String
-  photos    Photo[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Photo {
-  id        Int      @id @default(autoincrement())
-  url       String
-  product2  Product2 @relation(fields: [productId], references: [id])
-  productId Int
-  createdAt DateTime @default(now())
-}
-
-model Image {
-  id        Int      @id @default(autoincrement())
-  url       String
-  itemId    Int
-  createdAt DateTime @default(now())
-}
-
-// model SoftWare {
-//   id               String  @id @default(uuid())
-//   swID             String  @unique
-//   docsNumber       String?
-//   permanentVersion String?
-//   SwName           String?
-//   licensKey        String?
-//   etc              String?
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime
-// }
-
-
-
-
-model TroubleShooting {
-  id                  Int      @id @default(autoincrement())
-  troubleNumber       String   // 문서 번호는 필수
-  createdAt           DateTime @default(now())
-  // category            Category? // 카테고리도 필수
-  author              String?
-  reviewer            String?
-  receivedAt          DateTime? // 접수일자
-  occurredAt          DateTime?
-  requestDepartment   String?
-  requester           String?
-  troubleDetails      String?
-  notes               String?  // 기타사항
-  resolvedAt          DateTime?  // 처리시간
-  issueCause          String?  // 이슈 원인
-  actionsTaken        String?
-}
-
-// enum Category {
-//   SERVER
-//   NETWORK
-//   DATABASE
-//   OTHER
-// }

@@ -6,13 +6,13 @@ const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const users = await prisma.productUpload.findMany();
+    const users = await prisma.productupload.findMany();
     res.json(users);
     //get
 
   } else if (req.method === 'POST') {
     const { name } = req.body;
-    const newuser = await prisma.productUpload.create({
+    const newuser = await prisma.productupload.create({
       data: { name }
     });
     res.status(201).json(newuser);

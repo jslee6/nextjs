@@ -1,5 +1,5 @@
 // pages/api/account.js
-import { Password } from '@mui/icons-material';
+
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
