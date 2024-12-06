@@ -21,7 +21,7 @@ export default function AccordionSitelink() {
           aria-controls="panel1-content"
           id="panel1-header"
         >
-          <Button variant="contained" > 사이트 링크 </Button>
+          <Button variant="contained" > 사이트 링크test </Button>
 
         </AccordionSummary>
         <AccordionDetails>
