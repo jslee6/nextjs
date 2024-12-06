@@ -16,7 +16,7 @@ export default async function handler(req, res) {
 
   try {
     // Prisma를 사용하여 데이터베이스의 소프트웨어 정보를 업데이트
-    const updatedUser = await prisma.software.update({
+    const updatedUser = await prisma.softWare.update({
       where: { id }, // 업데이트할 사용자 ID 지정
       data, // 나머지 데이터 전체를 업데이트
     });

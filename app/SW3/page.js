@@ -512,7 +512,7 @@ export default function PTablePage() {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const response = await axios.get('/api/sw/get');
+                const response = await axios.get('/api/swa/get');
                 console.log('get data:', response.data);
                 setUsers(response.data);
                 setFilteredUsers(response.data); // 초기 상태로 전체 유저 설정
@@ -585,7 +585,7 @@ export default function PTablePage() {
     // 삭제 핸들러 함수
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete('/api/sw/delete', {
+            const response = await axios.delete('/api/swa/delete', {
                 data: { id: id },
             });
             const { message } = response.data;
@@ -629,7 +629,7 @@ export default function PTablePage() {
     const handleSaveUpdate = async () => {
         console.log('handleSaveUpdate called');
         try {
-            const response = await axios.put('/api/sw/put', { ...selectedUser });
+            const response = await axios.put('/api/swa/put', { ...selectedUser });
             const updatedUser = response.data;
 
             // 상태 업데이트: 수정된 유저 정보를 반영

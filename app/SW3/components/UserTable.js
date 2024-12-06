@@ -216,57 +216,122 @@
 
 //\app\SW\components\UserTable.js
 
-
-'use client'
+'use client';
 
 import React, { useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Box } from '@mui/material';
+import { Switch, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, Stack, Box, FormControlLabel, Checkbox } from '@mui/material';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { format } from 'date-fns';
 import ExcelExport from './excel';
 
 function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate, handleDelete, handleFileUpload, handleButtonClick, filteredUsers }) {
+
+    //1. 상태관리 토글 State//
     const [isDocsNumberVisible, setDocsNumberVisible] = useState(true);
     const [isEtcVisible, setEtcVisible] = useState(true);
+    const [isperiod, setperiod] = useState(true);
     const [isCreatedAtVisible, setCreatedAtVisible] = useState(true); // '생성일자' 가시성 상태 추가
+    const [isSwuserIDVisible, setSwuserIDVisible] = useState(true); // '생성일자' 가시성 상태 추가
+    
 
-    // 토글 핸들러 함수
-    const toggleDocsNumberVisibility = () => {
-        setDocsNumberVisible(prev => !prev);
+
+    // 2. 체크박스 핸들러 함수
+    const toggleDocsNumberVisibility = (event) => {
+        setDocsNumberVisible(event.target.checked);  // '문서번호' 토글 함수
     };
 
-    const toggleEtcVisibility = () => {
-        setEtcVisible(prev => !prev);
+    const toggleSwuserIDVisibility = (event) => {
+        setSwuserIDVisible(event.target.checked); // '유저ID' 토글 함수
     };
 
-    const toggleCreatedAtVisibility = () => {
-        setCreatedAtVisible(prev => !prev); // '생성일자' 토글 함수
+    const toggleperiod = (event) => {
+        setperiod(event.target.checked); // 기간
+    }
+
+    const toggleEtcVisibility = (event) => {
+        setEtcVisible(event.target.checked); // '기타내역' 토글 함수
     };
-    // 토글 핸들러 함수
+
+    const toggleCreatedAtVisibility = (event) => {
+        setCreatedAtVisible(event.target.checked); // '생성일자' 토글 함수
+    };
+
+
+
 
     return (
         <TableContainer component={Paper} style={{ marginTop: '5px' }}>
             <Box>
                 <Stack mb={'5px'}>
                     <Stack direction={{ md: 'row', lg: 'row' }} justifyContent="space-between">
-                        <Stack direction={{ md: 'row', lg: 'row' }} spacing={1} >
-                            {/*  토글 핸들러 버튼 */}
-                            <Button variant="outlined" onClick={toggleDocsNumberVisibility}>
-                                {isDocsNumberVisible ? '문서번호 숨기기' : '문서번호 보이기'}
-                            </Button>
-                            <Button variant="outlined" onClick={toggleEtcVisibility}>
-                                {isEtcVisible ? '기타내역 숨기기' : '기타내역 보이기'}
-                            </Button>
-                            <Button variant="outlined" onClick={toggleCreatedAtVisibility}>
-                                {isCreatedAtVisible ? '생성일자 숨기기' : '생성일자 보이기'}
-                            </Button> {/* '생성일자' 토글 버튼 추가 */}
+
+
+
+                        <Stack direction={{ md: 'row', lg: 'row' }} spacing={0.1}>
+                            {/*3. 컬럼 토글 UI 체크박스 추가 */}
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        // <Switch
+                                        checked={isDocsNumberVisible}
+                                        onChange={toggleDocsNumberVisibility}
+                                    />
+                                }
+                                label="문서번호"
+                            />
+
+
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        // <Switch
+                                        checked={isSwuserIDVisible}
+                                        onChange={toggleSwuserIDVisibility}
+                                    />
+                                }
+                                label="유저ID"
+                            />
+
+                            {/* 기간 토글 */}
+
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        // <Switch
+                                        checked={isperiod}
+                                        onChange={toggleperiod}
+                                    />
+                                }
+                                label="기간여부"
+                            />
+
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        // <Switch
+                                        checked={isEtcVisible}
+                                        onChange={toggleEtcVisibility}
+                                    />
+                                }
+                                label="기타내역"
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        // <Switch
+                                        checked={isCreatedAtVisible}
+                                        onChange={toggleCreatedAtVisibility}
+                                    />
+                                }
+                                label="생성일자"
+                            />
                         </Stack>
+
+
                         <ExcelExport users={filteredUsers} />
                     </Stack>
                 </Stack>
             </Box>
-            {/*  토글 핸들러 버튼 */}
-
 
             <Table sx={{ '& .MuiTableCell-root': { padding: '8px' } }}>
                 <TableHead>
@@ -282,8 +347,8 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                         </TableCell>
 
                         {isDocsNumberVisible && (
-                            //토글 조건부 랜더링
-                            <TableCell className='table-header' sx={{ width: '100px' }}>
+                            //4. 토글 조건부 랜더링 테이블 헤더
+                            <TableCell className='table-header' sx={{ width: '120px' }}>
                                 <TableSortLabel
                                     active={sortColumn === 'docsNumber'}
                                     direction={sortColumn === 'docsNumber' ? sortDirection : 'asc'}
@@ -294,15 +359,18 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             </TableCell>
                         )}
 
-                        <TableCell className='table-header' sx={{ width: '100px' }} >
-                            <TableSortLabel
-                                active={sortColumn === 'SwuserID'}
-                                direction={sortColumn === 'SwuserID' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('SwuserID')}
-                            >
-                                유저ID
-                            </TableSortLabel>
-                        </TableCell>
+
+                        {isSwuserIDVisible && (
+                            <TableCell className='table-header' sx={{ width: '100px' }}>
+                                <TableSortLabel
+                                    active={sortColumn === 'SwuserID'}
+                                    direction={sortColumn === 'SwuserID' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('SwuserID')}
+                                >
+                                    유저ID
+                                </TableSortLabel>
+                            </TableCell>
+                        )}
 
                         <TableCell className='table-header' sx={{ width: '80px' }}>
                             <TableSortLabel
@@ -334,17 +402,19 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             </TableSortLabel>
                         </TableCell>
 
-                        <TableCell className='table-header' sx={{ width: '100px' }}>
-                            <TableSortLabel
-                                active={sortColumn === 'period'}
-                                direction={sortColumn === 'period' ? sortDirection : 'asc'}
-                                onClick={() => handleSort('period')}
-                            >
-                                기간
-                            </TableSortLabel>
-                        </TableCell>
+                        {isperiod && (
+                            <TableCell className='table-header' sx={{ width: '100px' }}>
+                                <TableSortLabel
+                                    active={sortColumn === 'period'}
+                                    direction={sortColumn === 'period' ? sortDirection : 'asc'}
+                                    onClick={() => handleSort('period')}
+                                >
+                                    기간
+                                </TableSortLabel>
+                            </TableCell>
+                        )}
 
-                        <TableCell className='table-header' sx={{ width: '130px' }}>
+                        <TableCell className='table-header' sx={{ width: '150px' }}>
                             <TableSortLabel
                                 active={sortColumn === 'licensKey'}
                                 direction={sortColumn === 'licensKey' ? sortDirection : 'asc'}
@@ -354,7 +424,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             </TableSortLabel>
                         </TableCell>
 
-                        <TableCell className='table-header' sx={{ width: '100px' }}>
+                        <TableCell className='table-header' sx={{ width: '150px' }}>
                             <TableSortLabel
                                 active={sortColumn === 'madeCompany'}
                                 direction={sortColumn === 'madeCompany' ? sortDirection : 'asc'}
@@ -366,7 +436,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
 
                         {isEtcVisible && (
                             //토글 조건부 랜더링
-                            <TableCell className='table-header' sx={{ width: '100px' }}>
+                            <TableCell className='table-header' sx={{ width: '250px' }}>
                                 <TableSortLabel
                                     active={sortColumn === 'etc'}
                                     direction={sortColumn === 'etc' ? sortDirection : 'asc'}
@@ -389,11 +459,10 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 </TableSortLabel>
                             </TableCell>
                         )}
-                        <TableCell className='table-header' sx={{ width: '10px' }}>수정</TableCell>
-                        <TableCell className='table-header'>삭제</TableCell>
-                        <TableCell className='table-header'>첨부</TableCell>
-                        <TableCell className='table-header'>조회</TableCell>
-
+                        <TableCell className='table-header' sx={{ width: '50px' }}>수정</TableCell>
+                        <TableCell className='table-header' sx={{ width: '50px' }}>삭제</TableCell>
+                        <TableCell className='table-header' sx={{ width: '50px' }}>첨부</TableCell>
+                        <TableCell className='table-header' sx={{ width: '50px' }}>조회</TableCell>
                     </TableRow>
                 </TableHead>
 
@@ -405,22 +474,32 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                             {isDocsNumberVisible && (
                                 <TableCell>{user.docsNumber}</TableCell>
                             )}
+                            {/* 4. 토글 조건부 랜더링 테이블 셀 */}
 
-                            <TableCell>{user.SwuserID}</TableCell>
+                            {isSwuserIDVisible && (
+                                <TableCell>{user.SwuserID}</TableCell>
+                            )}
                             <TableCell>{user.name}</TableCell>
                             <TableCell>{user.Department}</TableCell>
                             <TableCell>{user.SwName}</TableCell>
-                            <TableCell>{user.period}</TableCell>
+
+                            {isperiod && (
+                                <TableCell>{user.period}</TableCell>
+                            )}
+
                             <TableCell>{user.licensKey}</TableCell>
                             <TableCell>{user.madeCompany}</TableCell>
                             {isEtcVisible && (
                                 <TableCell>{user.etc}</TableCell>
                             )}
+
                             {isCreatedAtVisible && ( // '생성일자' 컬럼의 가시성 조건부 렌더링
-                                <TableCell>{format(new Date(user.createdAt), 'yyyy-MM-dd HH:mm')}</TableCell>
+                                <TableCell>{format(Date(user.createdAt), 'yyyy-MM-dd HH:mm')}</TableCell>
                             )}
 
                             <TableCell>
+
+
                                 <Button className='button-blue' onClick={() => handleUpdate(user)}>
                                     수정
                                 </Button>
@@ -443,6 +522,7 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                     </Button>
                                 </label>
                             </TableCell>
+
                             <TableCell>
                                 <Button
                                     className='button-orange'
@@ -453,6 +533,9 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
                                 >
                                     조회
                                 </Button>
+
+
+
                             </TableCell>
                         </TableRow>
                     ))}
@@ -463,4 +546,5 @@ function UserTable({ users, sortColumn, sortDirection, handleSort, handleUpdate,
 }
 
 export default UserTable;
+
 
