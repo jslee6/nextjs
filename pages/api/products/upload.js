@@ -72,7 +72,7 @@ const handler = async (req, res) => {
       const imageUrl = `/uploads/${image.filename}`;
 
       try {
-        const product = await prisma.productupload.create({
+        const product = await prisma.productUpload.create({
           data: {
             title,    // Using 'title' instead of 'name'
             imageUrl, // Storing the URL of the uploaded image
