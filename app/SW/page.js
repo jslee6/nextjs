@@ -629,7 +629,7 @@ export default function PTablePage() {
     const handleSaveUpdate = async () => {
         console.log('handleSaveUpdate called');
         try {
-            const response = await axios.put('/api/sw/put', { ...selectedUser });
+            const response = await axios.put('/api/swa/put', { ...selectedUser });
             const updatedUser = response.data;
 
             // 상태 업데이트: 수정된 유저 정보를 반영

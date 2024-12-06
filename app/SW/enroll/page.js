@@ -84,7 +84,7 @@ export default function Enroll() {
     e.preventDefault(); // 기본 제출 방지
 
     try {
-      const response = await fetch('/api/sw/post', {
+      const response = await fetch('/api/swa/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
