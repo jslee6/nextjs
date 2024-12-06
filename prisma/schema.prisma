@@ -124,7 +124,7 @@ model productupload {
   imageUrl   String?
   createdAt  DateTime     @default(now())
   title      String
-  updatedAt  DateTime
+  updatedAt  DateTime     
   attachment attachment[]
 }
 

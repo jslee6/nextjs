@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
     try {
       // Create a new user in the database
-      const newUser = await prisma.softWare.create({
+      const newUser = await prisma.software.create({
         data: req.body, // 요청 본문을 그대로 사용
       });
 

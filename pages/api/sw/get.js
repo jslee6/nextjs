@@ -79,7 +79,7 @@ export default async function select2(req, res) {
     const userRole = token.user.role;  // role 정보 가져오기
 
     // 소프트웨어 테이블에서 데이터 조회
-    const users = await prisma.softWare.findMany();
+    const users = await prisma.software.findMany();
 
     // role에 따라 licenseKey를 제외한 사용자 데이터 생성
     const response = users.map(user => {

@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const { id } = req.body // 사용자 ID를 'id'로 받습니다.
 
     try {
-      await prisma.softWare.delete({
+      await prisma.software.delete({
         where: {
           id: id // 'id'로 삭제 조건을 설정합니다.
         }
