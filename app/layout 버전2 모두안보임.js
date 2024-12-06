@@ -28,7 +28,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head />
       <body>
-        {/* 이거 넣으면 경로는 바로 바뀜 */}
+        {/* 이거 넣으면 경로 는 바로 바뀜 */}
         {/* {pathname === "/auth/login" ? <>{children} </>
         : */}
         <Box>
